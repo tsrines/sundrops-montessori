@@ -12,15 +12,12 @@ const EVENT_TYPE_LABELS: Record<SchoolEvent['type'], string> = {
 };
 
 const EVENT_TYPE_BADGE_COLORS: Record<SchoolEvent['type'], string> = {
-  tour: 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 border-blue-200 dark:border-blue-800',
-  holiday: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 border-red-200 dark:border-red-800',
-  event: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 border-green-200 dark:border-green-800',
-  conference:
-    'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border-purple-200 dark:border-purple-800',
-  'teacher-workday':
-    'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border-amber-200 dark:border-amber-800',
-  'summer-camp':
-    'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300 border-orange-200 dark:border-orange-800',
+  tour: 'bg-blue-100 text-blue-800 border-blue-200',
+  holiday: 'bg-red-100 text-red-800 border-red-200',
+  event: 'bg-green-100 text-green-800 border-green-200',
+  conference: 'bg-purple-100 text-purple-800 border-purple-200',
+  'teacher-workday': 'bg-amber-100 text-amber-800 border-amber-200',
+  'summer-camp': 'bg-orange-100 text-orange-800 border-orange-200',
 };
 
 const MONTH_NAMES = [

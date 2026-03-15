@@ -57,8 +57,8 @@ export function ContactForm({ defaultCampus }: ContactFormProps) {
   if (isSubmitted) {
     return (
       <div className="rounded-xl border bg-card p-12 text-center">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30">
-          <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+          <CheckCircle className="h-8 w-8 text-green-600" />
         </div>
         <h3 className="mt-6 text-xl font-semibold text-foreground">Message Sent</h3>
         <p className="mt-2 text-muted-foreground">

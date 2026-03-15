@@ -3,7 +3,6 @@ import { Noto_Serif, Raleway, Sacramento } from 'next/font/google';
 import './globals.css';
 import { Nav } from '@/components/nav';
 import { Footer } from '@/components/footer';
-import { ThemeProvider } from '@/components/theme-provider';
 import { SearchDialog } from '@/components/search-dialog';
 
 const notoSerif = Noto_Serif({
@@ -46,14 +45,12 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={`${notoSerif.variable} ${raleway.variable} ${sacramento.variable} font-sans`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Nav />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-          <SearchDialog />
-        </ThemeProvider>
+        <Nav />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
+        <SearchDialog />
       </body>
     </html>
   );

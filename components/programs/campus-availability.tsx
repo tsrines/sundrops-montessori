@@ -9,6 +9,8 @@ const CAMPUS_SLUG_MAP: Record<string, string> = {
   'Bridge Campus': '/bridge-campus/',
   'Daniel Island Campus': '/daniel-island-campus/',
   'Palmetto Campus': '/palmetto-campus/',
+  'Farm Campus': '/farm-campus/',
+  'Farm Campus (Huger, SC)': '/farm-campus/',
 };
 
 export function CampusAvailability({ campuses }: CampusAvailabilityProps) {

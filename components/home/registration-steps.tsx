@@ -35,7 +35,7 @@ export function RegistrationSteps() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   return (
-    <section ref={sectionRef} className="bg-white px-4 py-20">
+    <section ref={sectionRef} className="bg-sundrops-sand/30 px-4 py-20">
       <div className="mx-auto max-w-5xl">
         <div className="mb-12 text-center">
           <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-4xl">Begin Your Sundrops Journey</h2>

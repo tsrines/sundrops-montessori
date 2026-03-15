@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { Quote } from 'lucide-react';
 import { SectionHeading } from '@/components/section-heading';
+import { StaffGrid } from '@/components/staff-grid';
+import { staffGroups } from '@/lib/data/staff';
 
 export const metadata: Metadata = {
   title: 'About Us | Sundrops Montessori',
@@ -61,6 +64,24 @@ const TIMELINE_MILESTONES = [
     title: 'Mezzo Farm Program',
     description:
       'The Mezzo adolescent program launched on a working farm in Huger, SC, offering a groundbreaking Montessori experience for middle school students.',
+  },
+] as const;
+
+const PARENT_TESTIMONIALS = [
+  {
+    name: 'Alexandria',
+    quote:
+      'Sundrops has been such a blessing for our family. The teachers genuinely care about each child and it shows in everything they do. My daughter has thrived in ways I never expected.',
+  },
+  {
+    name: 'Molly',
+    quote:
+      'We looked at many preschools before choosing Sundrops and I am so glad we did. The Montessori approach has given my son independence, confidence, and a true love of learning.',
+  },
+  {
+    name: 'Ben',
+    quote:
+      'As a father, seeing my kids excited to go to school every morning tells me everything I need to know. The community at Sundrops is unlike anything else in Charleston.',
   },
 ] as const;
 
@@ -125,21 +146,18 @@ export default function AboutUsPage() {
           <SectionHeading
             eyebrow="Our History"
             title="The Sundrops Story"
-            description="From a single classroom to three campuses and a farm program, our journey has been guided by a commitment to authentic Montessori education."
+            description="From a single classroom to four campuses and a farm program, our journey has been guided by a commitment to authentic Montessori education."
             centered
           />
           <div className="mt-12 space-y-0">
             {TIMELINE_MILESTONES.map((milestone, index) => (
               <div key={milestone.year} className="relative flex gap-6 pb-12 last:pb-0">
-                {/* Timeline line */}
                 {index < TIMELINE_MILESTONES.length - 1 && (
                   <div className="absolute left-[23px] top-12 h-full w-px bg-border" />
                 )}
-                {/* Timeline dot */}
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
                   {milestone.year.slice(2)}
                 </div>
-                {/* Content */}
                 <div className="pt-1">
                   <p className="text-sm font-medium text-primary">{milestone.year}</p>
                   <h3 className="text-lg font-semibold text-foreground">{milestone.title}</h3>
@@ -151,7 +169,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* Founder / Team Section */}
+      {/* Founder Section */}
       <section className="bg-muted/50 py-16 md:py-24">
         <div className="container mx-auto max-w-4xl px-4">
           <SectionHeading eyebrow="Our Founder" title="Meet Shannon Smith" centered />
@@ -175,11 +193,30 @@ export default function AboutUsPage() {
                 the Lowcountry.
               </p>
               <p className="mt-4 leading-relaxed text-muted-foreground">
-                Under her leadership, Sundrops has expanded to three campuses and launched the innovative Mezzo farm
+                Under her leadership, Sundrops has expanded to four campuses and launched the innovative Mezzo farm
                 program for adolescents. Shannon&apos;s vision continues to guide the school&apos;s commitment to
                 authentic Montessori practice, community engagement, and joyful learning.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Staff Grid */}
+      <StaffGrid groups={staffGroups} />
+
+      {/* Parent Testimonials */}
+      <section className="bg-sundrops-sand/40 py-16 md:py-24">
+        <div className="container mx-auto max-w-5xl px-4">
+          <SectionHeading eyebrow="What Parents Are Saying" title="Voices From Our Community" centered />
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {PARENT_TESTIMONIALS.map((testimonial) => (
+              <div key={testimonial.name} className="rounded-xl border bg-card p-8 shadow-sm">
+                <Quote className="mb-4 h-8 w-8 text-sundrops-warmth opacity-60" />
+                <p className="leading-relaxed text-muted-foreground">{testimonial.quote}</p>
+                <p className="mt-4 font-semibold text-foreground">-- {testimonial.name}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

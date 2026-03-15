@@ -8,7 +8,6 @@ import { Menu, ChevronDown, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { mainNavigation, type NavItem } from '@/lib/data/navigation';
 import { Button } from '@/components/ui/button';
-import { ThemeToggle } from '@/components/theme-toggle';
 import { MobileNav } from '@/components/mobile-nav';
 
 function DropdownMenu({ item, isActive, pathname }: { item: NavItem; isActive: boolean; pathname: string }) {
@@ -168,7 +167,6 @@ export function Nav() {
           {/* Desktop Right Actions */}
           <div className="hidden items-center gap-2 lg:flex">
             <SearchTrigger />
-            <ThemeToggle />
             <Button asChild size="sm">
               <Link href="/contact/">Request a Tour</Link>
             </Button>
@@ -177,7 +175,6 @@ export function Nav() {
           {/* Mobile Right Actions */}
           <div className="flex items-center gap-2 lg:hidden">
             <SearchTrigger />
-            <ThemeToggle />
             <button
               type="button"
               onClick={() => setIsMobileOpen(true)}
