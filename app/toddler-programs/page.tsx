@@ -1,26 +1,22 @@
 import type { Metadata } from 'next';
-import { programs } from '@/lib/data/programs';
-import { ProgramHero } from '@/components/programs/program-hero';
-import { ProgramDetails } from '@/components/programs/program-details';
-import { ProgramFeatures } from '@/components/programs/program-features';
-import { CampusAvailability } from '@/components/programs/campus-availability';
-import { EnrollmentCta } from '@/components/programs/enrollment-cta';
-
-const program = programs.find((p) => p.slug === 'toddler-programs')!;
+import { ToddlerHero } from '@/components/toddler/toddler-hero';
+import { ToddlerContentGrid } from '@/components/toddler/toddler-content-grid';
+import { ToddlerBeyondBooks } from '@/components/toddler/toddler-beyond-books';
+import { ToddlerRegistration } from '@/components/toddler/toddler-registration';
 
 export const metadata: Metadata = {
-  title: `${program.name} (${program.montessoriName}) | Sundrops Montessori`,
-  description: program.description,
+  title: 'Toddler Programs (Pee Wee & Wee Casa) | Sundrops Montessori',
+  description:
+    'Montessori toddler programs for ages 14-36 months. Fostering independence, language development, and respect for the child in a carefully prepared environment.',
 };
 
 export default function ToddlerProgramsPage() {
   return (
     <>
-      <ProgramHero program={program} />
-      <ProgramDetails extendedDescription={program.extendedDescription} />
-      <ProgramFeatures features={program.features} />
-      <CampusAvailability campuses={program.campuses} />
-      <EnrollmentCta programName={program.name} availableCampuses={program.campuses} />
+      <ToddlerHero />
+      <ToddlerContentGrid />
+      <ToddlerBeyondBooks />
+      <ToddlerRegistration />
     </>
   );
 }
