@@ -10,14 +10,14 @@ export const mainNavigation: NavItem[] = [
     label: 'Programs',
     href: '#',
     children: [
-      { label: 'Infant (Nido)', href: '/infant-care/' },
-      { label: 'Toddler (Pee Wee / Wee Casa)', href: '/toddler-programs/' },
+      { label: 'Infant', href: '/infant-care/' },
+      { label: 'Toddler', href: '/toddler-programs/' },
       {
-        label: 'Preschool & Kindergarten (Casa)',
+        label: 'Preschool & Kindergarten',
         href: '/preschool-and-kindergarten/',
       },
       { label: 'Elementary School', href: '/elementary-school/' },
-      { label: 'Middle School (Mezzo)', href: '/middle-school/' },
+      { label: 'Middle School', href: '/mezzo-program/' },
     ],
   },
   {
@@ -39,14 +39,14 @@ export const mainNavigation: NavItem[] = [
 
 export const footerNavigation = {
   programs: [
-    { label: 'Infant Care (Nido)', href: '/infant-care/' },
-    { label: 'Toddler Programs', href: '/toddler-programs/' },
+    { label: 'Infant', href: '/infant-care/' },
+    { label: 'Toddler', href: '/toddler-programs/' },
     {
       label: 'Preschool & Kindergarten',
       href: '/preschool-and-kindergarten/',
     },
     { label: 'Elementary School', href: '/elementary-school/' },
-    { label: 'Middle School (Mezzo)', href: '/middle-school/' },
+    { label: 'Middle School', href: '/mezzo-program/' },
   ],
   campuses: [
     { label: 'Bridge (Mt. Pleasant)', href: '/bridge-campus/' },
