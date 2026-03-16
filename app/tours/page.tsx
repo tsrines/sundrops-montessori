@@ -14,14 +14,14 @@ const TOURS = [
     title: 'Bridge Campus Tour',
     description:
       'Explore our flagship campus in Mt Pleasant. See the purpose-built Montessori classrooms, outdoor learning gardens, and welcoming community spaces that serve children from 6 weeks through 10th grade.',
-    videoId: '422187498',
+    videoId: '731099152',
     provider: 'vimeo' as const,
   },
   {
     title: 'Mezzo Farm School Tour',
     description:
       'Discover our innovative farm-based adolescent program in Huger, SC. Watch how students engage in sustainable agriculture, entrepreneurship, and community building on a working farm.',
-    videoId: '486498197',
+    videoId: '731103388',
     provider: 'vimeo' as const,
   },
 ];

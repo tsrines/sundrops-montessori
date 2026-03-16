@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/careers/',
     '/calendar-embed',
     '/parent-resources/',
+    '/field-trip-permission/',
   ];
 
   return routes.map((route) => ({

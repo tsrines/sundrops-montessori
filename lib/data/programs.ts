@@ -30,7 +30,7 @@ export const programs: Program[] = [
       'Sensory-rich learning materials',
     ],
     campuses: ['Bridge Campus', 'Daniel Island Campus'],
-    image: '/images/program-bg.png',
+    image: '/images/programs/infant-care-hero.jpg',
     color: 'bg-rose-100',
   },
   {
@@ -51,7 +51,7 @@ export const programs: Program[] = [
       'Mixed-age community building',
     ],
     campuses: ['Bridge Campus', 'Daniel Island Campus', 'Palmetto Campus'],
-    image: '/images/program-bg.png',
+    image: '/images/programs/toddler-programs-hero.jpg',
     color: 'bg-amber-100',
   },
   {
@@ -74,7 +74,7 @@ export const programs: Program[] = [
       'Spanish language introduction',
     ],
     campuses: ['Bridge Campus', 'Daniel Island Campus', 'Palmetto Campus'],
-    image: '/images/program-bg.png',
+    image: '/images/programs/preschool-hero.jpg',
     color: 'bg-sky-100',
   },
   {
@@ -97,7 +97,7 @@ export const programs: Program[] = [
       'Student-led conferences',
     ],
     campuses: ['Bridge Campus'],
-    image: '/images/program-bg.png',
+    image: '/images/programs/elementary-hero.jpg',
     color: 'bg-emerald-100',
   },
   {
@@ -120,7 +120,7 @@ export const programs: Program[] = [
       'Environmental stewardship',
     ],
     campuses: ['Farm Campus (Huger, SC)'],
-    image: '/images/program-bg.png',
+    image: '/images/programs/middle-school-hero.jpg',
     color: 'bg-violet-100',
   },
 ];

@@ -9,6 +9,7 @@ export interface Campus {
   hours: string;
   description: string;
   mapEmbedUrl: string;
+  heroImage: string;
 }
 
 export const campuses: Campus[] = [
@@ -23,6 +24,7 @@ export const campuses: Campus[] = [
     hours: 'Monday - Friday, 7:00 AM - 6:00 PM',
     description:
       'Our flagship campus in Mt Pleasant serves children from 6 weeks through 10th grade. The Bridge Campus features purpose-built Montessori classrooms, outdoor learning gardens, and a welcoming community for families in the East Cooper area.',
+    heroImage: '/images/campuses/bridge-campus-hero.jpg',
     mapEmbedUrl:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.8!2d-79.862!3d32.814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDQ4JzUwLjQiTiA3OcKwNTEnNDMuMiJX!5e0!3m2!1sen!2sus!4v1',
   },
@@ -37,6 +39,7 @@ export const campuses: Campus[] = [
     hours: 'Monday - Friday, 7:00 AM - 6:00 PM',
     description:
       'Nestled near Daniel Island, this campus provides Montessori education for infants through kindergarten in a beautifully designed space that connects children to nature and community.',
+    heroImage: '/images/campuses/daniel-island-hero.jpg',
     mapEmbedUrl:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.8!2d-79.88!3d32.86!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sen!2sus!4v1',
   },
@@ -51,6 +54,7 @@ export const campuses: Campus[] = [
     hours: 'Monday - Friday, 7:00 AM - 6:00 PM',
     description:
       'Located in the heart of Charleston, the Palmetto Campus brings the Montessori method to downtown families. Our toddler and preschool programs provide a nurturing community for children ages 14 months through kindergarten.',
+    heroImage: '/images/campuses/palmetto-hero.jpg',
     mapEmbedUrl:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.8!2d-79.97!3d32.78!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sen!2sus!4v1',
   },
@@ -65,6 +69,7 @@ export const campuses: Campus[] = [
     hours: 'Monday - Friday, 8:00 AM - 3:30 PM',
     description:
       'The Farm Campus in Huger, SC is home to our Mezzo adolescent program. Set on a working farm, students engage in real-world learning through sustainable agriculture, entrepreneurship, and community building while meeting rigorous academic standards.',
+    heroImage: '/images/campuses/farm-campus-hero.jpg',
     mapEmbedUrl:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3340.0!2d-79.75!3d33.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sen!2sus!4v1',
   },

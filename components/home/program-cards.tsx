@@ -10,7 +10,7 @@ export function ProgramCards() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   return (
-    <section ref={sectionRef} className="bg-gray-50 px-4 py-20">
+    <section id="programs" ref={sectionRef} className="bg-gray-50 px-4 py-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 text-center">
           <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">Our Programs</p>

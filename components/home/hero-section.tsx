@@ -36,7 +36,7 @@ export function HeroSection() {
 
           <div className="mt-4 flex flex-col gap-4 sm:flex-row">
             <Link
-              href="/programs/"
+              href="/#programs"
               className={cn(
                 'inline-flex items-center justify-center rounded-md px-8 py-3 text-base font-semibold',
                 'bg-primary text-white shadow-lg transition-colors hover:bg-primary/90'

@@ -6,11 +6,54 @@ interface StaffGridProps {
   groups: StaffGroup[];
 }
 
-function StaffCard({ name, title, campus, image }: { name: string; title: string; campus?: string; image: string }) {
+const INITIALS_COLORS = [
+  'bg-sundrops-warmth',
+  'bg-sundrops-sage',
+  'bg-sundrops-earth-light',
+  'bg-sundrops-blue-light',
+] as const;
+
+function getInitials(name: string): string {
+  return name
+    .replace(/^(Ms\.|Mr\.|Mrs\.|Dr\.)\s*/i, '')
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+}
+
+function isPlaceholder(image: string): boolean {
+  return image.includes('placeholder');
+}
+
+function StaffCard({
+  name,
+  title,
+  campus,
+  image,
+  index,
+}: {
+  name: string;
+  title: string;
+  campus?: string;
+  image: string;
+  index: number;
+}) {
+  const showInitials = isPlaceholder(image);
+
   return (
     <div className="flex flex-col items-center text-center">
       <div className="relative mb-4 h-40 w-40 overflow-hidden rounded-full bg-muted shadow-md">
-        <Image src={image} alt={name} fill className="object-cover" sizes="160px" />
+        {showInitials ? (
+          <div
+            className={`flex h-full w-full items-center justify-center ${INITIALS_COLORS[index % INITIALS_COLORS.length]}`}>
+            <span className="font-serif text-3xl font-bold text-white">{getInitials(name)}</span>
+          </div>
+        ) : (
+          <Image src={image} alt={name} fill className="object-cover" sizes="160px" />
+        )}
       </div>
       <h4 className="text-lg font-semibold text-foreground">{name}</h4>
       <p className="text-sm text-muted-foreground">{title}</p>
@@ -29,8 +72,8 @@ export function StaffGrid({ groups }: StaffGridProps) {
             <div key={group.label}>
               <h3 className="mb-8 text-center font-serif text-2xl font-bold text-foreground">{group.label}</h3>
               <div className="flex flex-wrap justify-center gap-10">
-                {group.members.map((member) => (
-                  <StaffCard key={member.name} {...member} />
+                {group.members.map((member, i) => (
+                  <StaffCard key={member.name} {...member} index={i} />
                 ))}
               </div>
             </div>

@@ -3,6 +3,7 @@ import { GraduationCap, Heart, Award, Building2, MapPin, Briefcase } from 'lucid
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { SectionHeading } from '@/components/section-heading';
+import { JobApplicationForm } from '@/components/forms/job-application-form';
 
 export const metadata: Metadata = {
   title: 'Careers | Sundrops Montessori',
@@ -153,22 +154,17 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Application CTA */}
+      {/* Application Form */}
       <section className="py-16 md:py-24">
-        <div className="container mx-auto max-w-2xl px-4 text-center">
+        <div className="container mx-auto max-w-2xl px-4">
           <SectionHeading
             eyebrow="Ready to Apply?"
-            title="Start Your Journey"
-            description="Send your resume and a cover letter telling us why you are passionate about Montessori education."
+            title="Submit Your Application"
+            description="Tell us about yourself and why you are passionate about Montessori education."
             centered
           />
-          <div className="mt-8">
-            <a
-              href="mailto:careers@sundropsmontessori.com"
-              className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-10 text-base font-medium text-primary-foreground shadow hover:bg-primary/90 transition-colors">
-              Email Your Resume
-            </a>
-            <p className="mt-4 text-sm text-muted-foreground">careers@sundropsmontessori.com</p>
+          <div className="mt-10">
+            <JobApplicationForm positions={OPEN_POSITIONS} />
           </div>
         </div>
       </section>

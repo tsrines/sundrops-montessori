@@ -11,77 +11,21 @@ export const metadata: Metadata = {
     'Learn about Sundrops Montessori, our mission, Montessori philosophy, history, and the team dedicated to nurturing each child in Charleston, SC.',
 };
 
-const PHILOSOPHY_PRINCIPLES = [
-  {
-    title: 'Child-Led Learning',
-    description:
-      'Children choose their own activities within a structured environment, building intrinsic motivation and a lifelong love of learning.',
-  },
-  {
-    title: 'The Prepared Environment',
-    description:
-      'Every classroom is thoughtfully designed with age-appropriate materials arranged to invite exploration, independence, and discovery.',
-  },
-  {
-    title: 'Multi-Age Classrooms',
-    description:
-      'Children of varying ages learn together, fostering mentorship, collaboration, and a natural social structure that mirrors the real world.',
-  },
-  {
-    title: 'Hands-On Materials',
-    description:
-      'Specially designed Montessori materials allow children to move from concrete to abstract understanding, making complex concepts tangible and accessible.',
-  },
-] as const;
-
-const TIMELINE_MILESTONES = [
-  {
-    year: '2003',
-    title: 'The Beginning',
-    description:
-      'Shannon Smith founded Sundrops Montessori with a single classroom in Mt Pleasant, SC, driven by a vision to bring authentic Montessori education to the Charleston area.',
-  },
-  {
-    year: '2008',
-    title: 'Bridge Campus Expansion',
-    description:
-      'Growing demand led to the expansion of the Bridge Campus, adding infant and elementary programs to serve families from 6 weeks through 6th grade.',
-  },
-  {
-    year: '2014',
-    title: 'Daniel Island Campus Opens',
-    description:
-      'A second campus opened near Daniel Island, bringing Montessori education to more families in the East Cooper community.',
-  },
-  {
-    year: '2018',
-    title: 'Palmetto Campus Opens',
-    description:
-      'The Palmetto Campus launched in downtown Charleston, serving toddler and preschool families in the heart of the city.',
-  },
-  {
-    year: '2020',
-    title: 'Mezzo Farm Program',
-    description:
-      'The Mezzo adolescent program launched on a working farm in Huger, SC, offering a groundbreaking Montessori experience for middle school students.',
-  },
-] as const;
-
 const PARENT_TESTIMONIALS = [
   {
     name: 'Alexandria',
     quote:
-      'Sundrops has been such a blessing for our family. The teachers genuinely care about each child and it shows in everything they do. My daughter has thrived in ways I never expected.',
+      'Throughout my years as a parent I have discovered there are very few comforts which can compare to the knowledge that your child is in a safe, nurturing and stimulating environment while they are away from home. I have no doubt that the wonderful teachers and staff at Sundrops Montessori love my children. I am confident that they are learning, growing and thriving, and that gives me tremendous peace of mind each and every day.',
   },
   {
     name: 'Molly',
     quote:
-      'We looked at many preschools before choosing Sundrops and I am so glad we did. The Montessori approach has given my son independence, confidence, and a true love of learning.',
+      'Both my son and my daughter attend Sundrops. My daughter has been there since she was a baby and I have watched her grow into this very confident, independent, smart, loving little girl with manners beyond her age. I strongly believe it is because of the Montessori approach that Sundrops has given her. My son has only been there a year but I have already seen a wonderful change in him.',
   },
   {
     name: 'Ben',
     quote:
-      'As a father, seeing my kids excited to go to school every morning tells me everything I need to know. The community at Sundrops is unlike anything else in Charleston.',
+      'Both of my children have been at Sundrops since they were 12 weeks old. I could not be more pleased with the education that they have received. I can see how the Montessori method has helped them to be independent, caring, and enthusiastic about learning. The teachers at Sundrops are wonderful and they truly care about each child.',
   },
 ] as const;
 
@@ -89,116 +33,71 @@ export default function AboutUsPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-primary/5 py-20 md:py-28">
-        <div className="container mx-auto max-w-5xl px-4 text-center">
-          <h1 className="font-serif text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
-            About Sundrops Montessori
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
-            For over two decades, we have been nurturing children and building community through authentic Montessori
-            education in the greater Charleston area.
-          </p>
+      <section className="relative min-h-[400px] md:min-h-[500px]">
+        <Image
+          src="/images/mission-bg.jpg"
+          alt="Montessori classroom materials"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 flex min-h-[400px] items-center md:min-h-[500px]">
+          <div className="container mx-auto max-w-5xl px-4 text-center">
+            <p className="font-script text-lg text-white/90 md:text-xl">About Sundrops</p>
+            <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+              Who We Are
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-white/90 md:text-xl">
+              Sundrops Montessori is a private Montessori school dedicated to following the principles presented by Maria
+              Montessori in her lifetime work as a child educator.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Story Section */}
+      <section className="py-16 md:py-24">
+        <div className="container mx-auto max-w-4xl px-4">
+          <SectionHeading eyebrow="Our Story" title="Sundrops Montessori Story" centered />
+          <div className="mt-8 space-y-6 text-lg leading-relaxed text-muted-foreground">
+            <p>
+              In 1998, under the direction of Shannon Smith, Sundrops Montessori opened its doors with nine children ages
+              18 months to 5 years old. Since then, Sundrops has grown to accommodate infants, toddlers, preschool,
+              kindergarten, and elementary-age children on multiple campuses in the Charleston, SC area.
+            </p>
+            <p>
+              Under the guidance of Sundrops&apos; certified Montessori staff, children receive individualized learning in
+              a multi-age classroom. Our multi-age environment benefits the children in many ways including: peer tutoring,
+              leadership opportunities, and extended family-like groupings.
+            </p>
+            <p>
+              The Montessori classroom and materials are carefully designed and arranged to incorporate all five senses into
+              the learning experience. The materials are self-correcting, allowing the children to see and correct their own
+              mistakes without intervention from the teacher. This builds self-confidence and analytical thinking skills as
+              well as the disposition for self-motivated learning that will last a lifetime.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="py-16 md:py-24">
+      <section className="bg-muted/50 py-16 md:py-24">
         <div className="container mx-auto max-w-4xl px-4 text-center">
-          <SectionHeading eyebrow="Our Mission" title="Why We Do What We Do" centered />
+          <SectionHeading eyebrow="The Sundrops Vision" title="Our Mission" centered />
           <blockquote className="mt-8 border-l-4 border-primary pl-6 text-left">
             <p className="text-xl italic leading-relaxed text-foreground md:text-2xl">
               At Sundrops, we strive to educate by nurturing each child&apos;s unique social, emotional, and cognitive
               development needs.
             </p>
           </blockquote>
-          <p className="mt-8 text-lg leading-relaxed text-muted-foreground">
-            We believe that every child has an innate desire to learn and grow. Our role is to create an environment
-            where that desire can flourish. Through the Montessori method, we honor each child as an individual,
-            supporting their natural development while fostering independence, curiosity, and a deep respect for the
-            world around them.
+          <p className="mt-8 text-left text-lg leading-relaxed text-muted-foreground">
+            The Montessori classroom and materials are carefully designed and arranged to incorporate all five senses into
+            the learning experience. The materials are self-correcting, allowing the children to see and correct their own
+            mistakes without intervention from the teacher. This builds self-confidence and analytical thinking skills as
+            well as the disposition for self-motivated learning that will last a lifetime.
           </p>
-        </div>
-      </section>
-
-      {/* Philosophy Section */}
-      <section className="bg-muted/50 py-16 md:py-24">
-        <div className="container mx-auto max-w-6xl px-4">
-          <SectionHeading
-            eyebrow="Our Philosophy"
-            title="The Montessori Approach"
-            description="Developed over a century ago by Dr. Maria Montessori, this scientifically grounded method respects the natural development of children and empowers them to reach their full potential."
-            centered
-          />
-          <div className="mt-12 grid gap-8 sm:grid-cols-2">
-            {PHILOSOPHY_PRINCIPLES.map((principle) => (
-              <div key={principle.title} className="rounded-xl border bg-card p-8 shadow-sm">
-                <h3 className="text-xl font-semibold text-foreground">{principle.title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{principle.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline / History Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto max-w-4xl px-4">
-          <SectionHeading
-            eyebrow="Our History"
-            title="The Sundrops Story"
-            description="From a single classroom to four campuses and a farm program, our journey has been guided by a commitment to authentic Montessori education."
-            centered
-          />
-          <div className="mt-12 space-y-0">
-            {TIMELINE_MILESTONES.map((milestone, index) => (
-              <div key={milestone.year} className="relative flex gap-6 pb-12 last:pb-0">
-                {index < TIMELINE_MILESTONES.length - 1 && (
-                  <div className="absolute left-[23px] top-12 h-full w-px bg-border" />
-                )}
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-                  {milestone.year.slice(2)}
-                </div>
-                <div className="pt-1">
-                  <p className="text-sm font-medium text-primary">{milestone.year}</p>
-                  <h3 className="text-lg font-semibold text-foreground">{milestone.title}</h3>
-                  <p className="mt-1 leading-relaxed text-muted-foreground">{milestone.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Founder Section */}
-      <section className="bg-muted/50 py-16 md:py-24">
-        <div className="container mx-auto max-w-4xl px-4">
-          <SectionHeading eyebrow="Our Founder" title="Meet Shannon Smith" centered />
-          <div className="mt-12 flex flex-col items-center gap-8 md:flex-row md:items-start">
-            <div className="relative h-64 w-64 shrink-0 overflow-hidden rounded-2xl shadow-lg md:h-80 md:w-80">
-              <Image
-                src="/images/founder.jpg"
-                alt="Shannon Smith, Founder of Sundrops Montessori"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 256px, 320px"
-              />
-            </div>
-            <div>
-              <h3 className="text-2xl font-semibold text-foreground">Shannon Smith</h3>
-              <p className="text-primary">Founder &amp; Head of School</p>
-              <p className="mt-4 leading-relaxed text-muted-foreground">
-                Shannon Smith founded Sundrops Montessori in 2003 with a deep conviction that every child deserves an
-                education that honors their individuality. A trained Montessori educator with decades of experience,
-                Shannon has built Sundrops from a single classroom into one of the most respected Montessori programs in
-                the Lowcountry.
-              </p>
-              <p className="mt-4 leading-relaxed text-muted-foreground">
-                Under her leadership, Sundrops has expanded to four campuses and launched the innovative Mezzo farm
-                program for adolescents. Shannon&apos;s vision continues to guide the school&apos;s commitment to
-                authentic Montessori practice, community engagement, and joyful learning.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -207,9 +106,9 @@ export default function AboutUsPage() {
 
       {/* Parent Testimonials */}
       <section className="bg-sundrops-sand/40 py-16 md:py-24">
-        <div className="container mx-auto max-w-5xl px-4">
-          <SectionHeading eyebrow="What Parents Are Saying" title="Voices From Our Community" centered />
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+        <div className="container mx-auto max-w-3xl px-4">
+          <SectionHeading eyebrow="Testimonials" title="What Parents are Saying" centered />
+          <div className="mt-12 space-y-8">
             {PARENT_TESTIMONIALS.map((testimonial) => (
               <div key={testimonial.name} className="rounded-xl border bg-card p-8 shadow-sm">
                 <Quote className="mb-4 h-8 w-8 text-sundrops-warmth opacity-60" />

@@ -26,7 +26,7 @@ interface TourRequestFormProps {
   defaultCampus: string;
 }
 
-const CAMPUS_OPTIONS = ['Bridge Campus', 'Daniel Island Campus', 'Palmetto Campus'];
+const CAMPUS_OPTIONS = ['Bridge Campus', 'Daniel Island Campus', 'Palmetto Campus', 'Farm Campus'];
 
 export function TourRequestForm({ defaultCampus }: TourRequestFormProps) {
   const [isSubmitted, setIsSubmitted] = React.useState(false);

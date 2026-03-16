@@ -20,7 +20,7 @@ export default function MiddleSchoolPage() {
       <ProgramDetails extendedDescription={program.extendedDescription} />
       <ProgramFeatures features={program.features} />
       <CampusAvailability campuses={program.campuses} />
-      <EnrollmentCta programName={program.name} />
+      <EnrollmentCta programName={program.name} availableCampuses={program.campuses} />
     </>
   );
 }

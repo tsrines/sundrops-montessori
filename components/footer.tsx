@@ -129,7 +129,7 @@ export function Footer() {
           <span>
             &copy; {currentYear} {siteConfig.name}. All rights reserved.
           </span>
-          <span>Prototype by Tim Rines</span>
+          <span>Website by Tim Rines</span>
         </div>
       </div>
     </footer>

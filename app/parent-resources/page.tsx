@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { FileText, DollarSign, Calendar, Shirt, UtensilsCrossed, Clock, Heart, ExternalLink } from 'lucide-react';
+import { FileText, DollarSign, Calendar, Shirt, UtensilsCrossed, Clock, Heart, ExternalLink, Bus } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SectionHeading } from '@/components/section-heading';
 
@@ -57,6 +57,14 @@ const RESOURCES = [
     description: 'Extended care options and enrichment activities available after the core school day.',
     href: '#',
     linkText: 'Learn More',
+    external: false,
+  },
+  {
+    icon: Bus,
+    title: 'Field Trip Permission',
+    description: 'Submit a digital permission form to authorize your child for school-sponsored field trips.',
+    href: '/field-trip-permission/',
+    linkText: 'Submit Form',
     external: false,
   },
   {

@@ -34,6 +34,7 @@ export const mainNavigation: NavItem[] = [
   { label: 'FAQs', href: '/faqs/' },
   { label: 'Calendar', href: '/calendar-embed' },
   { label: 'Careers', href: '/careers/' },
+  { label: 'Parent Resources', href: '/parent-resources/' },
   { label: 'Contact', href: '/contact/' },
 ];
 
@@ -60,6 +61,7 @@ export const footerNavigation = {
     { label: 'FAQs', href: '/faqs/' },
     { label: 'Calendar', href: '/calendar-embed' },
     { label: 'Careers', href: '/careers/' },
+    { label: 'Field Trip Permission', href: '/field-trip-permission/' },
     { label: 'Contact', href: '/contact/' },
   ],
 } as const;
