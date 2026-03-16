@@ -17,7 +17,7 @@ export function ProgramCards() {
           <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-4xl">Education for Every Stage</h2>
         </div>
 
-        <div className="grid grid-cols-2 justify-items-center gap-4 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-0 md:grid-cols-3 lg:grid-cols-5">
           {programs.map((program, index) => (
             <motion.div
               key={program.name}

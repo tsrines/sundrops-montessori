@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
 import type { Program } from '@/lib/data/programs';
 import { cn } from '@/lib/utils';
 
@@ -19,16 +18,20 @@ export function ProgramCard({ program, className }: ProgramCardProps) {
       className={cn('h-full', className)}>
       <Link
         href={`/${program.slug}/`}
-        className="block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+        className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
         <div
-          className={cn(
-            'flex h-full flex-col items-center justify-center rounded-lg p-6 text-center transition-shadow duration-300 hover:shadow-lg',
-            program.color
-          )}>
-          <h3 className="mb-1 text-sm font-bold uppercase tracking-wide text-gray-800">{program.name}</h3>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-600">{program.montessoriName}</p>
-          <p className="mb-3 text-xs text-gray-500">{program.ageRange}</p>
-          <ArrowRight className="h-4 w-4 text-gray-400" />
+          className="flex h-full flex-col items-start justify-between px-6 py-10 text-left transition-shadow duration-300 hover:shadow-lg lg:py-16"
+          style={{ backgroundColor: program.color }}>
+          <div>
+            <h3 className="mb-1 text-sm font-bold uppercase tracking-wide text-white">{program.name}</h3>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-white/80">
+              {program.montessoriName}
+            </p>
+            <p className="text-xs text-white/70">{program.ageRange}</p>
+          </div>
+          <svg className="mt-6 text-white" width="60" height="12" viewBox="0 0 60 12" fill="none">
+            <path d="M0 6h54M54 6l-5-5M54 6l-5 5" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
         </div>
       </Link>
     </motion.div>

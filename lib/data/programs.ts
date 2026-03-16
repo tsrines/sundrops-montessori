@@ -31,7 +31,7 @@ export const programs: Program[] = [
     ],
     campuses: ['Bridge Campus', 'Daniel Island Campus'],
     image: '/images/programs/infant-care-hero.jpg',
-    color: 'bg-rose-100',
+    color: '#E2BE6A',
   },
   {
     name: 'Toddler Programs',
@@ -52,7 +52,7 @@ export const programs: Program[] = [
     ],
     campuses: ['Bridge Campus', 'Daniel Island Campus', 'Palmetto Campus'],
     image: '/images/programs/toddler-programs-hero.jpg',
-    color: 'bg-amber-100',
+    color: '#E8959A',
   },
   {
     name: 'Preschool & Kindergarten',
@@ -73,7 +73,7 @@ export const programs: Program[] = [
     ],
     campuses: ['Bridge Campus', 'Daniel Island Campus', 'Palmetto Campus'],
     image: '/images/programs/preschool-hero.jpg',
-    color: 'bg-sky-100',
+    color: '#E44B93',
   },
   {
     name: 'Elementary School',
@@ -94,7 +94,7 @@ export const programs: Program[] = [
     ],
     campuses: ['Bridge Campus'],
     image: '/images/programs/elementary-hero.jpg',
-    color: 'bg-emerald-100',
+    color: '#6B5CC5',
   },
   {
     name: 'Middle School',
@@ -120,6 +120,6 @@ export const programs: Program[] = [
     ],
     campuses: ['Farm Campus (Huger, SC)'],
     image: '/images/programs/middle-school-hero.jpg',
-    color: 'bg-violet-100',
+    color: '#A3C5BC',
   },
 ];
