@@ -20,7 +20,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact/',
     '/careers/',
     '/calendar-embed',
-    '/parent-resources/',
     '/field-trip-permission/',
   ];
 
