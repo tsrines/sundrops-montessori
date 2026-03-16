@@ -43,9 +43,9 @@ export const siteConfig: SiteConfig = {
   },
   founder: {
     name: 'Shannon Smith',
-    title: 'Founder & Head of School',
+    title: 'Founder/Director',
     image: '/images/founder.jpg',
     quote:
-      'I started this school to create an educational community that nurtures the whole child - mind, body, and spirit. Every decision we make centers on what is best for the children in our care.',
+      'I started this school to create an educational community and place where our students are free develop at their pace, where they can learn logically, naturally, and spontaneously. In addition, this community fosters a strong self esteem, and guides children to be helpful, empathetic participants. We have built a learning experience where students and their families are part of the community and its growth. We\u2019re thankful for our Montessori community, which has grown to include four campuses and an adolescent farm school.',
   },
 };

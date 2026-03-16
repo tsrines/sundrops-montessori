@@ -9,11 +9,7 @@ import { cn } from '@/lib/utils';
 
 const FAQ_CATEGORIES = [
   { value: 'all', label: 'All' },
-  { value: 'general', label: 'General' },
-  { value: 'enrollment', label: 'Enrollment' },
-  { value: 'curriculum', label: 'Curriculum' },
-  { value: 'logistics', label: 'Logistics' },
-  { value: 'financial', label: 'Financial' },
+  { value: 'general', label: 'About Montessori Schools' },
 ] as const;
 
 type CategoryFilter = (typeof FAQ_CATEGORIES)[number]['value'];

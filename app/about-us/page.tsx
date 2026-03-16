@@ -15,17 +15,17 @@ const PARENT_TESTIMONIALS = [
   {
     name: 'Alexandria',
     quote:
-      'Throughout my years as a parent I have discovered there are very few comforts which can compare to the knowledge that your child is in a safe, nurturing and stimulating environment while they are away from home. I have no doubt that the wonderful teachers and staff at Sundrops Montessori love my children. I am confident that they are learning, growing and thriving, and that gives me tremendous peace of mind each and every day.',
+      'Throughout my years as a parent I have discovered there are very few comforts which can compare to the knowledge that your child is in a safe, nurturing and stimulating environment, one which not only educates, but encourages free thought and creativity. Sundrops is one such environment. From the moment my children walk in the door they are greeted with welcoming faces and a thoughtful and beautiful space in which to learn. The teachers and administration genuinely care for every child in their charge and interact with them as unique individuals instead of as names on a roster. Parents are encouraged to keep an open line of communication with teachers.',
   },
   {
     name: 'Molly',
     quote:
-      'Both my son and my daughter attend Sundrops. My daughter has been there since she was a baby and I have watched her grow into this very confident, independent, smart, loving little girl with manners beyond her age. I strongly believe it is because of the Montessori approach that Sundrops has given her. My son has only been there a year but I have already seen a wonderful change in him.',
+      'Both my son and my daughter attend Sundrops. My daughter has been there since she was a baby and my son since he was three. They have developed incredible, trusting relationships with their teachers and classmates. Not only are they learning, they\u2019re clearly cultivating a curiosity and lifetime love of learning. Both my kids are excited to go to school in the morning. For me, that\u2019s the biggest indicator that wonderful things are happening at Sundrops. I\u2019m happy that my family is a part of it.',
   },
   {
     name: 'Ben',
     quote:
-      'Both of my children have been at Sundrops since they were 12 weeks old. I could not be more pleased with the education that they have received. I can see how the Montessori method has helped them to be independent, caring, and enthusiastic about learning. The teachers at Sundrops are wonderful and they truly care about each child.',
+      'Both of my children have been at Sundrops since they were 12 weeks old and since then Sundrops has continuously met and exceeded our expectations in every way. Initially I could have cared less about Montessori and was sold based on Nido (6 weeks to 16 months). Now, after seeing how the system works in practice along with the excellent guidance of the staff, I feel lucky to have stumbled upon the best choice for my children to develop into happy, self-driven, creative adults. I cannot recommend Sundrops enough.',
   },
 ] as const;
 
@@ -50,8 +50,8 @@ export default function AboutUsPage() {
               Who We Are
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-white/90 md:text-xl">
-              Sundrops Montessori is a private Montessori school dedicated to following the principles presented by Maria
-              Montessori in her lifetime work as a child educator.
+              Sundrops Montessori is a private Montessori school dedicated to following the principles presented by
+              Maria Montessori in her lifetime work as a child educator.
             </p>
           </div>
         </div>
@@ -63,20 +63,21 @@ export default function AboutUsPage() {
           <SectionHeading eyebrow="Our Story" title="Sundrops Montessori Story" centered />
           <div className="mt-8 space-y-6 text-lg leading-relaxed text-muted-foreground">
             <p>
-              In 1998, under the direction of Shannon Smith, Sundrops Montessori opened its doors with nine children ages
-              18 months to 5 years old. Since then, Sundrops has grown to accommodate infants, toddlers, preschool,
-              kindergarten, and elementary-age children on multiple campuses in the Charleston, SC area.
+              In 1998, under the direction of Shannon Smith, Sundrops Montessori opened its doors with nine children
+              ages 18 months to 5 years old. Since then Sundrops has expanded to four campuses with programs currently
+              serving children from 6 weeks to 15 years. Our focus is to create a peaceful environment sensitive to the
+              physical, educational and emotional needs of the children.
             </p>
             <p>
-              Under the guidance of Sundrops&apos; certified Montessori staff, children receive individualized learning in
-              a multi-age classroom. Our multi-age environment benefits the children in many ways including: peer tutoring,
-              leadership opportunities, and extended family-like groupings.
+              Under the guidance of Sundrops&apos; certified Montessori staff, children receive individualized learning
+              in a creative and nurturing environment. Our multi-aged classroom communities allow children to help teach
+              and learn from one another, mutually benefiting all ages.
             </p>
             <p>
-              The Montessori classroom and materials are carefully designed and arranged to incorporate all five senses into
-              the learning experience. The materials are self-correcting, allowing the children to see and correct their own
-              mistakes without intervention from the teacher. This builds self-confidence and analytical thinking skills as
-              well as the disposition for self-motivated learning that will last a lifetime.
+              The Montessori classroom and materials are carefully designed and arranged to incorporate all five senses
+              in the learning experience. Classroom materials captivate children from both a tactile and sensorial
+              perspective, which motivates them to learn complex concepts as their education progresses. This unique
+              approach gives children confidence and a genuine love of learning.
             </p>
           </div>
         </div>
@@ -93,10 +94,10 @@ export default function AboutUsPage() {
             </p>
           </blockquote>
           <p className="mt-8 text-left text-lg leading-relaxed text-muted-foreground">
-            The Montessori classroom and materials are carefully designed and arranged to incorporate all five senses into
-            the learning experience. The materials are self-correcting, allowing the children to see and correct their own
-            mistakes without intervention from the teacher. This builds self-confidence and analytical thinking skills as
-            well as the disposition for self-motivated learning that will last a lifetime.
+            The Montessori classroom and materials are carefully designed and arranged to incorporate all five senses in
+            the learning experience. Classroom materials captivate children from both a tactile and sensorial
+            perspective, which motivates them to learn complex concepts as their education progresses. This unique
+            approach gives children confidence and a genuine love of learning.
           </p>
         </div>
       </section>
