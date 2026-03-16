@@ -22,10 +22,7 @@ export function ToddlerHero() {
         <p className="font-script mt-3 text-lg tracking-wider text-white md:text-xl">{TODDLER_HERO.subtitle}</p>
         <p className="mt-2 text-lg text-white">{TODDLER_HERO.ageRange}</p>
         <div className="mt-8">
-          <Button
-            asChild
-            size="lg"
-            className="border border-black bg-white text-black hover:bg-white/90">
+          <Button asChild size="lg" className="border border-black bg-white text-black hover:bg-white/90">
             <Link href={TODDLER_HERO.cta.href}>{TODDLER_HERO.cta.label}</Link>
           </Button>
         </div>
