@@ -52,6 +52,7 @@ export const DI_INFO = {
 
 export const DI_QUICK_LINKS = [
   { label: 'Tuition', href: '/documents/tuition.pdf' },
+  { label: 'Tuition Policies', href: '/documents/tuition-policies.pdf' },
   { label: 'Handbook', href: '/documents/handbook.pdf' },
   { label: 'School Calendar', href: '/documents/school-calendar.pdf' },
   {

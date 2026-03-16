@@ -56,6 +56,7 @@ export const BRIDGE_INFO = {
 
 export const BRIDGE_QUICK_LINKS = [
   { label: 'Tuition', href: '/documents/tuition.pdf' },
+  { label: 'Tuition Policies', href: '/documents/tuition-policies.pdf' },
   { label: 'Handbook', href: '/documents/handbook.pdf' },
   { label: 'School Calendar', href: '/documents/school-calendar.pdf' },
   { label: 'Birth-Casa Programs Calendar', href: '/documents/birth-casa-calendar.pdf' },
