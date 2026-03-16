@@ -1,65 +1,114 @@
 export const MEZZO_HERO = {
-  title: 'MIDDLE SCHOOL',
-  subtitle: 'THE SUNDROPS MEZZO PROGRAM',
-  gradeRange: '7th - 9th Grade',
-  cta: {
-    contact: { label: 'CONTACT US', href: '/contact/' },
-    learnMore: { label: 'MORE ABOUT THE MEZZO PROGRAM', href: '/farm-campus/' },
-  },
+  titleLine1: 'MEZZO MONTESSORI',
+  titleLine2: 'A Sundrops Montessori Middle School Experience at our Campus in Huger, SC',
+  gradeRange: 'Grades 7 - 9',
+  cta: { label: 'Schedule A Middle School Tour', href: '/contact-farm' },
 } as const;
 
-export const MEZZO_PHILOSOPHY = {
-  adolescent: {
-    heading: 'Adolescent',
-    paragraphs: [
-      'The Sundrops Adolescent Erdkinder Program addresses the unique needs of the middle schooler. Adolescents have an inner need to discover who they are as an individual in the context of the larger community. The Sundrops Farm Campus gives adolescents the right environment that allows for authentic experiences that further their self-confidence.',
-      'In a Montessori program for the adolescent the focus is on valorization of the personality; the students learn skills that allow them to be contributing members of a larger society.',
-      'There are seven vital drives present during the adolescent period that are addressed: self-expression, belonging, freedom, fun, economic independence, power, and establishing personal convictions. In addition, to guide Sundrops Mezzo students on their journey, the program focuses on three pillars: academic rigor, social and emotional development, and building an ethical framework.',
-    ],
-  },
-  deepConnection: {
-    heading: 'Deep Connection',
-    paragraphs: [
-      'At the heart of the Sundrops Mezzo Program is a deep connection to the land and real-world work. Students participate in the daily operations of a working farm, gaining hands-on experience in agriculture, animal husbandry, and environmental stewardship.',
-      'Through a micro-economy model, students learn financial literacy, entrepreneurship, and the value of meaningful labor. These authentic experiences provide the foundation for academic exploration and personal growth during this critical developmental stage.',
-    ],
-  },
+export const MEZZO_INFO = {
+  heading: 'SUNDROPS MEZZO PROGRAM',
+  description:
+    '7th to 9th Grade. The Sundrops Adolescent Erdkinder Program addresses the unique needs of the middle schooler. The Erdkinder program is a carefully constructed environment allowing for living on the land and learning self-sufficiency. The small community of the farm requires all students to play a role, and often to step out of their comfort zone to realize their potential and success on the farm. See the video tour below.',
+  hours: 'M-F: 7:45 am - 3:30 pm',
+  closedDays: 'Closed on Weekends',
+  address: '1515 Charity Church Rd, Huger, SC 29450',
+  email: 'Email Farm School',
+  emailHref: 'mailto:zako@sundropsmontessori.com',
+  phone: '(843) 849-3652',
 } as const;
 
-export const MEZZO_BEYOND_BOOKS = {
-  heading: 'Beyond the Books',
-  body: 'The Sundrops Mezzo Program goes beyond traditional academics to nurture the whole adolescent. By addressing the developmental needs unique to this age group, we create an environment where students develop independence, resilience, and a strong sense of self. The farm setting provides the perfect backdrop for experiential learning that connects academic concepts to real-world applications.',
-  cta: { label: 'THE MEZZO PROGRAM CAMPUS', href: '/farm-campus/' },
+export const MEZZO_QUICK_LINKS = [
+  { label: 'Tuition', href: '/documents/tuition.pdf' },
+  { label: 'Handbook', href: '/documents/handbook.pdf' },
+  { label: 'Adolescent Calendar', href: '/documents/adolescent-calendar.pdf' },
+  { label: 'School Calendar', href: '/documents/school-calendar.pdf' },
+  {
+    label: 'Google Map',
+    href: 'https://maps.google.com/?q=1515+Charity+Church+Rd+Huger+SC+29450',
+  },
+] as const;
+
+export const MEZZO_COMPARISON = {
+  subheading: 'MEZZO FARM SCHOOL COMPARISON',
+  heading: "Continuing your Child's Montessori Education Through Middle School",
+  description:
+    'At a time when the middle school student is most challenged to find their place in the world and learn more about who they are, traditional schools sit them inside at desks to learn in a standardized, test-based method. The Mezzo Farm School Program goes beyond the classroom where each student works to their strengths and learns about their gifts.',
+  items: [
+    { label: 'Established Curriculum', traditional: true, mezzo: true },
+    { label: 'Test-Based Model', traditional: true, mezzo: 'strikethrough' },
+    { label: 'Student-Centric Model', traditional: false, mezzo: true },
+    { label: 'Varied Extracurricular Activities', traditional: true, mezzo: true },
+    { label: 'Field Day Trips', traditional: true, mezzo: true },
+    { label: 'Bonding/Multi-Day Field Study Trips', traditional: false, mezzo: true },
+    { label: 'Teach about being an Adolescent', traditional: false, mezzo: true },
+    { label: 'Multiage Classrooms', traditional: false, mezzo: true },
+    { label: 'Teach Soft Skills', traditional: false, mezzo: true },
+    {
+      label: 'Create an environment where students are encouraged to be themselves',
+      traditional: false,
+      mezzo: true,
+    },
+    { label: 'Outside Farm Work', traditional: false, mezzo: true },
+    { label: 'Classroom Small Business/Financial Literacy', traditional: false, mezzo: true },
+    { label: 'Work based on themes engaging to Adolescents', traditional: false, mezzo: true },
+    { label: 'Service Work', traditional: false, mezzo: true },
+    { label: 'Respect for Family Time: no assigned homework', traditional: false, mezzo: true },
+    { label: 'Options for HS credits', traditional: false, mezzo: true },
+  ],
+} as const;
+
+export const MEZZO_CAMPUS_LIFE_IMAGES = [
+  { src: '/images/campuses/farm/farm7.jpg', alt: 'Students on the farm' },
+  { src: '/images/campuses/farm/farm8.jpg', alt: 'Farm school activities' },
+  { src: '/images/campuses/farm/farm10.jpg', alt: 'Outdoor learning on the farm' },
+  { src: '/images/campuses/farm/farm-4.jpg', alt: 'Farm campus life' },
+  { src: '/images/campuses/farm/farm5.jpg', alt: 'Students working outdoors' },
+  { src: '/images/campuses/farm/garden-1.jpg', alt: 'Garden at the farm school' },
+  { src: '/images/campuses/farm/FarmSchool-2.jpg', alt: 'Farm school community' },
+  { src: '/images/campuses/farm/farm-school3.jpg', alt: 'Farm school experience' },
+] as const;
+
+export const MEZZO_ALUMNI = {
+  subheading: 'Sundrops Middle School',
+  programLabel: 'Mezzo Farm Program',
+  heading: 'Alumni Spotlight',
+  name: 'Nana Yeboah',
+  quote:
+    "This program is amazing. They got this super scared, shy girl to this confident, outgoing person. I feel like that's who I was on the inside, I just needed help getting there, and that's definitely going to affect the rest of my life, forever.",
+  yearsAttended: '2019 - 2022',
+  programs: 'Upper Elementary, Mezzo Middle School',
+  whereTo: 'College of Charleston',
+  videoId: '1159695499',
+  thumbnail: '/images/nana-overlay.jpg',
+} as const;
+
+export const MEZZO_STUDENT_QUOTE = {
+  quote: 'Sundrops Middle School is a place where my confidence and place in the world grew.',
+  attribution: '~former student',
 } as const;
 
 export const MEZZO_VIRTUAL_TOUR = {
-  heading: 'Take a Virtual Tour of the Mezzo Program',
+  heading: 'Tour Our Adolescent Farm School',
+  cta: { label: 'REQUEST MORE INFO', href: '/contact/' },
   videoId: '731103388',
-  cta: { label: 'Request More Info', href: '/contact/' },
 } as const;
 
-export const MEZZO_REGISTRATION = {
-  heading: 'MEZZO Registration',
-  subheading: 'How To Register Your Child For The Mezzo Program',
-  description:
-    'Enrolling your child in the Sundrops Mezzo Program is a straightforward process. Follow the steps below to begin your journey toward a transformative adolescent education.',
-  steps: [
-    {
-      number: 1,
-      title: 'Request Information',
-      description: 'Reach out to learn more about the Mezzo Program and schedule a visit to the Farm Campus.',
-      campusLinks: [{ label: 'Farm Campus (Huger, SC)', href: '/contact/' }],
-    },
-    {
-      number: 2,
-      title: 'Complete Provided Application',
-      description:
-        'Fill out the enrollment application for your child. Our admissions team will review and follow up promptly.',
-    },
-    {
-      number: 3,
-      title: 'Enrollment Process',
-      description: "We'll contact you as soon as enrollment is determined.",
-    },
-  ],
+export const MEZZO_STAFF = [
+  {
+    name: 'Mr. Zak Oberrath',
+    title: 'Farm School Lead Guide',
+    image: '/images/staff/zak-oberrath-2023.jpg',
+    emailLabel: 'Email Zak',
+    emailHref: 'mailto:zalo@sundropsmontessori.com',
+  },
+  {
+    name: 'Ms. Karen Latsbaugh',
+    title: 'Farm School Assistant Guide',
+    image: '/images/staff/karen-latsbaugh.jpg',
+  },
+] as const;
+
+export const MEZZO_CTA = {
+  label: 'Schedule A Middle School Tour',
+  href: '/contact-farm',
 } as const;
