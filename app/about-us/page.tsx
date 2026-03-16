@@ -35,21 +35,21 @@ export default function AboutUsPage() {
       {/* Hero Section */}
       <section className="relative min-h-[400px] md:min-h-[500px]">
         <Image
-          src="/images/mission-bg.jpg"
-          alt="Montessori classroom materials"
+          src="/images/about-hero.jpg"
+          alt="Colorful Montessori bead materials on wooden shelves"
           fill
           className="object-cover"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#EEEFF2] via-[#EEEFF2]/50 to-transparent" />
         <div className="relative z-10 flex min-h-[400px] items-center md:min-h-[500px]">
-          <div className="container mx-auto max-w-5xl px-4 text-center">
-            <p className="font-script text-lg text-white/90 md:text-xl">About Sundrops</p>
-            <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <div className="container mx-auto max-w-5xl px-4">
+            <p className="font-script text-lg text-gray-500 md:text-xl">About Sundrops</p>
+            <h1 className="mt-2 font-serif text-4xl font-bold tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
               Who We Are
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-white/90 md:text-xl">
+            <p className="mt-6 max-w-md text-lg text-gray-600 md:text-xl">
               Sundrops Montessori is a private Montessori school dedicated to following the principles presented by
               Maria Montessori in her lifetime work as a child educator.
             </p>
