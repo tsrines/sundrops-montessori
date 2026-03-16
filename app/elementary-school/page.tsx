@@ -1,26 +1,24 @@
 import type { Metadata } from 'next';
-import { programs } from '@/lib/data/programs';
-import { ProgramHero } from '@/components/programs/program-hero';
-import { ProgramDetails } from '@/components/programs/program-details';
-import { ProgramFeatures } from '@/components/programs/program-features';
-import { CampusAvailability } from '@/components/programs/campus-availability';
-import { EnrollmentCta } from '@/components/programs/enrollment-cta';
-
-const program = programs.find((p) => p.slug === 'elementary-school')!;
+import { ElementaryHero } from '@/components/elementary/elementary-hero';
+import { ElementaryIntro } from '@/components/elementary/elementary-intro';
+import { ElementaryExperiential } from '@/components/elementary/elementary-experiential';
+import { ElementaryBeyondBooks } from '@/components/elementary/elementary-beyond-books';
+import { ElementaryRegistration } from '@/components/elementary/elementary-registration';
 
 export const metadata: Metadata = {
-  title: `${program.name} (${program.montessoriName}) | Sundrops Montessori`,
-  description: program.description,
+  title: 'Elementary School (Lower & Upper Elementary) | Sundrops Montessori',
+  description:
+    'Authentic Montessori elementary education for 1st through 6th grade in Mount Pleasant, SC. Hands-on learning, experiential approach, and a nurturing community.',
 };
 
 export default function ElementarySchoolPage() {
   return (
     <>
-      <ProgramHero program={program} />
-      <ProgramDetails extendedDescription={program.extendedDescription} />
-      <ProgramFeatures features={program.features} />
-      <CampusAvailability campuses={program.campuses} />
-      <EnrollmentCta programName={program.name} availableCampuses={program.campuses} />
+      <ElementaryHero />
+      <ElementaryIntro />
+      <ElementaryExperiential />
+      <ElementaryBeyondBooks />
+      <ElementaryRegistration />
     </>
   );
 }
