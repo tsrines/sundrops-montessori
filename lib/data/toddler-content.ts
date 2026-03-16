@@ -62,8 +62,6 @@ export const TODDLER_REGISTRATION = {
       description: 'Reach out to learn more about the Toddler Programs and schedule a campus visit.',
       campusLinks: [
         { label: 'Bridge Campus (Mt Pleasant)', href: '/contact/' },
-        { label: 'Daniel Island Campus', href: '/contact/' },
-        { label: 'Palmetto Campus (Downtown)', href: '/contact/' },
       ],
     },
     {
