@@ -1,0 +1,282 @@
+uid=50_0 RootWebArea "Infant Care | Charleston, SC | Sundrops Montessori School" url="https://sundropsmontessori.com/infant-care/"
+  uid=50_1 ignored
+    uid=50_2 generic
+      uid=50_3 generic
+        uid=50_4 ignored
+          uid=50_5 ignored
+        uid=50_6 ignored
+          uid=50_7 ignored
+        uid=50_8 ignored
+          uid=50_9 ignored
+            uid=50_10 ignored
+              uid=50_11 ignored
+                uid=50_12 ignored
+        uid=50_13 ignored
+          uid=50_14 ignored
+        uid=50_15 ignored
+          uid=50_16 ignored
+            uid=50_17 ignored
+              uid=50_18 ignored
+                uid=50_19 ignored
+        uid=50_20 ignored
+          uid=50_21 ignored
+        uid=50_22 ignored
+          uid=50_23 ignored
+            uid=50_24 ignored
+              uid=50_25 ignored
+                uid=50_26 ignored
+        uid=50_27 ignored
+          uid=50_28 ignored
+        uid=50_29 ignored
+          uid=50_30 ignored
+            uid=50_31 ignored
+              uid=50_32 ignored
+                uid=50_33 ignored
+        uid=50_34 ignored
+          uid=50_35 ignored
+      uid=50_36 generic
+        uid=50_37 banner
+          uid=50_38 generic
+            uid=50_39 generic
+              uid=50_40 link "Sundrops Montessori" url="https://sundropsmontessori.com/"
+                uid=50_41 image "Sundrops Montessori" url="https://sundropsmontessori.com/wp-content/uploads/2019/10/Sundrops-Montessori-Logo_trans-sm.png"
+            uid=50_42 generic
+              uid=50_43 navigation
+                uid=50_44 list
+                  uid=50_45 listitem level="1"
+                    uid=50_46 link "ABOUT" url="https://sundropsmontessori.com/about-us/"
+                      uid=50_47 StaticText "ABOUT"
+                  uid=50_48 listitem level="1"
+                    uid=50_49 generic
+                      uid=50_50 StaticText "PROGRAMS"
+                      uid=50_51 generic
+                        uid=50_52 StaticText "3"
+                  uid=50_53 listitem level="1"
+                    uid=50_54 generic
+                      uid=50_55 StaticText "CAMPUSES"
+                      uid=50_56 generic
+                        uid=50_52 StaticText "3"
+                  uid=50_57 listitem level="1"
+                    uid=50_58 link "FAQS" url="https://sundropsmontessori.com/faqs/"
+                      uid=50_59 StaticText "FAQS"
+                  uid=50_60 listitem level="1"
+                    uid=50_61 link "CALENDAR" url="https://sundropsmontessori.com/calendar-embed"
+                      uid=50_62 StaticText "CALENDAR"
+                  uid=50_63 listitem level="1"
+                    uid=50_64 link "CAREERS" url="https://sundropsmontessori.com/careers/"
+                      uid=50_65 StaticText "CAREERS"
+                  uid=50_66 listitem level="1"
+                    uid=50_67 link "CONTACT" url="https://sundropsmontessori.com/contact/"
+                      uid=50_68 StaticText "CONTACT"
+                  uid=50_69 listitem level="1"
+                    uid=50_70 link "Parent Resources 3" url="https://sundropsmontessori.com/parent-resources/"
+                      uid=50_71 StaticText "Parent Resources"
+                      uid=50_72 generic
+                        uid=50_52 StaticText "3"
+              uid=50_73 link "" url="https://sundropsmontessori.com/cart/"
+                uid=50_74 ignored
+                  uid=50_75 ignored
+                    uid=50_52 StaticText ""
+        uid=50_76 generic
+          uid=50_77 generic
+            uid=50_78 article
+              uid=50_79 ignored
+                uid=50_80 ignored
+                  uid=50_81 generic
+                    uid=50_82 generic
+                      uid=50_83 generic
+                        uid=50_84 generic
+                          uid=50_85 generic
+                            uid=50_86 generic
+                              uid=50_87 heading "INFANTS" level="1"
+                                uid=50_88 StaticText "INFANTS"
+                              uid=50_89 heading "NIDO PROGRAM" level="3"
+                                uid=50_90 StaticText "NIDO PROGRAM"
+                              uid=50_91 paragraph
+                                uid=50_92 StaticText "6 weeks – 14 months"
+                              uid=50_93 paragraph
+                                uid=50_94 StaticText " "
+                          uid=50_95 generic
+                            uid=50_96 link "CONTACT US 5" url="https://sundropsmontessori.com/contact/"
+                              uid=50_97 StaticText "CONTACT US"
+                              uid=50_98 generic
+                                uid=50_52 StaticText "5"
+                    uid=50_99 generic
+                      uid=50_100 generic
+                        uid=50_101 generic
+                          uid=50_102 generic
+                            uid=50_103 generic
+                              uid=50_104 heading "LEARN BY DOING" level="3"
+                                uid=50_105 StaticText "LEARN BY DOING"
+                              uid=50_106 ignored
+                                uid=50_107 paragraph
+                                  uid=50_108 StaticText "The word "
+                                  uid=50_109 strong
+                                    uid=50_110 StaticText "Nido"
+                                  uid=50_111 StaticText " is Italian for nest. The Nido environment focuses on the basic needs of the infant, a safe bonded relationship between the caregivers and the child, respecting each individual child and the development of the child’s increasing sense of self and independence."
+                                uid=50_112 paragraph
+                                  uid=50_113 StaticText "The simplicity and order of our Nido environments allow for safe exploration and discovery of the world around them.  "
+                                uid=50_114 paragraph
+                                  uid=50_115 StaticText "Trust is a basic need that must be nurtured in the young child. Our trained caregivers respectfully respond to the needs of each child and when doing so, this builds a relationship between the two and sends the message to the child that he is unconditionally loved and accepted."
+                        uid=50_116 generic
+                          uid=50_117 generic
+                            uid=50_118 generic
+                              uid=50_119 ignored
+                                uid=50_120 paragraph
+                                uid=50_121 paragraph
+                                uid=50_122 paragraph
+                                  uid=50_123 StaticText "In our Nido environments we believe in the freedom of movement. You will not find children constrained in contraptions, rather you will see the infant placed on their back exploring the environment around them.  They are able to move in a natural way and when they are ready. Our floor beds allow for the mobile infant to wake and move off his bed when ready.  "
+                                uid=50_124 paragraph
+                                  uid=50_125 StaticText "Feeding in our Nido environment is done so in a respecting way. The infant that is bottle-fed is held close and given undivided attention while drinking the bottle. The child that is sitting up on his own will sit at a small table, drink from a mini glass and eat off a real plate."
+                                uid=50_126 paragraph
+                                  uid=50_127 StaticText "Our infants have an outside area where they are able to get out and have fresh air and enjoy the trees and sounds of nature."
+                    uid=50_128 generic
+                      uid=50_129 generic
+                        uid=50_130 generic
+                          uid=50_131 generic
+                            uid=50_132 generic
+                              uid=50_133 heading "BEYOND THE BOOKS" level="3"
+                                uid=50_134 StaticText "BEYOND THE BOOKS"
+                              uid=50_135 ignored
+                                uid=50_136 paragraph
+                                  uid=50_137 StaticText "At Sundrops we strive to educate by nurturing the social, emotional and cognitive developmental needs for each student, individually. Our mission is to awaken your child’s natural desire to learn in an environment where trust, respect, responsibility, community and cooperation flourish. Our classrooms are specially prepared environments with materials that stimulate a student’s sense of curiosity and offer dynamic learning at a student’s own pace."
+                        uid=50_138 generic
+                    uid=50_139 generic
+                      uid=50_140 ignored
+                        uid=50_141 ignored
+                      uid=50_142 generic
+                        uid=50_143 generic
+                          uid=50_144 generic
+                            uid=50_145 generic
+                              uid=50_146 heading "INFANT CARE REGISTRATION" level="2"
+                                uid=50_147 StaticText "INFANT CARE REGISTRATION"
+                              uid=50_148 heading "How To Register Your Child for Infant Care at Sundrops Montessori" level="3"
+                                uid=50_149 StaticText "How To Register Your Child for Infant Care at Sundrops Montessori"
+                              uid=50_150 paragraph
+                                uid=50_151 StaticText "To start the Registration process, please check out our programs based on your child’s age, select a campus, and schedule a tour."
+                        uid=50_152 generic
+                          uid=50_153 generic
+                            uid=50_154 generic
+                              uid=50_155 paragraph
+                                uid=50_156 StaticText "01."
+                                uid=50_157 LineBreak "
+"
+                                uid=50_158 StaticText "Request Information"
+                          uid=50_159 generic
+                            uid=50_160 generic
+                              uid=50_161 generic
+                                uid=50_162 button "Select a Campus"
+                                  uid=50_163 StaticText "Select a Campus"
+                          uid=50_164 generic
+                            uid=50_165 generic
+                              uid=50_166 paragraph
+                                uid=50_167 StaticText "02."
+                              uid=50_168 paragraph
+                                uid=50_169 StaticText "Complete Provided Application"
+                          uid=50_170 generic
+                            uid=50_171 generic
+                              uid=50_172 paragraph
+                                uid=50_173 StaticText "03."
+                              uid=50_174 paragraph
+                                uid=50_175 StaticText "Enrollment Process"
+                          uid=50_176 generic
+                            uid=50_177 generic
+                              uid=50_178 paragraph
+                                uid=50_179 StaticText "We’ll contact you as soon as enrollment is determined."
+                    uid=50_180 generic
+                      uid=50_181 generic
+                        uid=50_182 generic
+                          uid=50_183 generic
+                            uid=50_184 generic
+                              uid=50_185 heading "MAIN OFFICE" level="3"
+                                uid=50_186 strong
+                                  uid=50_187 StaticText "MAIN OFFICE"
+                              uid=50_188 paragraph
+                                uid=50_189 StaticText "955 Houston Northcutt Blvd"
+                                uid=50_190 LineBreak "
+"
+                                uid=50_191 StaticText "Mt. Pleasant, SC 29464, USA"
+                                uid=50_192 LineBreak "
+"
+                                uid=50_193 StaticText "843 849-3652"
+                              uid=50_194 heading "info@sundropsmontessori.com" level="5"
+                                uid=50_195 link "info@sundropsmontessori.com" url="mailto:info@sundropsmontessori.com"
+                                  uid=50_196 StaticText "info@sundropsmontessori.com"
+                          uid=50_197 list
+                            uid=50_198 listitem level="1"
+                              uid=50_199 link "" description="Follow on Facebook" url="https://www.facebook.com/respectfuleducation"
+                                uid=50_200 generic
+                                  uid=50_52 StaticText ""
+                            uid=50_201 listitem level="1"
+                              uid=50_202 link "" description="Follow on Instagram" url="https://www.instagram.com/sundropsbridge/"
+                                uid=50_203 generic
+                                  uid=50_52 StaticText ""
+                        uid=50_204 generic
+                          uid=50_205 generic
+                            uid=50_206 generic
+                              uid=50_207 heading "PROGRAMS" level="3"
+                                uid=50_208 strong
+                                  uid=50_209 StaticText "PROGRAMS"
+                              uid=50_210 paragraph
+                                uid=50_211 link "Infant (Nido)" url="https://sundropsmontessori.com/infant-care/"
+                                  uid=50_212 StaticText "Infant (Nido)"
+                                uid=50_213 LineBreak "
+"
+                                uid=50_214 link "Toddlers (Pee Wee / Wee Casa) " url="https://sundropsmontessori.com/toddler/"
+                                  uid=50_215 StaticText "Toddlers (Pee Wee / Wee Casa)"
+                                  uid=50_216 LineBreak "
+"
+                                uid=50_217 link "Preschool/Kindergarten (Casa) " url="https://sundropsmontessori.com/preschool-and-kindergarten/"
+                                  uid=50_218 StaticText "Preschool/Kindergarten (Casa)"
+                                  uid=50_219 LineBreak "
+"
+                                uid=50_220 link "Elementary" url="https://sundropsmontessori.com/elementary-school/"
+                                  uid=50_221 StaticText "Elementary"
+                                uid=50_222 link url="https://sundropsmontessori.com/toddler/"
+                                uid=50_223 link "  " url="https://sundropsmontessori.com/toddler/"
+                                  uid=50_224 LineBreak "
+"
+                                uid=50_225 link "Middle School (Mezzo Program)" url="https://sundropsmontessori.com/middle-school/"
+                                  uid=50_226 StaticText "Middle School (Mezzo Program)"
+                        uid=50_227 generic
+                          uid=50_228 generic
+                            uid=50_229 generic
+                              uid=50_230 heading "CAMPUSES" level="3"
+                                uid=50_231 strong
+                                  uid=50_232 StaticText "CAMPUSES"
+                              uid=50_233 paragraph
+                                uid=50_234 link "Mt Pleasant, SC (Bridge)" url="https://sundropsmontessori.com/bridge-campus/"
+                                  uid=50_235 StaticText "Mt Pleasant, SC (Bridge)"
+                                uid=50_236 LineBreak "
+"
+                                uid=50_237 link "Daniel Island, SC" url="https://sundropsmontessori.com/daniel-island-campus/"
+                                  uid=50_238 StaticText "Daniel Island, SC"
+                                uid=50_239 LineBreak "
+"
+                                uid=50_240 link "Downtown Charleston (Palmetto)" url="https://sundropsmontessori.com/palmetto-campus/"
+                                  uid=50_241 StaticText "Downtown Charleston (Palmetto)"
+                                uid=50_242 LineBreak "
+"
+                                uid=50_243 link "Huger, SC (Mezzo Campus)" url="https://sundropsmontessori.com/middle-school/"
+                                  uid=50_244 StaticText "Huger, SC (Mezzo Campus)"
+                              uid=50_245 paragraph
+                                uid=50_246 StaticText " "
+                      uid=50_247 generic
+                        uid=50_248 generic
+                          uid=50_249 generic
+                      uid=50_250 generic
+                        uid=50_251 generic
+                          uid=50_252 generic
+                            uid=50_253 generic
+                              uid=50_254 generic
+                                uid=50_255 link url="http://sundropscares.org/"
+                                  uid=50_256 ignored
+                              uid=50_257 ignored
+                                uid=50_258 ignored
+                                  uid=50_259 paragraph
+                                    uid=50_260 StaticText "Sundrops CARES | A Scholarship Program for students of The Sundrops Montessori School"
+                                  uid=50_261 paragraph
+                                    uid=50_262 link "LEARN MORE" url="https://sundropscares.org/"
+                                      uid=50_263 StaticText "LEARN MORE"
+      uid=50_264 generic
+      uid=50_265 status atomic live="polite" relevant="additions text"

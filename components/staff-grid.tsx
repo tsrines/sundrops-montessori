@@ -79,7 +79,9 @@ export function StaffGrid({ groups }: StaffGridProps) {
                       <StaffCard {...member} index={i} />
                     </StaffBioAccordion>
                   ) : (
-                    <StaffCard key={member.name} {...member} index={i} />
+                    <div key={member.name} className="w-48">
+                      <StaffCard {...member} index={i} />
+                    </div>
                   )
                 )}
               </div>

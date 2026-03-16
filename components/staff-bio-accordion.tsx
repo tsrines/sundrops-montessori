@@ -12,7 +12,7 @@ interface StaffBioAccordionProps {
 
 export function StaffBioAccordion({ staffName, bio, quote, children }: StaffBioAccordionProps) {
   return (
-    <div className="flex max-w-xs flex-col items-center">
+    <div className="flex w-48 flex-col items-center">
       {children}
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value={staffName} className="border-0">

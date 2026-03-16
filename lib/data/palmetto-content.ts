@@ -98,6 +98,33 @@ export const PAL_LEAD_GUIDES = [
 ] as const;
 
 export const PAL_INSTAGRAM = {
-  handle: '@sundrops_palmetto',
-  url: 'https://www.instagram.com/sundrops_palmetto/',
+  handle: '@sundropspalmetto',
+  url: 'https://www.instagram.com/sundropspalmetto/',
+  posts: [
+    {
+      image: '/images/instagram/post-1.jpg',
+      href: 'https://www.instagram.com/p/CzBgQsuO-p7/',
+      alt: 'Halloween fall festival at Sundrops',
+    },
+    {
+      image: '/images/instagram/post-2.jpg',
+      href: 'https://www.instagram.com/p/CwYCgMKrhfw/',
+      alt: 'Casa enrollment announcement',
+    },
+    {
+      image: '/images/instagram/post-3.jpg',
+      href: 'https://www.instagram.com/reel/CvuhGbatT7j/',
+      alt: 'Summer environment peek',
+    },
+    {
+      image: '/images/instagram/post-4.jpg',
+      href: 'https://www.instagram.com/reel/CvgQ1s-teLf/',
+      alt: 'Classroom activities',
+    },
+    {
+      image: '/images/instagram/post-5.jpg',
+      href: 'https://www.instagram.com/p/CvSGSBLuD8m/',
+      alt: 'Best of Charleston award',
+    },
+  ],
 } as const;
