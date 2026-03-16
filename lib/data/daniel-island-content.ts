@@ -1,7 +1,7 @@
 export const DI_HERO = {
   titleLine1: 'Daniel Island Campus',
   titleLine2: 'Authentic Montessori School in Charleston, SC',
-  cta: { label: 'Schedule A Tour', href: '/contact-daniel/' },
+  cta: { label: 'Schedule A Tour', href: '/contact-daniel-island/' },
 } as const;
 
 export const DI_PROGRAMS = [
