@@ -5,20 +5,25 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { CheckCircle } from 'lucide-react';
-import { campuses } from '@/lib/data/campuses';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
+const CAMPUS_OPTIONS = [
+  { value: 'bridge-campus', label: 'Bridge' },
+  { value: 'daniel-island-campus', label: 'Daniel Island' },
+  { value: 'palmetto-campus', label: 'Palmetto' },
+  { value: 'farm-campus', label: 'Farm' },
+] as const;
+
 const contactFormSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
   lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Please enter a valid email address'),
-  phone: z.string().optional(),
-  campus: z.string().optional(),
-  subject: z.string().optional(),
+  phone: z.string().min(1, 'Phone is required'),
+  campus: z.array(z.string()).optional(),
   message: z.string().min(10, 'Message must be at least 10 characters'),
 });
 
@@ -42,8 +47,7 @@ export function ContactForm({ defaultCampus }: ContactFormProps) {
       lastName: '',
       email: '',
       phone: '',
-      campus: defaultCampus ?? '',
-      subject: '',
+      campus: defaultCampus ? [defaultCampus] : [],
       message: '',
     },
   });
@@ -114,30 +118,35 @@ export function ContactForm({ defaultCampus }: ContactFormProps) {
           {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="phone">Phone</Label>
-          <Input id="phone" type="tel" placeholder="(843) 555-0123" {...register('phone')} />
+          <Label htmlFor="phone">
+            Phone <span className="text-destructive">*</span>
+          </Label>
+          <Input
+            id="phone"
+            type="tel"
+            placeholder="(843) 555-0123"
+            {...register('phone')}
+            className={cn(errors.phone && 'border-destructive')}
+          />
+          {errors.phone && <p className="text-xs text-destructive">{errors.phone.message}</p>}
         </div>
       </div>
 
-      {/* Campus & Subject Row */}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="campus">Campus</Label>
-          <select
-            id="campus"
-            {...register('campus')}
-            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring">
-            <option value="">General Inquiry</option>
-            {campuses.map((campus) => (
-              <option key={campus.slug} value={campus.slug}>
-                {campus.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="subject">Subject</Label>
-          <Input id="subject" placeholder="How can we help?" {...register('subject')} />
+      {/* Campus Checkboxes */}
+      <div className="space-y-3">
+        <Label>Campus</Label>
+        <div className="flex flex-wrap gap-x-6 gap-y-2">
+          {CAMPUS_OPTIONS.map((option) => (
+            <label key={option.value} className="flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                value={option.value}
+                {...register('campus')}
+                className="h-4 w-4 rounded border-input text-primary focus:ring-primary"
+              />
+              {option.label}
+            </label>
+          ))}
         </div>
       </div>
 

@@ -24,32 +24,30 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="flex flex-col items-center gap-6">
-          <p className="font-script text-2xl text-white/90 md:text-3xl">Welcome to</p>
-
           <h1 className="font-serif text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
             Authentic Montessori Education in Charleston, SC
           </h1>
 
-          <p className="max-w-2xl text-lg text-white/90 md:text-xl">
-            Nurturing curious minds from 6 weeks through 9th grade
-          </p>
+          <h2 className="font-serif text-2xl font-semibold text-white/90 md:text-3xl">6 weeks - 9th Grade</h2>
 
-          <div className="mt-4 flex flex-col gap-4 sm:flex-row">
-            <Link
-              href="/#programs"
-              className={cn(
-                'inline-flex items-center justify-center rounded-md px-8 py-3 text-base font-semibold',
-                'bg-primary text-white shadow-lg transition-colors hover:bg-primary/90'
-              )}>
-              Explore Programs
-            </Link>
+          <div className="max-w-2xl space-y-4">
+            <p className="text-lg leading-relaxed text-white/90 md:text-xl">
+              Sundrops Montessori is a private Montessori school with four campuses in the Charleston, SC area.
+            </p>
+            <p className="text-lg leading-relaxed text-white/90 md:text-xl">
+              We are dedicated to a continuous education path from 6 weeks through 9th grade, offering an authentic
+              Montessori experience at every stage of development.
+            </p>
+          </div>
+
+          <div className="mt-4">
             <Link
               href="/contact/"
               className={cn(
                 'inline-flex items-center justify-center rounded-md px-8 py-3 text-base font-semibold',
-                'border-2 border-white text-white transition-colors hover:bg-white/10'
+                'bg-primary text-white shadow-lg transition-colors hover:bg-primary/90'
               )}>
-              Schedule a Tour
+              Contact A Campus
             </Link>
           </div>
         </motion.div>

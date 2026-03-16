@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const VIDEO_ID = '1159695499';
+const VIDEO_ID = '829806004';
 
 export function AlumniSpotlight() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -14,8 +14,7 @@ export function AlumniSpotlight() {
     <section className="bg-gray-50 px-4 py-20">
       <div className="mx-auto max-w-5xl">
         <div className="mb-12 text-center">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">Alumni Spotlight</p>
-          <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-4xl">Hear From Our Graduates</h2>
+          <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-4xl">Alumni Spotlight</h2>
         </div>
 
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
@@ -56,13 +55,22 @@ export function AlumniSpotlight() {
           <div>
             <blockquote className="mb-6">
               <p className="text-lg leading-relaxed text-gray-700 md:text-xl">
-                &ldquo;Sundrops gave me the confidence to explore my interests and the tools to pursue them. The
-                Montessori approach taught me how to learn, not just what to learn.&rdquo;
+                &ldquo;This program is amazing. They got this super scared, shy girl to this confident, outgoing person.
+                I really feel like the Montessori way of learning helped me become a better student and a better
+                person.&rdquo;
               </p>
             </blockquote>
-            <div>
+            <div className="space-y-1">
               <p className="font-serif text-lg font-bold text-gray-900">Nana Yeboah</p>
-              <p className="text-sm text-gray-500">Sundrops Alumni</p>
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Years Attended:</span> 2019 - 2022
+              </p>
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Sundrops Programs:</span> Upper Elementary, Mezzo Middle School
+              </p>
+              <p className="text-sm text-gray-600">
+                <span className="font-semibold">Where To:</span> College of Charleston
+              </p>
             </div>
           </div>
         </div>

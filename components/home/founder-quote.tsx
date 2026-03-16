@@ -5,30 +5,26 @@ export function FounderQuote() {
   const { founder } = siteConfig;
 
   return (
-    <section className="bg-white px-4 py-20">
-      <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-12 md:grid-cols-2">
-        <div className="flex justify-center">
-          <div className="relative h-80 w-80 overflow-hidden rounded-full shadow-lg">
-            <Image src="/images/founder.jpg" alt={founder.name} fill className="object-cover" quality={85} />
-          </div>
+    <section className="relative bg-amber-100 px-4 py-20">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-8 text-center">
+          <h2 className="font-serif text-3xl font-bold text-gray-900 md:text-4xl">
+            A Word
+            <br />
+            <span className="italic">From Our Founder</span>
+          </h2>
         </div>
 
-        <div className="relative">
-          <span className="absolute -left-4 -top-8 select-none font-serif text-6xl leading-none text-primary/20">
-            &ldquo;
-          </span>
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg shadow-lg">
+            <Image src={founder.image} alt={founder.name} fill className="object-cover" quality={85} />
+          </div>
 
-          <blockquote className="relative pl-4">
-            <p className="text-lg leading-relaxed text-gray-700 md:text-xl">{founder.quote}</p>
-          </blockquote>
-
-          <span className="mt-2 inline-block select-none font-serif text-6xl leading-none text-primary/20">
-            &rdquo;
-          </span>
-
-          <div className="mt-4">
-            <p className="font-serif text-lg font-bold text-gray-900">{founder.name}</p>
-            <p className="text-sm text-gray-500">{founder.title}</p>
+          <div>
+            <blockquote className="mb-6">
+              <p className="text-lg leading-relaxed text-gray-700 md:text-xl">{founder.quote}</p>
+            </blockquote>
+            <p className="font-serif text-lg font-bold text-gray-900">- {founder.name}</p>
           </div>
         </div>
       </div>

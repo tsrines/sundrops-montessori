@@ -39,13 +39,13 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-sundrops-warmth text-white">
+    <footer className="bg-sundrops-charcoal text-white">
       {/* Main Footer Content */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* Column 1: Contact Info */}
           <div>
-            <h3 className="mb-4 font-serif text-lg font-semibold">{siteConfig.name}</h3>
+            <h3 className="mb-4 font-serif text-lg font-semibold uppercase">Main Office</h3>
 
             <div className="space-y-3">
               <a

@@ -15,10 +15,10 @@ export default function HomePage() {
       <HeroSection />
       <ProgramCards />
       <MissionSection />
-      <FounderQuote />
       <AlumniSpotlight />
       <RegistrationSteps />
       <VideoTour />
+      <FounderQuote />
       <CareersBanner />
     </>
   );

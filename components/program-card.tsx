@@ -1,12 +1,9 @@
 'use client';
 
-import * as React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import type { Program } from '@/lib/data/programs';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
 interface ProgramCardProps {
@@ -22,37 +19,17 @@ export function ProgramCard({ program, className }: ProgramCardProps) {
       className={cn('h-full', className)}>
       <Link
         href={`/${program.slug}/`}
-        className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-xl">
-        <Card className="group h-full overflow-hidden transition-shadow duration-300 hover:shadow-lg">
-          <div className={cn('relative h-48 w-full overflow-hidden', program.color)}>
-            <Image
-              src={program.image}
-              alt={program.name}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </div>
-          <CardHeader>
-            <div className="flex items-start justify-between gap-2">
-              <div>
-                <CardTitle className="text-lg">{program.name}</CardTitle>
-                <p className="font-script mt-1 text-sm text-primary">{program.montessoriName}</p>
-              </div>
-              <Badge variant="secondary" className="shrink-0">
-                {program.ageRange}
-              </Badge>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <p className="line-clamp-3 text-sm text-muted-foreground">{program.description}</p>
-          </CardContent>
-          <CardFooter>
-            <span className="text-sm font-medium text-primary transition-colors group-hover:text-primary/80">
-              Learn More &rarr;
-            </span>
-          </CardFooter>
-        </Card>
+        className="block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+        <div
+          className={cn(
+            'flex h-full flex-col items-center justify-center rounded-lg p-6 text-center transition-shadow duration-300 hover:shadow-lg',
+            program.color
+          )}>
+          <h3 className="mb-1 text-sm font-bold uppercase tracking-wide text-gray-800">{program.name}</h3>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-600">{program.montessoriName}</p>
+          <p className="mb-3 text-xs text-gray-500">{program.ageRange}</p>
+          <ArrowRight className="h-4 w-4 text-gray-400" />
+        </div>
       </Link>
     </motion.div>
   );
