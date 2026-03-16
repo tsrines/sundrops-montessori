@@ -78,7 +78,7 @@ export const MEZZO_ALUMNI = {
   yearsAttended: '2019 - 2022',
   programs: 'Upper Elementary, Mezzo Middle School',
   whereTo: 'College of Charleston',
-  videoId: '1159695499',
+  videoId: '829806004',
   thumbnail: '/images/nana-overlay.jpg',
 } as const;
 
