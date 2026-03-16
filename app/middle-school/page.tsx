@@ -1,26 +1,24 @@
 import type { Metadata } from 'next';
-import { programs } from '@/lib/data/programs';
-import { ProgramHero } from '@/components/programs/program-hero';
-import { ProgramDetails } from '@/components/programs/program-details';
-import { ProgramFeatures } from '@/components/programs/program-features';
-import { CampusAvailability } from '@/components/programs/campus-availability';
-import { EnrollmentCta } from '@/components/programs/enrollment-cta';
-
-const program = programs.find((p) => p.slug === 'middle-school')!;
+import { MezzoHero } from '@/components/mezzo/mezzo-hero';
+import { MezzoPhilosophy } from '@/components/mezzo/mezzo-philosophy';
+import { MezzoBeyondBooks } from '@/components/mezzo/mezzo-beyond-books';
+import { MezzoVirtualTour } from '@/components/mezzo/mezzo-virtual-tour';
+import { MezzoRegistration } from '@/components/mezzo/mezzo-registration';
 
 export const metadata: Metadata = {
-  title: `${program.name} (${program.montessoriName}) | Sundrops Montessori`,
-  description: program.description,
+  title: 'Middle School (Mezzo Farm Program) | Sundrops Montessori',
+  description:
+    'The Sundrops Adolescent Erdkinder Program addresses the unique needs of the middle schooler with hands-on farm experiences, academic rigor, and social-emotional development.',
 };
 
 export default function MiddleSchoolPage() {
   return (
     <>
-      <ProgramHero program={program} />
-      <ProgramDetails extendedDescription={program.extendedDescription} />
-      <ProgramFeatures features={program.features} />
-      <CampusAvailability campuses={program.campuses} />
-      <EnrollmentCta programName={program.name} availableCampuses={program.campuses} />
+      <MezzoHero />
+      <MezzoPhilosophy />
+      <MezzoBeyondBooks />
+      <MezzoVirtualTour />
+      <MezzoRegistration />
     </>
   );
 }

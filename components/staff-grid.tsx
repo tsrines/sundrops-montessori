@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type { StaffGroup } from '@/lib/data/staff';
 import { SectionHeading } from '@/components/section-heading';
+import { StaffBioAccordion } from '@/components/staff-bio-accordion';
 
 interface StaffGridProps {
   groups: StaffGroup[];
@@ -72,9 +73,15 @@ export function StaffGrid({ groups }: StaffGridProps) {
             <div key={group.label}>
               <h3 className="mb-8 text-center font-serif text-2xl font-bold text-foreground">{group.label}</h3>
               <div className="flex flex-wrap justify-center gap-10">
-                {group.members.map((member, i) => (
-                  <StaffCard key={member.name} {...member} index={i} />
-                ))}
+                {group.members.map((member, i) =>
+                  member.bio ? (
+                    <StaffBioAccordion key={member.name} staffName={member.name} bio={member.bio} quote={member.quote}>
+                      <StaffCard {...member} index={i} />
+                    </StaffBioAccordion>
+                  ) : (
+                    <StaffCard key={member.name} {...member} index={i} />
+                  )
+                )}
               </div>
             </div>
           ))}
