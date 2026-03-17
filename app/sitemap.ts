@@ -14,7 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/bridge-campus/',
     '/daniel-island-campus/',
     '/palmetto-campus/',
-    '/tours/',
     '/faqs/',
     '/contact/',
     '/careers/',

@@ -30,7 +30,6 @@ export const mainNavigation: NavItem[] = [
       { label: 'Mezzo Middle School', href: '/middle-school/' },
     ],
   },
-  { label: 'Tours', href: '/tours/' },
   { label: 'FAQs', href: '/faqs/' },
   { label: 'Calendar', href: '/calendar-embed' },
   { label: 'Careers', href: '/careers/' },
@@ -60,7 +59,6 @@ export const footerNavigation = {
     { label: 'Mezzo Middle School', href: '/middle-school/' },
   ],
   resources: [
-    { label: 'Tours', href: '/tours/' },
     { label: 'FAQs', href: '/faqs/' },
     { label: 'Calendar', href: '/calendar-embed' },
     { label: 'Careers', href: '/careers/' },

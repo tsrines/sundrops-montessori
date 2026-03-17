@@ -61,7 +61,7 @@ export const ELEMENTARY_REGISTRATION = {
       number: 1,
       title: 'Schedule A Tour',
       description: 'Pick your program, time and campus.',
-      campusLinks: [{ label: 'Schedule a Tour', href: '/tours/' }],
+      campusLinks: [{ label: 'Schedule a Tour', href: '/contact/' }],
     },
     {
       number: 2,
