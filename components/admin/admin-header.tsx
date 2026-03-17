@@ -9,29 +9,27 @@ import {
   Menu,
   X,
   LayoutDashboard,
-  User,
-  Users,
-  Pizza,
-  Bus,
-  Calendar,
+  FileText,
   RefreshCw,
   AlertTriangle,
+  Users,
+  Megaphone,
+  UserCog,
 } from 'lucide-react';
 import { useSession, signOut } from '@/lib/auth-client';
 import { Button } from '@/components/ui/button';
 
 const MOBILE_LINKS = [
-  { href: '/portal', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/portal/profile', label: 'My Profile', icon: User },
-  { href: '/portal/children', label: 'My Children', icon: Users },
-  { href: '/portal/pizza-orders', label: 'Pizza Orders', icon: Pizza },
-  { href: '/portal/field-trips', label: 'Field Trips', icon: Bus },
-  { href: '/portal/calendar', label: 'Calendar', icon: Calendar },
-  { href: '/portal/reenrollment', label: 'Re-enrollment', icon: RefreshCw },
-  { href: '/portal/incidents', label: 'Incidents', icon: AlertTriangle },
+  { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/admin/applications', label: 'Applications', icon: FileText },
+  { href: '/admin/reenrollments', label: 'Re-enrollment', icon: RefreshCw },
+  { href: '/admin/incidents', label: 'Incidents', icon: AlertTriangle },
+  { href: '/admin/students', label: 'Students', icon: Users },
+  { href: '/admin/announcements', label: 'Announcements', icon: Megaphone },
+  { href: '/admin/users', label: 'Users', icon: UserCog },
 ] as const;
 
-export function PortalHeader() {
+export function AdminHeader() {
   const { data: session } = useSession();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -63,7 +61,7 @@ export function PortalHeader() {
               />
             </Link>
             <span className="hidden text-sm font-medium text-muted-foreground sm:inline">
-              / Parent Portal
+              / Admin
             </span>
           </div>
 
@@ -81,7 +79,6 @@ export function PortalHeader() {
         </div>
       </header>
 
-      {/* Mobile sidebar overlay */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
@@ -91,7 +88,7 @@ export function PortalHeader() {
           />
           <div className="absolute inset-y-0 left-0 w-72 bg-background shadow-xl">
             <div className="flex items-center justify-between border-b px-4 py-3">
-              <span className="font-medium">Parent Portal</span>
+              <span className="font-medium">Admin Portal</span>
               <button
                 type="button"
                 onClick={() => setMobileOpen(false)}

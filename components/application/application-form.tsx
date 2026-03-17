@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 import { applicationSchema, type ApplicationValues } from '@/lib/schemas/application-schema';
 import { ApplicationSection } from './application-section';
 import { CampusProgramSelector } from './campus-program-selector';
+import { api } from '@/lib/api-client';
 
 export function ApplicationForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -57,8 +58,13 @@ export function ApplicationForm() {
     },
   });
 
-  const onSubmit = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+  const onSubmit = async (data: ApplicationValues) => {
+    await api.post('/api/applications', {
+      ...data,
+      campusSlug: data.campus,
+      programSlug: data.program,
+      sessionType: data.session,
+    });
     setIsSubmitted(true);
   };
 
