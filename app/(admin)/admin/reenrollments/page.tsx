@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { api } from '@/lib/api-client';
+import { useAdminContext } from '@/hooks/use-admin-context';
 import { DataTable } from '@/components/ui/data-table';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
@@ -24,7 +25,8 @@ interface Reenrollment {
 const STATUS_OPTIONS = ['', 'pending', 'confirmed', 'declined'];
 const CAMPUS_OPTIONS = ['', 'bridge', 'daniel-island', 'palmetto', 'farm'];
 
-export default function ReenrollmentsPage() {
+function ReenrollmentsContent() {
+  const { campus: contextCampus } = useAdminContext();
   const [reenrollments, setReenrollments] = useState<Reenrollment[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('');
@@ -40,7 +42,8 @@ export default function ReenrollmentsPage() {
       try {
         const params = new URLSearchParams();
         if (statusFilter) params.set('status', statusFilter);
-        if (campusFilter) params.set('campus', campusFilter);
+        const effectiveCampus = contextCampus || campusFilter;
+        if (effectiveCampus) params.set('campus', effectiveCampus);
         if (yearFilter) params.set('year', yearFilter);
         const res = await api.get<{ reenrollments: Reenrollment[] }>(`/api/admin/reenrollments?${params}`);
         setReenrollments(res.reenrollments);
@@ -51,7 +54,7 @@ export default function ReenrollmentsPage() {
       }
     }
     void fetchData();
-  }, [statusFilter, campusFilter, yearFilter]);
+  }, [contextCampus, statusFilter, campusFilter, yearFilter]);
 
   const handleOpenReenrollment = async () => {
     if (!openYear) return;
@@ -167,5 +170,13 @@ export default function ReenrollmentsPage() {
         emptyMessage="No re-enrollment records found."
       />
     </div>
+  );
+}
+
+export default function ReenrollmentsPage() {
+  return (
+    <Suspense>
+      <ReenrollmentsContent />
+    </Suspense>
   );
 }

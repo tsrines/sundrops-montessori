@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, Suspense } from 'react';
 import { Search } from 'lucide-react';
 import { api } from '@/lib/api-client';
 import { StatusBadge } from '@/components/ui/status-badge';
+import { useAdminContext } from '@/hooks/use-admin-context';
 
 interface Student {
   id: string;
@@ -24,68 +25,64 @@ interface Student {
   };
 }
 
-const CAMPUSES = ['bridge', 'daniel-island', 'palmetto', 'farm'];
-
-export default function StudentsPage() {
+function StudentsContent() {
+  const { campus, program, classroom } = useAdminContext();
   const [students, setStudents] = useState<Student[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('bridge');
   const [search, setSearch] = useState('');
 
   useEffect(() => {
+    setLoading(true);
+    const params = new URLSearchParams();
+    if (campus) params.set('campus', campus);
+    if (program) params.set('program', program);
+    if (classroom) params.set('classroom', classroom);
+
     api
-      .get<{ students: Student[] }>('/api/admin/students')
+      .get<{ students: Student[] }>(`/api/admin/students?${params}`)
       .then((res) => setStudents(res.students))
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, []);
+  }, [campus, program, classroom]);
 
   const filteredStudents = useMemo(() => {
-    return students.filter((s) => {
-      const matchesCampus = s.campusSlug === activeTab;
-      const matchesSearch =
-        !search ||
-        `${s.firstName} ${s.lastName}`.toLowerCase().includes(search.toLowerCase()) ||
-        s.classroom?.toLowerCase().includes(search.toLowerCase());
-      return matchesCampus && matchesSearch;
-    });
-  }, [students, activeTab, search]);
+    if (!search) return students;
+    const q = search.toLowerCase();
+    return students.filter(
+      (s) =>
+        `${s.firstName} ${s.lastName}`.toLowerCase().includes(q) ||
+        s.classroom?.toLowerCase().includes(q),
+    );
+  }, [students, search]);
 
   const groupedByProgram = useMemo(() => {
     const groups: Record<string, Record<string, Student[]>> = {};
     for (const student of filteredStudents) {
       if (!groups[student.programSlug]) groups[student.programSlug] = {};
-      const classroom = student.classroom ?? 'Unassigned';
-      if (!groups[student.programSlug][classroom]) groups[student.programSlug][classroom] = [];
-      groups[student.programSlug][classroom].push(student);
+      const room = student.classroom ?? 'Unassigned';
+      if (!groups[student.programSlug][room]) groups[student.programSlug][room] = [];
+      groups[student.programSlug][room].push(student);
     }
     return groups;
   }, [filteredStudents]);
 
+  const pageTitle = [
+    campus && campus.replace(/-/g, ' '),
+    program && program.replace(/-/g, ' '),
+    classroom,
+  ]
+    .filter(Boolean)
+    .join(' › ');
+
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <div>
-        <h1 className="font-serif text-2xl font-semibold">Students</h1>
-        <p className="mt-1 text-muted-foreground">Student roster grouped by campus, program, and classroom.</p>
+        <h1 className="font-serif text-2xl font-semibold capitalize">
+          {pageTitle ? `Students — ${pageTitle}` : 'Students'}
+        </h1>
+        <p className="mt-1 text-muted-foreground">Student roster grouped by program and classroom.</p>
       </div>
 
-      {/* Campus tabs */}
-      <div className="flex gap-1 rounded-lg border bg-muted/30 p-1">
-        {CAMPUSES.map((campus) => (
-          <button
-            key={campus}
-            onClick={() => setActiveTab(campus)}
-            className={`flex-1 rounded-md px-3 py-1.5 text-sm font-medium capitalize transition-colors ${
-              activeTab === campus
-                ? 'bg-background shadow-sm'
-                : 'text-muted-foreground hover:text-foreground'
-            }`}>
-            {campus.replace(/-/g, ' ')}
-          </button>
-        ))}
-      </div>
-
-      {/* Search */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <input
@@ -105,14 +102,14 @@ export default function StudentsPage() {
         <p className="py-8 text-center text-muted-foreground">No students found.</p>
       ) : (
         <div className="space-y-8">
-          {Object.entries(groupedByProgram).map(([program, classrooms]) => (
-            <section key={program} className="space-y-4">
+          {Object.entries(groupedByProgram).map(([prog, classrooms]) => (
+            <section key={prog} className="space-y-4">
               <h2 className="font-serif text-lg font-semibold capitalize">
-                {program.replace(/-/g, ' ')}
+                {prog.replace(/-/g, ' ')}
               </h2>
-              {Object.entries(classrooms).map(([classroom, students]) => (
-                <div key={classroom} className="space-y-2">
-                  <h3 className="text-sm font-medium text-muted-foreground">{classroom}</h3>
+              {Object.entries(classrooms).map(([room, roomStudents]) => (
+                <div key={room} className="space-y-2">
+                  <h3 className="text-sm font-medium text-muted-foreground">{room}</h3>
                   <div className="overflow-x-auto rounded-lg border">
                     <table className="w-full text-sm">
                       <thead>
@@ -135,7 +132,7 @@ export default function StudentsPage() {
                         </tr>
                       </thead>
                       <tbody>
-                        {students.map((student) => (
+                        {roomStudents.map((student) => (
                           <tr key={student.id} className="border-b last:border-0 hover:bg-muted/30">
                             <td className="px-4 py-2 font-medium">
                               {student.firstName} {student.lastName}
@@ -146,7 +143,9 @@ export default function StudentsPage() {
                             <td className="px-4 py-2">
                               <StatusBadge status={student.enrollmentStatus} />
                             </td>
-                            <td className="px-4 py-2 text-muted-foreground">{student.parent.name}</td>
+                            <td className="px-4 py-2 text-muted-foreground">
+                              {student.parent.name}
+                            </td>
                             <td className="px-4 py-2 text-muted-foreground">
                               {student.parent.profile?.phone ?? student.parent.email}
                             </td>
@@ -162,5 +161,13 @@ export default function StudentsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function StudentsPage() {
+  return (
+    <Suspense>
+      <StudentsContent />
+    </Suspense>
   );
 }

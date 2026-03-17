@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
 import { api } from '@/lib/api-client';
 import { DataTable } from '@/components/ui/data-table';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
+import { useAdminContext } from '@/hooks/use-admin-context';
 
 interface Incident {
   id: string;
@@ -27,7 +28,8 @@ const CAMPUS_OPTIONS = ['', 'bridge', 'daniel-island', 'palmetto', 'farm'];
 const SEVERITY_OPTIONS = ['', 'minor', 'moderate', 'serious'];
 const STATUS_OPTIONS = ['', 'draft', 'submitted', 'parent_notified', 'acknowledged', 'closed'];
 
-export default function IncidentsPage() {
+function IncidentsContent() {
+  const { campus: contextCampus } = useAdminContext();
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [loading, setLoading] = useState(true);
   const [campusFilter, setCampusFilter] = useState('');
@@ -39,7 +41,8 @@ export default function IncidentsPage() {
       setLoading(true);
       try {
         const params = new URLSearchParams();
-        if (campusFilter) params.set('campus', campusFilter);
+        const effectiveCampus = contextCampus || campusFilter;
+        if (effectiveCampus) params.set('campus', effectiveCampus);
         if (severityFilter) params.set('severity', severityFilter);
         if (statusFilter) params.set('status', statusFilter);
         const res = await api.get<{ incidents: Incident[] }>(`/api/admin/incidents?${params}`);
@@ -51,7 +54,7 @@ export default function IncidentsPage() {
       }
     }
     void fetchData();
-  }, [campusFilter, severityFilter, statusFilter]);
+  }, [contextCampus, campusFilter, severityFilter, statusFilter]);
 
   const columns = [
     {
@@ -155,5 +158,13 @@ export default function IncidentsPage() {
         emptyMessage="No incident reports found."
       />
     </div>
+  );
+}
+
+export default function IncidentsPage() {
+  return (
+    <Suspense>
+      <IncidentsContent />
+    </Suspense>
   );
 }

@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSession } from '@/lib/auth-client';
 import { admin } from '@/lib/auth-client';
+import { api } from '@/lib/api-client';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
 
@@ -14,13 +16,107 @@ interface User {
   createdAt: string;
 }
 
-const ROLE_OPTIONS = ['user', 'staff', 'admin'] as const;
+interface StaffProfilePayload {
+  campusSlug: string | null;
+  classroom: string | null;
+}
+
+const ROLE_OPTIONS = ['user', 'staff', 'teacher', 'admin', 'superadmin'] as const;
+const CAMPUS_OPTIONS = ['bridge', 'daniel-island', 'palmetto', 'farm'] as const;
+const CAMPUS_SCOPED_ROLES = ['admin', 'staff', 'teacher'] as const;
+
+type CampusScopedRole = (typeof CAMPUS_SCOPED_ROLES)[number];
+
+function isCampusScopedRole(role: string): role is CampusScopedRole {
+  return (CAMPUS_SCOPED_ROLES as readonly string[]).includes(role);
+}
+
+interface RoleAssignmentModalProps {
+  userId: string;
+  role: CampusScopedRole;
+  onConfirm: (payload: StaffProfilePayload) => Promise<void>;
+  onCancel: () => void;
+}
+
+function RoleAssignmentModal({ role, onConfirm, onCancel }: RoleAssignmentModalProps) {
+  const [campus, setCampus] = useState('');
+  const [classroom, setClassroom] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = async () => {
+    if (!campus) return;
+    setSaving(true);
+    await onConfirm({
+      campusSlug: campus || null,
+      classroom: classroom || null,
+    });
+    setSaving(false);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <div className="w-full max-w-sm space-y-4 rounded-lg border bg-background p-6 shadow-lg">
+        <h2 className="font-serif text-lg font-semibold">Assign Campus</h2>
+        <p className="text-sm text-muted-foreground">
+          Select a campus for this <span className="font-medium capitalize">{role}</span>.
+          {role === 'teacher' && ' Teachers also need a classroom.'}
+        </p>
+
+        <div className="space-y-3">
+          <div className="space-y-1">
+            <label className="text-xs font-medium text-muted-foreground">Campus *</label>
+            <select
+              value={campus}
+              onChange={(e) => setCampus(e.target.value)}
+              className="w-full rounded-md border bg-background px-3 py-2 text-sm">
+              <option value="">Select campus...</option>
+              {CAMPUS_OPTIONS.map((c) => (
+                <option key={c} value={c}>
+                  {c.replace(/-/g, ' ')}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {role === 'teacher' && (
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-muted-foreground">Classroom</label>
+              <input
+                type="text"
+                value={classroom}
+                onChange={(e) => setClassroom(e.target.value)}
+                placeholder="e.g. Room A"
+                className="w-full rounded-md border bg-background px-3 py-2 text-sm"
+              />
+            </div>
+          )}
+        </div>
+
+        <div className="flex gap-2 justify-end">
+          <Button variant="outline" size="sm" onClick={onCancel} disabled={saving}>
+            Cancel
+          </Button>
+          <Button size="sm" onClick={handleSave} disabled={saving || !campus}>
+            {saving ? 'Saving...' : 'Confirm'}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function UsersPage() {
+  const { data: session } = useSession();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [saving, setSaving] = useState<string | null>(null);
+  const [pendingRoleChange, setPendingRoleChange] = useState<{
+    userId: string;
+    role: CampusScopedRole;
+  } | null>(null);
+
+  const isSuperAdmin = session?.user?.role === 'superadmin';
 
   useEffect(() => {
     admin
@@ -33,6 +129,11 @@ export default function UsersPage() {
   }, []);
 
   const handleSetRole = async (userId: string, role: string) => {
+    if (isCampusScopedRole(role)) {
+      setPendingRoleChange({ userId, role });
+      return;
+    }
+
     setSaving(userId);
     try {
       await admin.setRole({ userId, role: role as 'admin' | 'user' });
@@ -41,6 +142,23 @@ export default function UsersPage() {
       setError('Failed to update role');
     } finally {
       setSaving(null);
+    }
+  };
+
+  const handleConfirmRoleWithCampus = async (payload: StaffProfilePayload) => {
+    if (!pendingRoleChange) return;
+    const { userId, role } = pendingRoleChange;
+
+    setSaving(userId);
+    try {
+      await admin.setRole({ userId, role: role as 'admin' | 'user' });
+      await api.post(`/api/admin/staff-profiles`, { userId, ...payload });
+      setUsers((prev) => prev.map((u) => (u.id === userId ? { ...u, role } : u)));
+    } catch {
+      setError('Failed to update role');
+    } finally {
+      setSaving(null);
+      setPendingRoleChange(null);
     }
   };
 
@@ -96,9 +214,11 @@ export default function UsersPage() {
               <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Joined
               </th>
-              <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                Actions
-              </th>
+              {isSuperAdmin && (
+                <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  Actions
+                </th>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -107,17 +227,21 @@ export default function UsersPage() {
                 <td className="px-4 py-3 font-medium">{u.name}</td>
                 <td className="px-4 py-3 text-muted-foreground">{u.email}</td>
                 <td className="px-4 py-3">
-                  <select
-                    value={u.role}
-                    onChange={(e) => handleSetRole(u.id, e.target.value)}
-                    disabled={saving === u.id}
-                    className="rounded-md border bg-background px-2 py-1 text-xs">
-                    {ROLE_OPTIONS.map((r) => (
-                      <option key={r} value={r}>
-                        {r}
-                      </option>
-                    ))}
-                  </select>
+                  {isSuperAdmin ? (
+                    <select
+                      value={u.role}
+                      onChange={(e) => handleSetRole(u.id, e.target.value)}
+                      disabled={saving === u.id}
+                      className="rounded-md border bg-background px-2 py-1 text-xs">
+                      {ROLE_OPTIONS.map((r) => (
+                        <option key={r} value={r}>
+                          {r}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <span className="text-xs capitalize">{u.role}</span>
+                  )}
                 </td>
                 <td className="px-4 py-3">
                   {u.banned ? (
@@ -129,21 +253,32 @@ export default function UsersPage() {
                 <td className="px-4 py-3 text-muted-foreground">
                   {new Date(u.createdAt).toLocaleDateString()}
                 </td>
-                <td className="px-4 py-3">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => handleBan(u.id, u.banned)}
-                    disabled={saving === u.id}
-                    className={u.banned ? '' : 'text-destructive hover:text-destructive'}>
-                    {u.banned ? 'Unban' : 'Ban'}
-                  </Button>
-                </td>
+                {isSuperAdmin && (
+                  <td className="px-4 py-3">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => handleBan(u.id, u.banned)}
+                      disabled={saving === u.id}
+                      className={u.banned ? '' : 'text-destructive hover:text-destructive'}>
+                      {u.banned ? 'Unban' : 'Ban'}
+                    </Button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {pendingRoleChange && (
+        <RoleAssignmentModal
+          userId={pendingRoleChange.userId}
+          role={pendingRoleChange.role}
+          onConfirm={handleConfirmRoleWithCampus}
+          onCancel={() => setPendingRoleChange(null)}
+        />
+      )}
     </div>
   );
 }
