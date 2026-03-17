@@ -44,7 +44,7 @@ export function AdminGuard({ children }: AdminGuardProps) {
   }
 
   const STAFF_ROLES = ['superadmin', 'admin', 'staff', 'teacher'];
-  if (!STAFF_ROLES.includes(session.user.role)) {
+  if (!STAFF_ROLES.includes(session.user.role ?? '')) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center px-4">
         <div className="w-full max-w-sm space-y-4 text-center">
