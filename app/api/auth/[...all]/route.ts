@@ -13,7 +13,7 @@ async function handler(req: NextRequest) {
   const body =
     req.method !== 'GET' && req.method !== 'HEAD' ? await req.arrayBuffer() : undefined;
 
-  return fetch(target, { method: req.method, headers, body });
+  return fetch(target, { method: req.method, headers, body, redirect: 'manual' });
 }
 
 export const GET = handler;
