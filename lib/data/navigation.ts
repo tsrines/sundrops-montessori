@@ -35,6 +35,11 @@ export const mainNavigation: NavItem[] = [
   { label: 'Calendar', href: '/calendar-embed' },
   { label: 'Careers', href: '/careers/' },
   { label: 'Contact', href: '/contact/' },
+  {
+    label: 'Parent Resources',
+    href: '#',
+    children: [{ label: 'Pizza Fridays', href: '/pizza-fridays/' }],
+  },
 ];
 
 export const footerNavigation = {
@@ -60,6 +65,7 @@ export const footerNavigation = {
     { label: 'Calendar', href: '/calendar-embed' },
     { label: 'Careers', href: '/careers/' },
     { label: 'Field Trip Permission', href: '/field-trip-permission/' },
+    { label: 'Pizza Fridays', href: '/pizza-fridays/' },
     { label: 'Contact', href: '/contact/' },
   ],
 } as const;

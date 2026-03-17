@@ -1,0 +1,263 @@
+uid=4_0 RootWebArea "Pizza - Sundrops Montessori" url="https://sundropsmontessori.com/pizza-fridays/"
+  uid=4_1 ignored
+    uid=4_2 generic
+      uid=4_3 generic
+        uid=4_4 ignored
+          uid=4_5 ignored
+        uid=4_6 ignored
+          uid=4_7 ignored
+        uid=4_8 ignored
+          uid=4_9 ignored
+            uid=4_10 ignored
+              uid=4_11 ignored
+                uid=4_12 ignored
+        uid=4_13 ignored
+          uid=4_14 ignored
+        uid=4_15 ignored
+          uid=4_16 ignored
+            uid=4_17 ignored
+              uid=4_18 ignored
+                uid=4_19 ignored
+        uid=4_20 ignored
+          uid=4_21 ignored
+        uid=4_22 ignored
+          uid=4_23 ignored
+            uid=4_24 ignored
+              uid=4_25 ignored
+                uid=4_26 ignored
+        uid=4_27 ignored
+          uid=4_28 ignored
+        uid=4_29 ignored
+          uid=4_30 ignored
+            uid=4_31 ignored
+              uid=4_32 ignored
+                uid=4_33 ignored
+        uid=4_34 ignored
+          uid=4_35 ignored
+      uid=4_36 generic
+        uid=4_37 banner
+          uid=4_38 generic
+            uid=4_39 generic
+              uid=4_40 link "Sundrops Montessori" url="https://sundropsmontessori.com/"
+                uid=4_41 image "Sundrops Montessori" url="https://sundropsmontessori.com/wp-content/uploads/2019/10/Sundrops-Montessori-Logo_trans-sm.png"
+            uid=4_42 generic
+              uid=4_43 navigation
+                uid=4_44 list
+                  uid=4_45 listitem level="1"
+                    uid=4_46 link "ABOUT" url="https://sundropsmontessori.com/about-us/"
+                      uid=4_47 StaticText "ABOUT"
+                  uid=4_48 listitem level="1"
+                    uid=4_49 generic
+                      uid=4_50 StaticText "PROGRAMS"
+                      uid=4_51 generic
+                        uid=4_52 StaticText "3"
+                  uid=4_53 listitem level="1"
+                    uid=4_54 generic
+                      uid=4_55 StaticText "CAMPUSES"
+                      uid=4_56 generic
+                        uid=4_52 StaticText "3"
+                  uid=4_57 listitem level="1"
+                    uid=4_58 link "FAQS" url="https://sundropsmontessori.com/faqs/"
+                      uid=4_59 StaticText "FAQS"
+                  uid=4_60 listitem level="1"
+                    uid=4_61 link "CALENDAR" url="https://sundropsmontessori.com/calendar-embed"
+                      uid=4_62 StaticText "CALENDAR"
+                  uid=4_63 listitem level="1"
+                    uid=4_64 link "CAREERS" url="https://sundropsmontessori.com/careers/"
+                      uid=4_65 StaticText "CAREERS"
+                  uid=4_66 listitem level="1"
+                    uid=4_67 link "CONTACT" url="https://sundropsmontessori.com/contact/"
+                      uid=4_68 StaticText "CONTACT"
+                  uid=4_69 listitem level="1"
+                    uid=4_70 link "Parent Resources 3" url="https://sundropsmontessori.com/parent-resources/"
+                      uid=4_71 StaticText "Parent Resources"
+                      uid=4_72 generic
+                        uid=4_52 StaticText "3"
+              uid=4_73 link "" url="https://sundropsmontessori.com/cart/"
+                uid=4_74 ignored
+                  uid=4_75 ignored
+                    uid=4_52 StaticText ""
+        uid=4_76 generic
+          uid=4_77 generic
+            uid=4_78 article
+              uid=4_79 ignored
+                uid=4_80 ignored
+                  uid=4_81 generic
+                    uid=4_82 generic
+                      uid=4_83 generic
+                        uid=4_84 generic
+                          uid=4_85 generic
+                            uid=4_86 generic
+                              uid=4_87 heading "Sundrops Fun" level="2"
+                                uid=4_88 StaticText "Sundrops Fun"
+                          uid=4_89 generic
+                            uid=4_90 generic
+                              uid=4_91 heading "Pizza Fridays!" level="1"
+                                uid=4_92 StaticText "Pizza Fridays!"
+                              uid=4_93 paragraph
+                                uid=4_94 StaticText " "
+                    uid=4_95 generic
+                      uid=4_96 generic
+                        uid=4_97 generic
+                          uid=4_98 generic
+                            uid=4_99 image description="pizza dals" url="https://sundropsmontessori.com/wp-content/uploads/2025/09/pizza-dals.jpg"
+                        uid=4_100 generic
+                          uid=4_101 generic
+                            uid=4_102 generic
+                              uid=4_103 heading "Pizza Fridays!" level="1"
+                                uid=4_104 StaticText "Pizza Fridays!"
+                              uid=4_105 heading "1 slice – $4" level="2"
+                                uid=4_106 StaticText "1 slice – $4"
+                              uid=4_107 heading "2 slices – $6" level="2"
+                                uid=4_108 StaticText "2 slices – $6"
+                              uid=4_109 paragraph
+                                uid=4_110 StaticText "Sundrops Upper Elementary students run a pizza business as a fundraiser. We are offering Cheese Pizza on Fridays (from D’Allesandro’s)."
+                              uid=4_111 paragraph
+                                uid=4_112 StaticText "Since pizza will be ordered ahead of time, your $4 or $6 will become a donation to the Upper Elementary program if your child has an unplanned absence on pizza day."
+                              uid=4_113 paragraph
+                                uid=4_114 StaticText "If you have more than 1 child, please complete 1 form per child."
+                              uid=4_115 paragraph
+                                uid=4_116 StaticText "Please contact Ms. Rissa DeSpain at "
+                                uid=4_117 link "rissa@sundropsmontessori.com" url="mailto:rissa@sundropsmontessori.com"
+                                  uid=4_118 StaticText "rissa@sundropsmontessori.com"
+                                uid=4_119 StaticText " with any questions or concerns."
+                              uid=4_120 heading "Thank you for your continued support of Sundrops Montessori School!" level="2"
+                                uid=4_121 StaticText "Thank you for your continued support of Sundrops Montessori School!"
+                              uid=4_122 paragraph
+                                uid=4_123 StaticText " "
+                      uid=4_124 generic
+                        uid=4_125 generic
+                          uid=4_126 generic
+                            uid=4_127 generic
+                            uid=4_128 generic
+                              uid=4_129 generic
+                                uid=4_130 paragraph
+                                  uid=4_131 ignored
+                                    uid=4_132 ignored
+                                  uid=4_133 textbox required
+                                    uid=4_134 ignored
+                                    uid=4_135 generic
+                                uid=4_136 paragraph
+                                  uid=4_137 ignored
+                                    uid=4_138 ignored
+                                  uid=4_139 textbox required
+                                    uid=4_140 ignored
+                                    uid=4_141 generic
+                                uid=4_142 paragraph
+                                  uid=4_143 ignored
+                                    uid=4_144 ignored
+                                  uid=4_145 combobox expandable haspopup="menu" value="Class *"
+                                    uid=4_146 MenuListPopup
+                                      uid=4_147 option "Class *" selectable selected value="Class *"
+                                      uid=4_148 option "NIDO" selectable value="NIDO"
+                                      uid=4_149 option "PEE WEE CASA 1" selectable value="PEE WEE CASA 1"
+                                      uid=4_150 option "PEE WEE CASA 2" selectable value="PEE WEE CASA 2"
+                                      uid=4_151 option "WEE CASA 1" selectable value="WEE CASA 1"
+                                      uid=4_152 option "WEE CASA 2" selectable value="WEE CASA 2"
+                                      uid=4_153 option "CASA 1" selectable value="CASA 1"
+                                      uid=4_154 option "CASA 2" selectable value="CASA 2"
+                                      uid=4_155 option "CASA 3" selectable value="CASA 3"
+                                      uid=4_156 option "CASA 4" selectable value="CASA 4"
+                                      uid=4_157 option "CASA 5" selectable value="CASA 5"
+                                      uid=4_158 option "LOWER ELEMENTARY" selectable value="LOWER ELEMENTARY"
+                                      uid=4_159 option "UPPER ELEMENTARY" selectable value="UPPER ELEMENTARY"
+                                      uid=4_160 option "ADOLESCENT" selectable value="ADOLESCENT"
+                                uid=4_161 ignored
+                                  uid=4_162 ignored
+                                    uid=4_163 ignored
+                                  uid=4_164 ignored
+                                    uid=4_165 generic
+                                      uid=4_52 StaticText ""
+                                    uid=4_166 ignored
+                                      uid=4_167 StaticText "Pizza Fridays"
+                                      uid=4_168 ignored
+                                        uid=4_52 StaticText "*"
+                                    uid=4_169 ignored
+                                      uid=4_170 ignored
+                                        uid=4_171 ignored
+                                        uid=4_172 ignored
+                                      uid=4_173 ignored
+                                        uid=4_174 ignored
+                                        uid=4_175 ignored
+                                      uid=4_176 ignored
+                                        uid=4_177 ignored
+                                        uid=4_178 ignored
+                                      uid=4_179 ignored
+                                        uid=4_180 ignored
+                                        uid=4_181 ignored
+                                      uid=4_182 ignored
+                                        uid=4_183 ignored
+                                        uid=4_184 ignored
+                                      uid=4_185 ignored
+                                        uid=4_186 LabelText
+                                          uid=4_187 generic
+                                          uid=4_188 StaticText "03/27/26"
+                                      uid=4_189 ignored
+                                        uid=4_190 LabelText
+                                          uid=4_191 generic
+                                          uid=4_192 StaticText "04/03/26"
+                                      uid=4_193 ignored
+                                        uid=4_194 LabelText
+                                          uid=4_195 generic
+                                          uid=4_196 StaticText "04/17/26"
+                                      uid=4_197 ignored
+                                        uid=4_198 LabelText
+                                          uid=4_199 generic
+                                          uid=4_200 StaticText "04/24/26"
+                                      uid=4_201 ignored
+                                        uid=4_202 LabelText
+                                          uid=4_203 generic
+                                          uid=4_204 StaticText "05/01/26"
+                                      uid=4_205 ignored
+                                        uid=4_206 LabelText
+                                          uid=4_207 generic
+                                          uid=4_208 StaticText "05/08/26"
+                                uid=4_209 ignored
+                                  uid=4_210 ignored
+                                    uid=4_211 ignored
+                                  uid=4_212 ignored
+                                    uid=4_213 ignored
+                                      uid=4_214 ignored
+                                        uid=4_215 LabelText
+                                          uid=4_216 generic
+                                          uid=4_217 StaticText "Select All Dates"
+                                uid=4_218 ignored
+                                  uid=4_219 ignored
+                                    uid=4_220 ignored
+                                  uid=4_221 ignored
+                                    uid=4_222 ignored
+                                      uid=4_223 StaticText "Number of Slices"
+                                      uid=4_224 ignored
+                                        uid=4_52 StaticText "*"
+                                    uid=4_225 ignored
+                                      uid=4_226 ignored
+                                        uid=4_227 LabelText
+                                          uid=4_228 generic
+                                          uid=4_229 StaticText "1"
+                                      uid=4_230 ignored
+                                        uid=4_231 LabelText
+                                          uid=4_232 generic
+                                          uid=4_233 StaticText "2"
+                                uid=4_234 ignored
+                                  uid=4_235 button "SAVE & CHECKOUT 5"
+                                    uid=4_236 StaticText "SAVE & CHECKOUT"
+                                    uid=4_237 generic
+                                      uid=4_52 StaticText "5"
+                                uid=4_238 ignored
+                                  uid=4_239 ignored
+                          uid=4_240 generic
+                            uid=4_241 generic
+                              uid=4_242 heading "Please checkout & complete payment to secure your pizza order!" level="4"
+                                uid=4_243 StaticText "Please checkout & complete payment to secure your pizza order!"
+                          uid=4_244 generic
+                            uid=4_245 generic
+                          uid=4_246 generic
+                            uid=4_247 generic
+      uid=4_248 generic
+      uid=4_249 status atomic live="polite" relevant="additions text"
+      uid=4_250 ignored
+        uid=4_251 generic
+          uid=4_252 generic
+            uid=4_253 IframePresentational "reCAPTCHA"
+          uid=4_254 ignored
+          uid=4_255 ignored

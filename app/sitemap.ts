@@ -14,13 +14,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/bridge-campus/',
     '/daniel-island-campus/',
     '/palmetto-campus/',
-    '/farm-campus/',
     '/tours/',
     '/faqs/',
     '/contact/',
     '/careers/',
     '/calendar-embed',
     '/field-trip-permission/',
+    '/parent-resources/',
+    '/pizza-fridays/',
   ];
 
   return routes.map((route) => ({

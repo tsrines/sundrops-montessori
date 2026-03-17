@@ -60,9 +60,7 @@ export const TODDLER_REGISTRATION = {
       number: 1,
       title: 'Request Information',
       description: 'Reach out to learn more about the Toddler Programs and schedule a campus visit.',
-      campusLinks: [
-        { label: 'Bridge Campus (Mt Pleasant)', href: '/contact/' },
-      ],
+      campusLinks: [{ label: 'Bridge Campus (Mt Pleasant)', href: '/contact/' }],
     },
     {
       number: 2,

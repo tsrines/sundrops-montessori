@@ -15,7 +15,7 @@ export function ElementaryRegistration() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
   return (
-    <section ref={sectionRef} className="relative w-full overflow-hidden py-16 md:py-20">
+    <section id="registration" ref={sectionRef} className="relative w-full overflow-hidden py-16 md:py-20">
       <Image
         src="/images/programs/elementary-hero.jpg"
         alt=""

@@ -2,18 +2,15 @@ export const ELEMENTARY_HERO = {
   title: 'ELEMENTARY SCHOOL IN CHARLESTON, SC',
   subtitle: 'Authentic Montessori Elementary School Programs in Mount Pleasant',
   gradeRange: '1st - 6th Grade',
-  cta: {
-    contact: { label: 'CONTACT US', href: '/contact/' },
-    learnMore: { label: 'LEARN MORE', href: '/bridge-campus/' },
-  },
+  cta: { label: '1st - 6th Grade', href: '#registration' },
 } as const;
 
 export const ELEMENTARY_INTRO = {
-  heading: 'Elementary School in Charleston, SC',
+  heading: 'Authentic Montessori Elementary School Programs',
   paragraphs: [
-    'At Sundrops Montessori, our elementary program provides an authentic Montessori education for children in first through sixth grade. Our Lower Elementary (1st-3rd grade) and Upper Elementary (4th-6th grade) classrooms offer a carefully prepared environment where children develop independence, critical thinking, and a lifelong love of learning.',
-    'Our certified Montessori guides facilitate learning through hands-on materials, collaborative projects, and individualized instruction. Students work at their own pace, exploring subjects in depth and making meaningful connections across the curriculum.',
-    'The elementary years are a time of great intellectual curiosity and social development. Our program honors this stage by providing rich academic content, opportunities for creative expression, and a supportive community where every child is valued.',
+    'The Sundrops Elementary Programs offers a unique and intimate setting that fosters confidence and growth through an authentic Montessori education.',
+    'During this stage of development children become conceptual rather than sensorial explorers. They develop a greater understanding of abstraction and imagination. At this time the style of learning moves into research-based work that often occurs in small groups.',
+    'The teacher\'s role is to guide students in a way that enables them to utilize their intrinsic motivation to learn. Elementary teachers use the "Five Great Lessons" as a way to explain grand concepts and the integration of different subjects. The students are drawn to these lessons; sparking their interest in the various disciplines that stem from the specific story.',
   ],
   image: {
     src: '/images/elementary/elementary-3.jpg',
@@ -26,14 +23,14 @@ export const ELEMENTARY_INTRO = {
 export const ELEMENTARY_EXPERIENTIAL = {
   heading: 'An Experiential Approach',
   paragraphs: [
-    'Montessori elementary education is built on the understanding that children ages 6-12 are reasoning, imaginative learners who need to explore the world beyond the classroom walls. Our experiential approach integrates outdoor education, field studies, and community engagement into the core curriculum.',
-    'Students participate in hands-on science experiments, tend school gardens, collaborate on research projects, and present their findings to peers and community members. This approach develops not only academic skills but also confidence, communication, and a deep respect for the natural world.',
+    'An experiential approach infuses the Montessori curriculum to provide concrete experiences, including frequent outings into the community. Near the end of the three-year cycle, lower elementary students will naturally move toward more abstract work, problem solving and real life application of their learning. This is the foundation of the upper elementary curriculum.',
+    'The Sundrops elementary curriculum covers many disciplines, such as language, mathematics, science, and history. Studies are also enriched with Spanish, music, art and yoga that are integrated into the school day and through weekly special area classes. Practical life, gardening and handwork are an integral part of each work cycle and help the students learn to care for living things and hone their fine motor skills. The classroom space extends to an outdoor learning environment where students are free to do their work.',
   ],
 } as const;
 
 export const ELEMENTARY_BEYOND_BOOKS = {
   heading: 'Beyond the Books',
-  body: 'Our elementary program extends learning far beyond textbooks and worksheets. Students engage with the world through authentic experiences that bring academic concepts to life. From farm visits to nature walks, from art studios to science labs, every experience is designed to spark curiosity and deepen understanding.',
+  body: "At Sundrops Montessori we strive to educate by nurturing the social, emotional, and cognitive developmental needs for each student, individually. Our mission is to awaken your child's natural desire to learn in an environment where trust, respect, responsibility, community and cooperation flourish. Our classrooms are specially prepared environments with materials that stimulate a student's sense of curiosity and offer dynamic learning at a student's own pace.",
   gallery: {
     rows: [
       [
@@ -55,22 +52,25 @@ export const ELEMENTARY_BEYOND_BOOKS = {
 } as const;
 
 export const ELEMENTARY_REGISTRATION = {
-  heading: 'Elementary Registration',
-  subheading: 'How To Register Your Child For The Elementary Program',
+  heading: 'Registration',
+  subheading: 'How To Register Your Child for Sundrops',
   description:
-    'Enrolling your child in the Sundrops Elementary Program is a straightforward process. Follow the steps below to begin your journey toward an authentic Montessori elementary education.',
+    "Check out our programs based on your child's age, select a campus, and schedule a tour. You can then submit your application and application fee online, and we'll begin our placement process.",
   steps: [
     {
       number: 1,
       title: 'Schedule A Tour',
-      description: 'Visit our campus and see the elementary classrooms in action.',
+      description: 'Pick your program, time and campus.',
       campusLinks: [{ label: 'Schedule a Tour', href: '/tours/' }],
     },
     {
       number: 2,
       title: 'Submit An Application',
-      description: 'Complete the enrollment application for your child.',
-      campusLinks: [{ label: 'Contact Us', href: '/contact/' }],
+      description: 'Online Application',
+      campusLinks: [
+        { label: 'Online Application', href: '/application/' },
+        { label: 'Download PDF', href: '/documents/application-form.pdf' },
+      ],
     },
     {
       number: 3,

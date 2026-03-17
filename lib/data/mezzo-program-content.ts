@@ -4,7 +4,7 @@ export const MEZZO_PROGRAM_HERO = {
   gradeRange: '7th - 9th Grade',
   cta: {
     contact: { label: 'CONTACT US', href: '/contact/' },
-    learnMore: { label: 'MORE ABOUT THE MEZZO PROGRAM', href: '/farm-campus/' },
+    learnMore: { label: 'MORE ABOUT THE MEZZO PROGRAM', href: '/middle-school/' },
   },
 } as const;
 
