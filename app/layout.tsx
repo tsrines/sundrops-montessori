@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Noto_Serif, Raleway, Sacramento } from 'next/font/google';
 import './globals.css';
-import { Nav } from '@/components/nav';
-import { Footer } from '@/components/footer';
-import { SearchDialog } from '@/components/search-dialog';
 
 const notoSerif = Noto_Serif({
   subsets: ['latin'],
@@ -47,10 +44,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${notoSerif.variable} ${raleway.variable} ${sacramento.variable} font-sans`}>
-        <Nav />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
-        <SearchDialog />
+        {children}
       </body>
     </html>
   );

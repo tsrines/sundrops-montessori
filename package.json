@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:portless": "PORTLESS_TLD=dev PORTLESS_HTTPS=1 portless sundrops pnpm dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -23,6 +24,7 @@
     "@radix-ui/react-separator": "^1.1.4",
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-visually-hidden": "^1.1.4",
+    "better-auth": "^1.5.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.0.0",

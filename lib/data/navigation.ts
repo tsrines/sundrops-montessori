@@ -37,7 +37,10 @@ export const mainNavigation: NavItem[] = [
   {
     label: 'Parent Resources',
     href: '#',
-    children: [{ label: 'Pizza Fridays', href: '/pizza-fridays/' }],
+    children: [
+      { label: 'Parent Portal', href: '/portal' },
+      { label: 'Pizza Fridays', href: '/pizza-fridays/' },
+    ],
   },
 ];
 
@@ -59,6 +62,7 @@ export const footerNavigation = {
     { label: 'Mezzo Middle School', href: '/middle-school/' },
   ],
   resources: [
+    { label: 'Parent Portal', href: '/portal' },
     { label: 'FAQs', href: '/faqs/' },
     { label: 'Calendar', href: '/calendar-embed' },
     { label: 'Careers', href: '/careers/' },
