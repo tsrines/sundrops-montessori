@@ -38,3 +38,4 @@ npm-debug.log*
 
 # Scraped data from WordPress
 scraped/
+.vercel
