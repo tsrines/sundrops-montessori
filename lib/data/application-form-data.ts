@@ -10,19 +10,19 @@ export const APPLICATION_PROGRAMS = [
     value: 'nido',
     label: 'Infant Care (Nido)',
     ageRange: '6 weeks - 14 months',
-    availableAt: ['bridge', 'daniel-island', 'palmetto'],
+    availableAt: ['bridge', 'daniel-island'],
   },
   {
     value: 'pee-wee-wee-casa',
     label: 'Toddler (Pee Wee / Wee Casa)',
     ageRange: '14 - 36 months',
-    availableAt: ['bridge', 'daniel-island', 'palmetto', 'farm'],
+    availableAt: ['bridge', 'daniel-island', 'palmetto'],
   },
   {
     value: 'casa',
     label: 'Preschool & Kindergarten (Casa)',
     ageRange: '3 - 6 years',
-    availableAt: ['bridge', 'daniel-island', 'palmetto', 'farm'],
+    availableAt: ['bridge', 'daniel-island', 'palmetto'],
   },
   {
     value: 'elementary',
@@ -34,7 +34,7 @@ export const APPLICATION_PROGRAMS = [
     value: 'mezzo',
     label: 'Middle School (Mezzo)',
     ageRange: '7th - 9th Grade',
-    availableAt: ['bridge'],
+    availableAt: ['farm'],
   },
 ] as const;
 

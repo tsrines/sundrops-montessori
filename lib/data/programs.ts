@@ -118,7 +118,7 @@ export const programs: Program[] = [
       'Respect for family time: no assigned homework',
       'Options for high school credits',
     ],
-    campuses: ['Farm Campus (Huger, SC)'],
+    campuses: ['Farm Campus'],
     image: '/images/programs/middle-school-hero.jpg',
     color: '#A3C5BC',
   },

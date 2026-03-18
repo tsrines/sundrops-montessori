@@ -50,11 +50,20 @@ export const applicationSchema = z
       });
     }
 
-    // Elementary and Mezzo are only available at Bridge
-    if (data.campus && data.campus !== 'bridge' && (data.program === 'elementary' || data.program === 'mezzo')) {
+    // Elementary is only available at Bridge
+    if (data.campus && data.campus !== 'bridge' && data.program === 'elementary') {
       ctx.addIssue({
         code: 'custom',
-        message: 'This program is only available at the Bridge Campus',
+        message: 'Elementary School is only available at the Bridge Campus',
+        path: ['program'],
+      });
+    }
+
+    // Mezzo is only available at Farm Campus
+    if (data.campus && data.campus !== 'farm' && data.program === 'mezzo') {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Middle School (Mezzo) is only available at the Farm Campus',
         path: ['program'],
       });
     }
