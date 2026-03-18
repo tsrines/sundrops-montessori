@@ -11,7 +11,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
 
 const profileSchema = z.object({
   phone: z.string().max(20).optional().or(z.literal('')),
@@ -45,7 +44,7 @@ export default function ProfilePage() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm<ProfileValues>({
     resolver: zodResolver(profileSchema),
   });

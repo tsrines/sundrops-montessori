@@ -17,6 +17,7 @@ interface Classroom {
   capacity: number | null;
   isActive: boolean;
   primaryTeacherId: string | null;
+  primaryTeacher: { id: string; name: string } | null;
   createdAt: string;
 }
 
@@ -145,6 +146,11 @@ export default function ClassroomsPage() {
                             <div key={classroom.id} className="flex items-center justify-between px-4 py-3">
                               <div className="flex items-center gap-3">
                                 <span className="font-medium">{classroom.name}</span>
+                                {classroom.primaryTeacher ? (
+                                  <span className="text-sm">{classroom.primaryTeacher.name}</span>
+                                ) : (
+                                  <span className="text-xs text-muted-foreground">No teacher</span>
+                                )}
                                 {classroom.capacity !== null && (
                                   <span className="text-xs text-muted-foreground">capacity {classroom.capacity}</span>
                                 )}

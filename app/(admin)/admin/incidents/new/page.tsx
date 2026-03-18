@@ -56,6 +56,7 @@ export default function NewIncidentPage() {
     },
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const selectedChildId = watch('childId');
 
   useEffect(() => {

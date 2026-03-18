@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '@/lib/api-client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,6 +14,7 @@ interface Classroom {
   programSlug: string;
   capacity: number | null;
   isActive: boolean;
+  primaryTeacherId: string | null;
 }
 
 interface ClassroomFormData {
@@ -22,6 +23,7 @@ interface ClassroomFormData {
   programSlug: string;
   capacity: string;
   isActive: boolean;
+  primaryTeacherId: string | null;
 }
 
 interface ClassroomFormProps {
@@ -30,12 +32,23 @@ interface ClassroomFormProps {
   onCancel: () => void;
 }
 
+interface StaffOption {
+  userId: string;
+  name: string;
+}
+
+interface StaffProfile {
+  userId: string;
+  user: { id: string; name: string };
+}
+
 const EMPTY_FORM: ClassroomFormData = {
   name: '',
   campusSlug: '',
   programSlug: '',
   capacity: '',
   isActive: true,
+  primaryTeacherId: null,
 };
 
 export function ClassroomForm({ editTarget, onSave, onCancel }: ClassroomFormProps) {
@@ -47,16 +60,75 @@ export function ClassroomForm({ editTarget, onSave, onCancel }: ClassroomFormPro
           programSlug: editTarget.programSlug,
           capacity: editTarget.capacity !== null ? String(editTarget.capacity) : '',
           isActive: editTarget.isActive,
+          primaryTeacherId: editTarget.primaryTeacherId,
         }
       : EMPTY_FORM
   );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
+  const [staffList, setStaffList] = useState<StaffOption[]>([]);
+  const [showCreateTeacher, setShowCreateTeacher] = useState(false);
+  const [newTeacher, setNewTeacher] = useState({ name: '', email: '', title: 'Guide', campusSlug: '' });
+  const [createTeacherError, setCreateTeacherError] = useState('');
+  const [creatingTeacher, setCreatingTeacher] = useState(false);
 
   const availablePrograms = getAvailablePrograms(form.campusSlug);
 
+  useEffect(() => {
+    api
+      .get<{ profiles: StaffProfile[] }>('/api/admin/staff-profiles')
+      .then((res) => setStaffList(res.profiles.map((p) => ({ userId: p.userId, name: p.user.name }))))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (showCreateTeacher) {
+      setNewTeacher((prev) => ({ ...prev, campusSlug: form.campusSlug }));
+    }
+  }, [showCreateTeacher, form.campusSlug]);
+
   const handleCampusChange = (campusSlug: string) => {
     setForm((prev) => ({ ...prev, campusSlug, programSlug: '' }));
+  };
+
+  const handleTeacherSelect = (value: string) => {
+    if (value === '__create__') {
+      setShowCreateTeacher(true);
+      return;
+    }
+    setForm((prev) => ({ ...prev, primaryTeacherId: value || null }));
+  };
+
+  const handleCreateTeacher = async () => {
+    if (!newTeacher.name || !newTeacher.email) {
+      setCreateTeacherError('Name and email are required');
+      return;
+    }
+
+    setCreatingTeacher(true);
+    setCreateTeacherError('');
+
+    try {
+      const res = await api.post<{ userId: string; name: string; email: string }>(
+        '/api/admin/staff-profiles/quick-create',
+        {
+          name: newTeacher.name,
+          email: newTeacher.email,
+          title: newTeacher.title || 'Guide',
+          campusSlug: newTeacher.campusSlug || null,
+        }
+      );
+      setStaffList((prev) => [...prev, { userId: res.userId, name: res.name }]);
+      setForm((prev) => ({ ...prev, primaryTeacherId: res.userId }));
+      setShowCreateTeacher(false);
+      setNewTeacher({ name: '', email: '', title: 'Guide', campusSlug: '' });
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error && err.message.includes('409') ? 'Email already exists' : 'Failed to create teacher';
+      setCreateTeacherError(message);
+    } finally {
+      setCreatingTeacher(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -75,6 +147,7 @@ export function ClassroomForm({ editTarget, onSave, onCancel }: ClassroomFormPro
       programSlug: form.programSlug as 'nido' | 'pee-wee-wee-casa' | 'casa' | 'elementary' | 'mezzo',
       capacity: form.capacity ? parseInt(form.capacity, 10) : null,
       isActive: form.isActive,
+      primaryTeacherId: form.primaryTeacherId || null,
     };
 
     try {
@@ -159,6 +232,95 @@ export function ClassroomForm({ editTarget, onSave, onCancel }: ClassroomFormPro
           />
         </div>
       </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="classroom-teacher">Primary Teacher (optional)</Label>
+        <select
+          id="classroom-teacher"
+          value={form.primaryTeacherId ?? ''}
+          onChange={(e) => handleTeacherSelect(e.target.value)}
+          className="w-full rounded-md border bg-background px-3 py-2 text-sm">
+          <option value="">(No teacher assigned)</option>
+          {staffList.map((s) => (
+            <option key={s.userId} value={s.userId}>
+              {s.name}
+            </option>
+          ))}
+          <option value="__create__">+ Create new teacher...</option>
+        </select>
+      </div>
+
+      {showCreateTeacher && (
+        <div className="space-y-3 rounded-md border bg-muted/30 p-4">
+          <p className="text-sm font-medium">New Teacher</p>
+
+          {createTeacherError && <p className="text-sm text-destructive">{createTeacherError}</p>}
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="space-y-1">
+              <Label htmlFor="new-teacher-name">Name</Label>
+              <Input
+                id="new-teacher-name"
+                value={newTeacher.name}
+                onChange={(e) => setNewTeacher((prev) => ({ ...prev, name: e.target.value }))}
+                placeholder="Full name"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <Label htmlFor="new-teacher-email">Email</Label>
+              <Input
+                id="new-teacher-email"
+                type="email"
+                value={newTeacher.email}
+                onChange={(e) => setNewTeacher((prev) => ({ ...prev, email: e.target.value }))}
+                placeholder="email@example.com"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <Label htmlFor="new-teacher-title">Title</Label>
+              <Input
+                id="new-teacher-title"
+                value={newTeacher.title}
+                onChange={(e) => setNewTeacher((prev) => ({ ...prev, title: e.target.value }))}
+                placeholder="Guide"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <Label htmlFor="new-teacher-campus">Campus</Label>
+              <select
+                id="new-teacher-campus"
+                value={newTeacher.campusSlug}
+                onChange={(e) => setNewTeacher((prev) => ({ ...prev, campusSlug: e.target.value }))}
+                className="w-full rounded-md border bg-background px-3 py-2 text-sm">
+                <option value="">Select campus</option>
+                {APPLICATION_CAMPUSES.map((c) => (
+                  <option key={c.value} value={c.value}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Button type="button" size="sm" onClick={handleCreateTeacher} disabled={creatingTeacher}>
+              {creatingTeacher ? 'Adding...' : 'Add Teacher'}
+            </Button>
+            <button
+              type="button"
+              onClick={() => {
+                setShowCreateTeacher(false);
+                setCreateTeacherError('');
+              }}
+              className="text-sm text-muted-foreground underline-offset-2 hover:underline">
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="flex items-center gap-2">
         <input

@@ -56,6 +56,7 @@ export function InfoRequestForm({ defaultCampus }: InfoRequestFormProps) {
     },
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const selectedPrograms = watch('programs');
 
   const toggleProgram = (program: string) => {
