@@ -96,9 +96,7 @@ export function FieldTripPortalForm({ childList, userName }: FieldTripPortalForm
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {submitError && (
-        <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{submitError}</div>
-      )}
+      {submitError && <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{submitError}</div>}
 
       {/* Child Selection */}
       <div className="space-y-2">
@@ -110,7 +108,7 @@ export function FieldTripPortalForm({ childList, userName }: FieldTripPortalForm
           {...register('childId')}
           className={cn(
             'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-            errors.childId && 'border-destructive',
+            errors.childId && 'border-destructive'
           )}>
           <option value="">Select a child</option>
           {childList.map((child) => (
@@ -164,8 +162,8 @@ export function FieldTripPortalForm({ childList, userName }: FieldTripPortalForm
           />
           <span className="text-sm leading-relaxed">
             I give my permission for my child to participate in school-sponsored field trips during the{' '}
-            {CURRENT_SCHOOL_YEAR} school year. I understand that Sundrops Montessori will provide adequate
-            supervision and that I will be notified in advance of specific field trip details.
+            {CURRENT_SCHOOL_YEAR} school year. I understand that Sundrops Montessori will provide adequate supervision
+            and that I will be notified in advance of specific field trip details.
           </span>
         </label>
         {errors.permission && <p className="mt-2 text-xs text-destructive">{errors.permission.message}</p>}

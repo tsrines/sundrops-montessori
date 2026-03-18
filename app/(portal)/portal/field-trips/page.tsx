@@ -63,9 +63,7 @@ export default function FieldTripsPage() {
     <div className="mx-auto max-w-3xl space-y-8">
       <div>
         <h1 className="font-serif text-2xl font-semibold">Field Trip Permissions</h1>
-        <p className="mt-1 text-muted-foreground">
-          Submit field trip permission forms for the current school year.
-        </p>
+        <p className="mt-1 text-muted-foreground">Submit field trip permission forms for the current school year.</p>
       </div>
 
       {/* New Permission Form */}
@@ -97,9 +95,7 @@ export default function FieldTripsPage() {
                   <span
                     className={cn(
                       'rounded-full px-2 py-0.5 text-xs font-medium',
-                      perm.status === 'active'
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-gray-100 text-gray-800',
+                      perm.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
                     )}>
                     {perm.status}
                   </span>

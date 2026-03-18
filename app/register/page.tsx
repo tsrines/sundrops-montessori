@@ -22,9 +22,7 @@ export default function RegisterPage() {
             />
           </Link>
           <h1 className="mt-6 font-serif text-2xl font-semibold">Create Account</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Join the Sundrops Montessori Parent Portal
-          </p>
+          <p className="mt-2 text-sm text-muted-foreground">Join the Sundrops Montessori Parent Portal</p>
         </div>
         <RegisterForm />
       </div>

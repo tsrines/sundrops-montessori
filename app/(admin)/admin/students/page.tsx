@@ -32,7 +32,6 @@ function StudentsContent() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    setLoading(true);
     const params = new URLSearchParams();
     if (campus) params.set('campus', campus);
     if (program) params.set('program', program);
@@ -40,18 +39,19 @@ function StudentsContent() {
 
     api
       .get<{ students: Student[] }>(`/api/admin/students?${params}`)
-      .then((res) => setStudents(res.students))
-      .catch(() => {})
-      .finally(() => setLoading(false));
+      .then((res) => {
+        setStudents(res.students);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, [campus, program, classroom]);
 
   const filteredStudents = useMemo(() => {
-    if (!search) return students;
+    const active = students.filter((s) => s.enrollmentStatus !== 'inactive');
+    if (!search) return active;
     const q = search.toLowerCase();
-    return students.filter(
-      (s) =>
-        `${s.firstName} ${s.lastName}`.toLowerCase().includes(q) ||
-        s.classroom?.toLowerCase().includes(q),
+    return active.filter(
+      (s) => `${s.firstName} ${s.lastName}`.toLowerCase().includes(q) || s.classroom?.toLowerCase().includes(q)
     );
   }, [students, search]);
 
@@ -66,11 +66,7 @@ function StudentsContent() {
     return groups;
   }, [filteredStudents]);
 
-  const pageTitle = [
-    campus && campus.replace(/-/g, ' '),
-    program && program.replace(/-/g, ' '),
-    classroom,
-  ]
+  const pageTitle = [campus && campus.replace(/-/g, ' '), program && program.replace(/-/g, ' '), classroom]
     .filter(Boolean)
     .join(' › ');
 
@@ -104,9 +100,7 @@ function StudentsContent() {
         <div className="space-y-8">
           {Object.entries(groupedByProgram).map(([prog, classrooms]) => (
             <section key={prog} className="space-y-4">
-              <h2 className="font-serif text-lg font-semibold capitalize">
-                {prog.replace(/-/g, ' ')}
-              </h2>
+              <h2 className="font-serif text-lg font-semibold capitalize">{prog.replace(/-/g, ' ')}</h2>
               {Object.entries(classrooms).map(([room, roomStudents]) => (
                 <div key={room} className="space-y-2">
                   <h3 className="text-sm font-medium text-muted-foreground">{room}</h3>
@@ -143,9 +137,7 @@ function StudentsContent() {
                             <td className="px-4 py-2">
                               <StatusBadge status={student.enrollmentStatus} />
                             </td>
-                            <td className="px-4 py-2 text-muted-foreground">
-                              {student.parent.name}
-                            </td>
+                            <td className="px-4 py-2 text-muted-foreground">{student.parent.name}</td>
                             <td className="px-4 py-2 text-muted-foreground">
                               {student.parent.profile?.phone ?? student.parent.email}
                             </td>

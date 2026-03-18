@@ -24,9 +24,7 @@ export default function AdminDashboard() {
       .finally(() => setLoading(false));
   }, []);
 
-  const totalEnrolled = stats
-    ? Object.values(stats.enrolledByCampus).reduce((a, b) => a + b, 0)
-    : 0;
+  const totalEnrolled = stats ? Object.values(stats.enrolledByCampus).reduce((a, b) => a + b, 0) : 0;
 
   if (loading) {
     return (
@@ -80,9 +78,7 @@ export default function AdminDashboard() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {Object.entries(stats.enrolledByCampus).map(([campus, count]) => (
               <div key={campus} className="rounded-lg border bg-card p-4">
-                <p className="text-sm font-medium capitalize text-muted-foreground">
-                  {campus.replace(/-/g, ' ')}
-                </p>
+                <p className="text-sm font-medium capitalize text-muted-foreground">{campus.replace(/-/g, ' ')}</p>
                 <p className="mt-1 text-2xl font-bold">{count}</p>
                 <p className="text-xs text-muted-foreground">active students</p>
               </div>

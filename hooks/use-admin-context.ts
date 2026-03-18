@@ -34,28 +34,28 @@ export function useAdminContext(): AdminContext {
       const query = params.toString();
       return query ? `${pathname}?${query}` : pathname;
     },
-    [searchParams, pathname],
+    [searchParams, pathname]
   );
 
   const setCampus = useCallback(
     (value: string) => {
       router.push(buildUrl({ campus: value, program: '', classroom: '' }));
     },
-    [router, buildUrl],
+    [router, buildUrl]
   );
 
   const setProgram = useCallback(
     (value: string) => {
       router.push(buildUrl({ program: value, classroom: '' }));
     },
-    [router, buildUrl],
+    [router, buildUrl]
   );
 
   const setClassroom = useCallback(
     (value: string) => {
       router.push(buildUrl({ classroom: value }));
     },
-    [router, buildUrl],
+    [router, buildUrl]
   );
 
   return { campus, program, classroom, setCampus, setProgram, setClassroom };

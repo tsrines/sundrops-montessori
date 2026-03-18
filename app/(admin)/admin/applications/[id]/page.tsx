@@ -68,10 +68,7 @@ export default function ApplicationDetailPage() {
     if (!application) return;
     setSaving(true);
     try {
-      const res = await api.patch<{ application: Application }>(
-        `/api/admin/applications/${id}/status`,
-        { status },
-      );
+      const res = await api.patch<{ application: Application }>(`/api/admin/applications/${id}/status`, { status });
       setApplication(res.application);
     } catch {
       setError('Failed to update status');
@@ -83,10 +80,7 @@ export default function ApplicationDetailPage() {
   const handleSaveNotes = async () => {
     setSaving(true);
     try {
-      const res = await api.patch<{ application: Application }>(
-        `/api/admin/applications/${id}/notes`,
-        { notes },
-      );
+      const res = await api.patch<{ application: Application }>(`/api/admin/applications/${id}/notes`, { notes });
       setApplication(res.application);
     } catch {
       setError('Failed to save notes');
@@ -104,9 +98,7 @@ export default function ApplicationDetailPage() {
   }
 
   if (!application) {
-    return (
-      <div className="py-12 text-center text-muted-foreground">{error || 'Application not found'}</div>
-    );
+    return <div className="py-12 text-center text-muted-foreground">{error || 'Application not found'}</div>;
   }
 
   return (

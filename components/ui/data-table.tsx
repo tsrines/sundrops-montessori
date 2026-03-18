@@ -48,7 +48,7 @@ export function DataTable<T>({
                 key={col.key}
                 className={cn(
                   'px-4 py-3 text-left text-xs font-medium uppercase tracking-wide text-muted-foreground',
-                  col.className,
+                  col.className
                 )}>
                 {col.header}
               </th>
@@ -60,9 +60,7 @@ export function DataTable<T>({
             <TableSkeleton columns={columns.length} />
           ) : data.length === 0 ? (
             <tr>
-              <td
-                colSpan={columns.length}
-                className="px-4 py-10 text-center text-muted-foreground">
+              <td colSpan={columns.length} className="px-4 py-10 text-center text-muted-foreground">
                 {emptyMessage}
               </td>
             </tr>

@@ -54,10 +54,10 @@ export default function ReenrollmentDetailPage() {
     if (!reenrollment) return;
     setSaving(true);
     try {
-      const res = await api.patch<{ reenrollment: Reenrollment }>(
-        `/api/admin/reenrollments/${id}/status`,
-        { status, adminNotes },
-      );
+      const res = await api.patch<{ reenrollment: Reenrollment }>(`/api/admin/reenrollments/${id}/status`, {
+        status,
+        adminNotes,
+      });
       setReenrollment(res.reenrollment);
     } catch {
       setError('Failed to update status');
@@ -75,9 +75,7 @@ export default function ReenrollmentDetailPage() {
   }
 
   if (!reenrollment) {
-    return (
-      <div className="py-12 text-center text-muted-foreground">{error || 'Re-enrollment not found'}</div>
-    );
+    return <div className="py-12 text-center text-muted-foreground">{error || 'Re-enrollment not found'}</div>;
   }
 
   return (

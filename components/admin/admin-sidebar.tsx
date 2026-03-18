@@ -12,6 +12,7 @@ import {
   Users,
   Megaphone,
   UserCog,
+  LayoutGrid,
   ChevronRight,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -25,6 +26,7 @@ const TOP_LINKS = [
   { href: '/admin/incidents', label: 'Incidents', icon: AlertTriangle },
   { href: '/admin/announcements', label: 'Announcements', icon: Megaphone },
   { href: '/admin/users', label: 'Users', icon: UserCog },
+  { href: '/admin/classrooms', label: 'Classrooms', icon: LayoutGrid },
 ] as const;
 
 interface ClassroomEntry {
@@ -48,9 +50,9 @@ interface CampusEntry {
 const CAMPUS_STRUCTURE = APPLICATION_CAMPUSES.map((campus) => ({
   campus: campus.value,
   label: campus.label,
-  programs: APPLICATION_PROGRAMS.filter((p) =>
-    (p.availableAt as readonly string[]).includes(campus.value),
-  ).map((p) => ({ program: p.value, label: p.label })),
+  programs: APPLICATION_PROGRAMS.filter((p) => (p.availableAt as readonly string[]).includes(campus.value)).map(
+    (p) => ({ program: p.value, label: p.label })
+  ),
 }));
 
 export function AdminSidebar() {
@@ -129,10 +131,7 @@ export function AdminSidebar() {
       <div className="flex h-full flex-col px-3 py-6">
         <nav className="space-y-1">
           {TOP_LINKS.map((link) => {
-            const isActive =
-              link.href === '/admin'
-                ? pathname === '/admin'
-                : pathname.startsWith(link.href);
+            const isActive = link.href === '/admin' ? pathname === '/admin' : pathname.startsWith(link.href);
 
             return (
               <Link
@@ -140,9 +139,7 @@ export function AdminSidebar() {
                 href={link.href}
                 className={cn(
                   'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                  isActive
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                  isActive ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 )}>
                 <link.icon className="h-4 w-4" />
                 {link.label}
@@ -154,25 +151,17 @@ export function AdminSidebar() {
         <div className="mt-6">
           <div className="flex items-center gap-2 px-3 py-1">
             <Users className="h-4 w-4 text-muted-foreground" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Campuses
-            </span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Campuses</span>
           </div>
           <div className="mt-1 space-y-0.5">
             {CAMPUS_STRUCTURE.map(({ campus, label, programs }) => {
               const isCampusOpen = openCampuses.has(campus);
 
               return (
-                <Collapsible.Root
-                  key={campus}
-                  open={isCampusOpen}
-                  onOpenChange={() => toggleCampus(campus)}>
+                <Collapsible.Root key={campus} open={isCampusOpen} onOpenChange={() => toggleCampus(campus)}>
                   <Collapsible.Trigger className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
                     <ChevronRight
-                      className={cn(
-                        'h-3 w-3 flex-shrink-0 transition-transform',
-                        isCampusOpen && 'rotate-90',
-                      )}
+                      className={cn('h-3 w-3 flex-shrink-0 transition-transform', isCampusOpen && 'rotate-90')}
                     />
                     {label}
                   </Collapsible.Trigger>
@@ -186,8 +175,7 @@ export function AdminSidebar() {
                         const studentCount = getProgramStudentCount(campus, program);
 
                         if (classrooms.length === 0) {
-                          const isActive =
-                            activeCampus === campus && activeProgram === program;
+                          const isActive = activeCampus === campus && activeProgram === program;
                           return (
                             <button
                               key={program}
@@ -201,7 +189,7 @@ export function AdminSidebar() {
                                 'flex w-full items-center justify-between rounded-md px-3 py-1.5 text-xs font-medium transition-colors',
                                 isActive
                                   ? 'bg-primary/10 text-primary'
-                                  : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                                  : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                               )}>
                               <span>{programLabel}</span>
                             </button>
@@ -217,13 +205,11 @@ export function AdminSidebar() {
                               <ChevronRight
                                 className={cn(
                                   'h-3 w-3 flex-shrink-0 transition-transform',
-                                  isProgramOpen && 'rotate-90',
+                                  isProgramOpen && 'rotate-90'
                                 )}
                               />
                               <span className="flex-1 text-left">{programLabel}</span>
-                              {studentCount > 0 && (
-                                <span className="text-[10px] opacity-60">{studentCount}</span>
-                              )}
+                              {studentCount > 0 && <span className="text-[10px] opacity-60">{studentCount}</span>}
                             </Collapsible.Trigger>
 
                             <Collapsible.Content>
@@ -237,23 +223,15 @@ export function AdminSidebar() {
                                   return (
                                     <button
                                       key={classroomEntry.classroom}
-                                      onClick={() =>
-                                        navigateToClassroom(
-                                          campus,
-                                          program,
-                                          classroomEntry.classroom,
-                                        )
-                                      }
+                                      onClick={() => navigateToClassroom(campus, program, classroomEntry.classroom)}
                                       className={cn(
                                         'flex w-full items-center justify-between rounded-md px-3 py-1.5 text-xs transition-colors',
                                         isActive
                                           ? 'bg-primary/10 font-medium text-primary'
-                                          : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                                          : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                                       )}>
                                       <span>{classroomEntry.classroom}</span>
-                                      <span className="text-[10px] opacity-60">
-                                        {classroomEntry.studentCount}
-                                      </span>
+                                      <span className="text-[10px] opacity-60">{classroomEntry.studentCount}</span>
                                     </button>
                                   );
                                 })}

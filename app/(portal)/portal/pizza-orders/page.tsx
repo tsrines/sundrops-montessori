@@ -50,9 +50,7 @@ export default function PizzaOrdersPage() {
   const handleCancel = async (orderId: string) => {
     try {
       await api.delete(`/api/portal/pizza-orders/${orderId}`);
-      setOrders((prev) =>
-        prev.map((o) => (o.id === orderId ? { ...o, status: 'cancelled' } : o)),
-      );
+      setOrders((prev) => prev.map((o) => (o.id === orderId ? { ...o, status: 'cancelled' } : o)));
     } catch {
       // Failed to cancel
     }
@@ -115,9 +113,7 @@ export default function PizzaOrdersPage() {
                     <span
                       className={cn(
                         'rounded-full px-2 py-0.5 text-xs font-medium',
-                        order.status === 'confirmed'
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-yellow-100 text-yellow-800',
+                        order.status === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
                       )}>
                       {order.status}
                     </span>

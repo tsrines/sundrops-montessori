@@ -70,9 +70,7 @@ export function RegisterForm() {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {error && (
-          <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{error}</div>
-        )}
+        {error && <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{error}</div>}
 
         <div className="space-y-2">
           <Label htmlFor="register-name">Full Name</Label>
@@ -122,9 +120,7 @@ export function RegisterForm() {
             {...register('confirmPassword')}
             className={cn(errors.confirmPassword && 'border-destructive')}
           />
-          {errors.confirmPassword && (
-            <p className="text-xs text-destructive">{errors.confirmPassword.message}</p>
-          )}
+          {errors.confirmPassword && <p className="text-xs text-destructive">{errors.confirmPassword.message}</p>}
         </div>
 
         <Button type="submit" className="w-full" disabled={isSubmitting}>

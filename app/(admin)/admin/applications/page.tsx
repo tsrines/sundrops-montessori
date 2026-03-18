@@ -57,31 +57,23 @@ export default function ApplicationsPage() {
     {
       key: 'campus',
       header: 'Campus',
-      cell: (row: Application) => (
-        <span className="capitalize">{row.campusSlug.replace(/-/g, ' ')}</span>
-      ),
+      cell: (row: Application) => <span className="capitalize">{row.campusSlug.replace(/-/g, ' ')}</span>,
     },
     {
       key: 'program',
       header: 'Program',
-      cell: (row: Application) => (
-        <span className="capitalize">{row.programSlug.replace(/-/g, ' ')}</span>
-      ),
+      cell: (row: Application) => <span className="capitalize">{row.programSlug.replace(/-/g, ' ')}</span>,
     },
     {
       key: 'email',
       header: 'Contact',
-      cell: (row: Application) => (
-        <span className="text-muted-foreground">{row.email1}</span>
-      ),
+      cell: (row: Application) => <span className="text-muted-foreground">{row.email1}</span>,
     },
     {
       key: 'submitted',
       header: 'Submitted',
       cell: (row: Application) => (
-        <span className="text-muted-foreground">
-          {new Date(row.createdAt).toLocaleDateString()}
-        </span>
+        <span className="text-muted-foreground">{new Date(row.createdAt).toLocaleDateString()}</span>
       ),
     },
     {
@@ -121,12 +113,7 @@ export default function ApplicationsPage() {
         </select>
       </div>
 
-      <DataTable
-        columns={columns}
-        data={applications}
-        isLoading={loading}
-        emptyMessage="No applications found."
-      />
+      <DataTable columns={columns} data={applications} isLoading={loading} emptyMessage="No applications found." />
     </div>
   );
 }

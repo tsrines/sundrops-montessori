@@ -43,9 +43,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${notoSerif.variable} ${raleway.variable} ${sacramento.variable} font-sans`}>
-        {children}
-      </body>
+      <body className={`${notoSerif.variable} ${raleway.variable} ${sacramento.variable} font-sans`}>{children}</body>
     </html>
   );
 }

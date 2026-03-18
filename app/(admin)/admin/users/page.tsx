@@ -244,15 +244,9 @@ export default function UsersPage() {
                   )}
                 </td>
                 <td className="px-4 py-3">
-                  {u.banned ? (
-                    <StatusBadge status="declined" />
-                  ) : (
-                    <StatusBadge status="active" />
-                  )}
+                  {u.banned ? <StatusBadge status="declined" /> : <StatusBadge status="active" />}
                 </td>
-                <td className="px-4 py-3 text-muted-foreground">
-                  {new Date(u.createdAt).toLocaleDateString()}
-                </td>
+                <td className="px-4 py-3 text-muted-foreground">{new Date(u.createdAt).toLocaleDateString()}</td>
                 {isSuperAdmin && (
                   <td className="px-4 py-3">
                     <Button

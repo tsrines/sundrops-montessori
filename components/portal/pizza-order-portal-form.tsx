@@ -83,9 +83,7 @@ export function PizzaOrderPortalForm({ childList }: PizzaOrderPortalFormProps) {
   };
 
   const toggleDate = (date: string) => {
-    const updated = selectedDates.includes(date)
-      ? selectedDates.filter((d) => d !== date)
-      : [...selectedDates, date];
+    const updated = selectedDates.includes(date) ? selectedDates.filter((d) => d !== date) : [...selectedDates, date];
     setSelectedDates(updated);
     setValue('dates', updated, { shouldValidate: true });
   };
@@ -137,9 +135,7 @@ export function PizzaOrderPortalForm({ childList }: PizzaOrderPortalFormProps) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {submitError && (
-        <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{submitError}</div>
-      )}
+      {submitError && <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{submitError}</div>}
 
       {/* Child Selection */}
       <div className="space-y-2">
@@ -153,7 +149,7 @@ export function PizzaOrderPortalForm({ childList }: PizzaOrderPortalFormProps) {
           })}
           className={cn(
             'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-            errors.childId && 'border-destructive',
+            errors.childId && 'border-destructive'
           )}>
           <option value="">Select a child</option>
           {childList.map((child) => (
@@ -175,7 +171,7 @@ export function PizzaOrderPortalForm({ childList }: PizzaOrderPortalFormProps) {
           {...register('classRoom')}
           className={cn(
             'flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-            errors.classRoom && 'border-destructive',
+            errors.classRoom && 'border-destructive'
           )}>
           <option value="">Select classroom</option>
           {CLASSROOMS.map((c) => (
@@ -217,12 +213,7 @@ export function PizzaOrderPortalForm({ childList }: PizzaOrderPortalFormProps) {
         <div className="flex gap-6">
           {SLICE_OPTIONS.map((option) => (
             <label key={option.value} className="flex cursor-pointer items-center gap-2 text-sm">
-              <input
-                type="radio"
-                value={option.value}
-                {...register('sliceCount')}
-                className="h-4 w-4 accent-primary"
-              />
+              <input type="radio" value={option.value} {...register('sliceCount')} className="h-4 w-4 accent-primary" />
               {option.label} ({option.price})
             </label>
           ))}

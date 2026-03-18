@@ -9,9 +9,7 @@ export default function PortalCalendarPage() {
     <div className="mx-auto max-w-4xl space-y-6">
       <div>
         <h1 className="font-serif text-2xl font-semibold">School Calendar</h1>
-        <p className="mt-1 text-muted-foreground">
-          View upcoming events, holidays, and important dates.
-        </p>
+        <p className="mt-1 text-muted-foreground">View upcoming events, holidays, and important dates.</p>
       </div>
 
       <div className="overflow-hidden rounded-lg border bg-card">

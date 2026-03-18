@@ -52,24 +52,14 @@ export function AdminHeader() {
               <Menu className="h-5 w-5" />
             </button>
             <Link href="/" className="flex items-center gap-2">
-              <Image
-                src="/images/logo.png"
-                alt="Sundrops Montessori"
-                width={140}
-                height={36}
-                className="h-8 w-auto"
-              />
+              <Image src="/images/logo.png" alt="Sundrops Montessori" width={140} height={36} className="h-8 w-auto" />
             </Link>
-            <span className="hidden text-sm font-medium text-muted-foreground sm:inline">
-              / Admin
-            </span>
+            <span className="hidden text-sm font-medium text-muted-foreground sm:inline">/ Admin</span>
           </div>
 
           <div className="flex items-center gap-3">
             {session?.user && (
-              <span className="hidden text-sm text-muted-foreground md:inline">
-                {session.user.name}
-              </span>
+              <span className="hidden text-sm text-muted-foreground md:inline">{session.user.name}</span>
             )}
             <Button variant="ghost" size="sm" onClick={handleSignOut} className="gap-2">
               <LogOut className="h-4 w-4" />
@@ -81,11 +71,7 @@ export function AdminHeader() {
 
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div
-            className="absolute inset-0 bg-black/50"
-            onClick={() => setMobileOpen(false)}
-            aria-hidden="true"
-          />
+          <div className="absolute inset-0 bg-black/50" onClick={() => setMobileOpen(false)} aria-hidden="true" />
           <div className="absolute inset-y-0 left-0 w-72 bg-background shadow-xl">
             <div className="flex items-center justify-between border-b px-4 py-3">
               <span className="font-medium">Admin Portal</span>

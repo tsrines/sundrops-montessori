@@ -68,12 +68,8 @@ export default function PortalDashboard() {
   return (
     <div className="mx-auto max-w-5xl space-y-8">
       <div>
-        <h1 className="font-serif text-2xl font-semibold">
-          Welcome, {session?.user?.name?.split(' ')[0] || 'Parent'}
-        </h1>
-        <p className="mt-1 text-muted-foreground">
-          Here&apos;s an overview of your family&apos;s activity.
-        </p>
+        <h1 className="font-serif text-2xl font-semibold">Welcome, {session?.user?.name?.split(' ')[0] || 'Parent'}</h1>
+        <p className="mt-1 text-muted-foreground">Here&apos;s an overview of your family&apos;s activity.</p>
       </div>
 
       {/* Stats Grid */}

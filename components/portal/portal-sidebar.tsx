@@ -2,16 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import {
-  LayoutDashboard,
-  User,
-  Users,
-  Pizza,
-  Bus,
-  Calendar,
-  RefreshCw,
-  AlertTriangle,
-} from 'lucide-react';
+import { LayoutDashboard, User, Users, Pizza, Bus, Calendar, RefreshCw, AlertTriangle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const SIDEBAR_LINKS = [
@@ -33,10 +24,7 @@ export function PortalSidebar() {
       <div className="flex h-full flex-col px-3 py-6">
         <nav className="space-y-1">
           {SIDEBAR_LINKS.map((link) => {
-            const isActive =
-              link.href === '/portal'
-                ? pathname === '/portal'
-                : pathname.startsWith(link.href);
+            const isActive = link.href === '/portal' ? pathname === '/portal' : pathname.startsWith(link.href);
 
             return (
               <Link
@@ -44,9 +32,7 @@ export function PortalSidebar() {
                 href={link.href}
                 className={cn(
                   'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                  isActive
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                  isActive ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                 )}>
                 <link.icon className="h-4 w-4" />
                 {link.label}

@@ -95,10 +95,7 @@ export default function ParentIncidentsPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <StatusBadge status={incident.severity} />
-                  <StatusBadge
-                    status={incident.campusSlug}
-                    className="capitalize bg-gray-100 text-gray-700"
-                  />
+                  <StatusBadge status={incident.campusSlug} className="capitalize bg-gray-100 text-gray-700" />
                 </div>
               </div>
 

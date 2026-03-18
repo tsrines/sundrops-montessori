@@ -49,9 +49,7 @@ export function AdminGuard({ children }: AdminGuardProps) {
       <div className="flex min-h-screen flex-col items-center justify-center px-4">
         <div className="w-full max-w-sm space-y-4 text-center">
           <h1 className="font-serif text-2xl font-semibold">Access Denied</h1>
-          <p className="text-sm text-muted-foreground">
-            You don&apos;t have permission to access the admin portal.
-          </p>
+          <p className="text-sm text-muted-foreground">You don&apos;t have permission to access the admin portal.</p>
           <Link
             href="/portal"
             className="inline-block text-sm font-medium text-primary underline-offset-4 hover:underline">

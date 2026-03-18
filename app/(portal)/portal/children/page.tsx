@@ -1,10 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Plus } from 'lucide-react';
 import { api } from '@/lib/api-client';
-import { Button } from '@/components/ui/button';
 import { ChildCard } from '@/components/portal/child-card';
 
 interface Child {
@@ -46,25 +43,17 @@ export default function ChildrenPage() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="font-serif text-2xl font-semibold">My Children</h1>
-          <p className="mt-1 text-muted-foreground">Manage your enrolled children.</p>
-        </div>
-        <Button asChild>
-          <Link href="/portal/children/add" className="gap-2">
-            <Plus className="h-4 w-4" />
-            Add Child
-          </Link>
-        </Button>
+      <div>
+        <h1 className="font-serif text-2xl font-semibold">My Children</h1>
+        <p className="mt-1 text-muted-foreground">View your enrolled children.</p>
       </div>
 
       {children.length === 0 ? (
         <div className="rounded-lg border border-dashed p-12 text-center">
-          <p className="text-muted-foreground">No children added yet.</p>
-          <Button asChild variant="outline" className="mt-4">
-            <Link href="/portal/children/add">Add Your First Child</Link>
-          </Button>
+          <p className="text-muted-foreground">No enrolled children on your account.</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            To enroll a child, please submit an application or contact your campus directly.
+          </p>
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2">

@@ -221,9 +221,7 @@ export default function AnnouncementsPage() {
                   <h3 className="font-medium">{a.title}</h3>
                   <StatusBadge status={a.priority} />
                   {a.campusSlug && (
-                    <span className="text-xs capitalize text-muted-foreground">
-                      {a.campusSlug.replace(/-/g, ' ')}
-                    </span>
+                    <span className="text-xs capitalize text-muted-foreground">{a.campusSlug.replace(/-/g, ' ')}</span>
                   )}
                 </div>
                 <p className="text-sm text-muted-foreground">{a.body}</p>

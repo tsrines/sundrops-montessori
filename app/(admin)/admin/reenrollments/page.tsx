@@ -60,10 +60,9 @@ function ReenrollmentsContent() {
     if (!openYear) return;
     setOpening(true);
     try {
-      const res = await api.post<{ message: string; count: number }>(
-        '/api/admin/reenrollments/open',
-        { schoolYear: openYear },
-      );
+      const res = await api.post<{ message: string; count: number }>('/api/admin/reenrollments/open', {
+        schoolYear: openYear,
+      });
       setOpenMessage(`${res.message} (${res.count} records created)`);
     } catch {
       setOpenMessage('Failed to open re-enrollment');
@@ -90,16 +89,12 @@ function ReenrollmentsContent() {
     {
       key: 'campus',
       header: 'Campus',
-      cell: (row: Reenrollment) => (
-        <span className="capitalize">{row.campusSlug.replace(/-/g, ' ')}</span>
-      ),
+      cell: (row: Reenrollment) => <span className="capitalize">{row.campusSlug.replace(/-/g, ' ')}</span>,
     },
     {
       key: 'program',
       header: 'Program',
-      cell: (row: Reenrollment) => (
-        <span className="capitalize">{row.programSlug.replace(/-/g, ' ')}</span>
-      ),
+      cell: (row: Reenrollment) => <span className="capitalize">{row.programSlug.replace(/-/g, ' ')}</span>,
     },
     {
       key: 'status',

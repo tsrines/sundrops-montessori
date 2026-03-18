@@ -22,9 +22,7 @@ export default function LoginPage() {
             />
           </Link>
           <h1 className="mt-6 font-serif text-2xl font-semibold">Welcome Back</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Sign in to the Parent Portal
-          </p>
+          <p className="mt-2 text-sm text-muted-foreground">Sign in to the Parent Portal</p>
         </div>
         <LoginForm />
       </div>

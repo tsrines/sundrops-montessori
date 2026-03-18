@@ -74,9 +74,7 @@ export default function IncidentDetailPage() {
   }
 
   if (!incident) {
-    return (
-      <div className="py-12 text-center text-muted-foreground">{error || 'Incident not found'}</div>
-    );
+    return <div className="py-12 text-center text-muted-foreground">{error || 'Incident not found'}</div>;
   }
 
   return (
@@ -162,7 +160,8 @@ export default function IncidentDetailPage() {
               <dd className="flex items-center gap-2">
                 {incident.parentNotified ? (
                   <span className="text-green-600">
-                    Yes {incident.parentNotifiedAt ? `— ${new Date(incident.parentNotifiedAt).toLocaleDateString()}` : ''}
+                    Yes{' '}
+                    {incident.parentNotifiedAt ? `— ${new Date(incident.parentNotifiedAt).toLocaleDateString()}` : ''}
                   </span>
                 ) : (
                   <Button
@@ -180,7 +179,10 @@ export default function IncidentDetailPage() {
               <dd>
                 {incident.parentAcknowledged ? (
                   <span className="text-green-600">
-                    Yes {incident.parentAcknowledgedAt ? `— ${new Date(incident.parentAcknowledgedAt).toLocaleDateString()}` : ''}
+                    Yes{' '}
+                    {incident.parentAcknowledgedAt
+                      ? `— ${new Date(incident.parentAcknowledgedAt).toLocaleDateString()}`
+                      : ''}
                   </span>
                 ) : (
                   <span className="text-muted-foreground">Pending</span>
@@ -211,10 +213,7 @@ export default function IncidentDetailPage() {
           className="w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="Follow-up notes..."
         />
-        <Button
-          size="sm"
-          onClick={() => handleUpdate({ followUpNotes })}
-          disabled={saving}>
+        <Button size="sm" onClick={() => handleUpdate({ followUpNotes })} disabled={saving}>
           {saving ? 'Saving...' : 'Save Notes'}
         </Button>
       </section>

@@ -104,7 +104,7 @@ export default function NewIncidentPage() {
               {...register('childId')}
               className={cn(
                 'w-full rounded-md border bg-background px-3 py-2 text-sm',
-                errors.childId && 'border-destructive',
+                errors.childId && 'border-destructive'
               )}>
               <option value="">Select a child...</option>
               {children.map((c) => (
@@ -125,7 +125,7 @@ export default function NewIncidentPage() {
               {...register('campusSlug')}
               className={cn(
                 'w-full rounded-md border bg-background px-3 py-2 text-sm',
-                errors.campusSlug && 'border-destructive',
+                errors.campusSlug && 'border-destructive'
               )}>
               <option value="">Select campus...</option>
               <option value="bridge">Bridge</option>
@@ -133,9 +133,7 @@ export default function NewIncidentPage() {
               <option value="palmetto">Palmetto</option>
               <option value="farm">Farm</option>
             </select>
-            {errors.campusSlug && (
-              <p className="text-xs text-destructive">{errors.campusSlug.message}</p>
-            )}
+            {errors.campusSlug && <p className="text-xs text-destructive">{errors.campusSlug.message}</p>}
           </div>
         </div>
 
@@ -150,9 +148,7 @@ export default function NewIncidentPage() {
               {...register('incidentDate')}
               className={cn(errors.incidentDate && 'border-destructive')}
             />
-            {errors.incidentDate && (
-              <p className="text-xs text-destructive">{errors.incidentDate.message}</p>
-            )}
+            {errors.incidentDate && <p className="text-xs text-destructive">{errors.incidentDate.message}</p>}
           </div>
           <div className="space-y-2">
             <Label htmlFor="incidentTime">Time</Label>
@@ -188,13 +184,11 @@ export default function NewIncidentPage() {
             rows={4}
             className={cn(
               'w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary',
-              errors.description && 'border-destructive',
+              errors.description && 'border-destructive'
             )}
             placeholder="Describe what happened..."
           />
-          {errors.description && (
-            <p className="text-xs text-destructive">{errors.description.message}</p>
-          )}
+          {errors.description && <p className="text-xs text-destructive">{errors.description.message}</p>}
         </div>
 
         <div className="space-y-2">

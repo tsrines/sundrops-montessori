@@ -88,9 +88,7 @@ export default function ReenrollmentPage() {
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
         <h1 className="font-serif text-2xl font-semibold">Re-enrollment</h1>
-        <p className="mt-1 text-muted-foreground">
-          Confirm re-enrollment for each child for the upcoming school year.
-        </p>
+        <p className="mt-1 text-muted-foreground">Confirm re-enrollment for each child for the upcoming school year.</p>
       </div>
 
       {error && <p className="text-sm text-destructive">{error}</p>}
@@ -111,28 +109,20 @@ export default function ReenrollmentPage() {
             <dl className="grid grid-cols-3 gap-3 text-sm">
               <div>
                 <dt className="text-xs text-muted-foreground">Campus</dt>
-                <dd className="mt-0.5 capitalize font-medium">
-                  {r.campusSlug.replace(/-/g, ' ')}
-                </dd>
+                <dd className="mt-0.5 capitalize font-medium">{r.campusSlug.replace(/-/g, ' ')}</dd>
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Program</dt>
-                <dd className="mt-0.5 capitalize font-medium">
-                  {r.programSlug.replace(/-/g, ' ')}
-                </dd>
+                <dd className="mt-0.5 capitalize font-medium">{r.programSlug.replace(/-/g, ' ')}</dd>
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Session</dt>
-                <dd className="mt-0.5 capitalize font-medium">
-                  {r.sessionType.replace(/-/g, ' ')}
-                </dd>
+                <dd className="mt-0.5 capitalize font-medium">{r.sessionType.replace(/-/g, ' ')}</dd>
               </div>
             </dl>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium">
-                Notes (optional)
-              </label>
+              <label className="text-sm font-medium">Notes (optional)</label>
               <textarea
                 value={notes[r.id] ?? ''}
                 onChange={(e) => setNotes((prev) => ({ ...prev, [r.id]: e.target.value }))}
@@ -149,15 +139,8 @@ export default function ReenrollmentPage() {
                 Submitted successfully
               </div>
             ) : (
-              <Button
-                onClick={() => handleSubmit(r)}
-                disabled={saving === r.id || r.status === 'confirmed'}
-                size="sm">
-                {saving === r.id
-                  ? 'Submitting...'
-                  : r.status === 'confirmed'
-                    ? 'Confirmed'
-                    : 'Confirm Re-enrollment'}
+              <Button onClick={() => handleSubmit(r)} disabled={saving === r.id || r.status === 'confirmed'} size="sm">
+                {saving === r.id ? 'Submitting...' : r.status === 'confirmed' ? 'Confirmed' : 'Confirm Re-enrollment'}
               </Button>
             )}
           </div>

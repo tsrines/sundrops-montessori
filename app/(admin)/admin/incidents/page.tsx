@@ -74,9 +74,7 @@ function IncidentsContent() {
     {
       key: 'campus',
       header: 'Campus',
-      cell: (row: Incident) => (
-        <span className="capitalize">{row.campusSlug.replace(/-/g, ' ')}</span>
-      ),
+      cell: (row: Incident) => <span className="capitalize">{row.campusSlug.replace(/-/g, ' ')}</span>,
     },
     {
       key: 'severity',
@@ -93,11 +91,7 @@ function IncidentsContent() {
       header: 'Parent',
       cell: (row: Incident) => (
         <span className="text-xs text-muted-foreground">
-          {row.parentAcknowledged
-            ? 'Acknowledged'
-            : row.parentNotified
-              ? 'Notified'
-              : 'Not notified'}
+          {row.parentAcknowledged ? 'Acknowledged' : row.parentNotified ? 'Notified' : 'Not notified'}
         </span>
       ),
     },
@@ -151,12 +145,7 @@ function IncidentsContent() {
         </select>
       </div>
 
-      <DataTable
-        columns={columns}
-        data={incidents}
-        isLoading={loading}
-        emptyMessage="No incident reports found."
-      />
+      <DataTable columns={columns} data={incidents} isLoading={loading} emptyMessage="No incident reports found." />
     </div>
   );
 }

@@ -98,9 +98,7 @@ export default function ProfilePage() {
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
         <h1 className="font-serif text-2xl font-semibold">My Profile</h1>
-        <p className="mt-1 text-muted-foreground">
-          Manage your contact and emergency information.
-        </p>
+        <p className="mt-1 text-muted-foreground">Manage your contact and emergency information.</p>
       </div>
 
       {/* Account Info (read-only) */}
@@ -127,9 +125,7 @@ export default function ProfilePage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {saveError && (
-              <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{saveError}</div>
-            )}
+            {saveError && <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{saveError}</div>}
             {saved && (
               <div className="flex items-center gap-2 rounded-md bg-green-50 p-3 text-sm text-green-700">
                 <CheckCircle className="h-4 w-4" />

@@ -33,25 +33,39 @@ async function apiFetch<T>(path: string, options: FetchOptions = {}): Promise<T>
 export class ApiError extends Error {
   constructor(
     public status: number,
-    message: string,
+    message: string
   ) {
     super(message);
     this.name = 'ApiError';
   }
 }
 
+export interface EmailListEntry {
+  childFirstName: string;
+  childLastName: string;
+  parentName: string;
+  parentEmail: string;
+}
+
+export interface EmailListResponse {
+  classroom: { id: string; name: string; campusSlug: string };
+  entries: EmailListEntry[];
+}
+
 export const api = {
   get: <T>(path: string) => apiFetch<T>(path),
 
-  post: <T>(path: string, json?: unknown) =>
-    apiFetch<T>(path, { method: 'POST', json }),
+  post: <T>(path: string, json?: unknown) => apiFetch<T>(path, { method: 'POST', json }),
 
-  put: <T>(path: string, json?: unknown) =>
-    apiFetch<T>(path, { method: 'PUT', json }),
+  put: <T>(path: string, json?: unknown) => apiFetch<T>(path, { method: 'PUT', json }),
 
-  patch: <T>(path: string, json?: unknown) =>
-    apiFetch<T>(path, { method: 'PATCH', json }),
+  patch: <T>(path: string, json?: unknown) => apiFetch<T>(path, { method: 'PATCH', json }),
 
-  delete: <T>(path: string) =>
-    apiFetch<T>(path, { method: 'DELETE' }),
+  delete: <T>(path: string) => apiFetch<T>(path, { method: 'DELETE' }),
+
+  getAdminClassroomEmailList: (classroomId: string) =>
+    apiFetch<EmailListResponse>(`/api/admin/classrooms/${classroomId}/email-list`),
+
+  getPortalClassroomEmailList: (classroomId: string) =>
+    apiFetch<EmailListResponse>(`/api/portal/classrooms/${classroomId}/email-list`),
 };
