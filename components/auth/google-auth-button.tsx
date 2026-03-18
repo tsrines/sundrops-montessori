@@ -11,7 +11,7 @@ export function GoogleAuthButton({ label = 'Continue with Google' }: GoogleAuthB
   const handleGoogleSignIn = async () => {
     await signIn.social({
       provider: 'google',
-      callbackURL: `${window.location.origin}/portal`,
+      callbackURL: `${window.location.origin}/auth/redirect`,
     });
   };
 

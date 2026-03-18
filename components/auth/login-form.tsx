@@ -45,7 +45,7 @@ export function LoginForm() {
       return;
     }
 
-    router.push('/portal');
+    router.push('/auth/redirect');
   };
 
   return (

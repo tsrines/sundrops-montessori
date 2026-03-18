@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { api } from '@/lib/api-client';
+import { APPLICATION_CAMPUSES, APPLICATION_PROGRAMS } from '@/lib/data/application-form-data';
 
 const TOP_LINKS = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
@@ -42,11 +43,21 @@ interface CampusEntry {
   programs: ProgramEntry[];
 }
 
+// Static campus/program structure derived from application form config.
+// Always visible regardless of enrollment data.
+const CAMPUS_STRUCTURE = APPLICATION_CAMPUSES.map((campus) => ({
+  campus: campus.value,
+  label: campus.label,
+  programs: APPLICATION_PROGRAMS.filter((p) =>
+    (p.availableAt as readonly string[]).includes(campus.value),
+  ).map((p) => ({ program: p.value, label: p.label })),
+}));
+
 export function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [hierarchy, setHierarchy] = useState<CampusEntry[]>([]);
+  const [classroomData, setClassroomData] = useState<CampusEntry[]>([]);
   const [openCampuses, setOpenCampuses] = useState<Set<string>>(new Set());
   const [openPrograms, setOpenPrograms] = useState<Set<string>>(new Set());
 
@@ -58,8 +69,7 @@ export function AdminSidebar() {
     api
       .get<CampusEntry[]>('/api/admin/hierarchy')
       .then((data) => {
-        setHierarchy(data);
-        // Auto-expand the active campus/program
+        setClassroomData(data);
         if (activeCampus) {
           setOpenCampuses(new Set([activeCampus]));
           if (activeProgram) {
@@ -68,9 +78,19 @@ export function AdminSidebar() {
         }
       })
       .catch(() => {});
-  // Only run once on mount
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Only run once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getClassrooms = (campus: string, program: string): ClassroomEntry[] => {
+    const campusEntry = classroomData.find((c) => c.campus === campus);
+    return campusEntry?.programs.find((p) => p.program === program)?.classrooms ?? [];
+  };
+
+  const getProgramStudentCount = (campus: string, program: string): number => {
+    const campusEntry = classroomData.find((c) => c.campus === campus);
+    return campusEntry?.programs.find((p) => p.program === program)?.studentCount ?? 0;
+  };
 
   const navigateToClassroom = (campus: string, program: string, classroom: string) => {
     const params = new URLSearchParams();
@@ -131,98 +151,124 @@ export function AdminSidebar() {
           })}
         </nav>
 
-        {hierarchy.length > 0 && (
-          <div className="mt-6">
-            <div className="flex items-center gap-2 px-3 py-1">
-              <Users className="h-4 w-4 text-muted-foreground" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Campuses
-              </span>
-            </div>
-            <div className="mt-1 space-y-0.5">
-              {hierarchy.map((campusEntry) => {
-                const isCampusOpen = openCampuses.has(campusEntry.campus);
-
-                return (
-                  <Collapsible.Root
-                    key={campusEntry.campus}
-                    open={isCampusOpen}
-                    onOpenChange={() => toggleCampus(campusEntry.campus)}>
-                    <Collapsible.Trigger className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium capitalize text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                      <ChevronRight
-                        className={cn(
-                          'h-3 w-3 flex-shrink-0 transition-transform',
-                          isCampusOpen && 'rotate-90',
-                        )}
-                      />
-                      {campusEntry.campus.replace(/-/g, ' ')}
-                    </Collapsible.Trigger>
-
-                    <Collapsible.Content>
-                      <div className="pl-4 pt-0.5 space-y-0.5">
-                        {campusEntry.programs.map((programEntry) => {
-                          const programKey = `${campusEntry.campus}:${programEntry.program}`;
-                          const isProgramOpen = openPrograms.has(programKey);
-
-                          return (
-                            <Collapsible.Root
-                              key={programKey}
-                              open={isProgramOpen}
-                              onOpenChange={() => toggleProgram(programKey)}>
-                              <Collapsible.Trigger className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium capitalize text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                                <ChevronRight
-                                  className={cn(
-                                    'h-3 w-3 flex-shrink-0 transition-transform',
-                                    isProgramOpen && 'rotate-90',
-                                  )}
-                                />
-                                {programEntry.program.replace(/-/g, ' ')}
-                              </Collapsible.Trigger>
-
-                              <Collapsible.Content>
-                                <div className="pl-4 pt-0.5 space-y-0.5">
-                                  {programEntry.classrooms.map((classroomEntry) => {
-                                    const isActive =
-                                      activeCampus === campusEntry.campus &&
-                                      activeProgram === programEntry.program &&
-                                      activeClassroom === classroomEntry.classroom;
-
-                                    return (
-                                      <button
-                                        key={classroomEntry.classroom}
-                                        onClick={() =>
-                                          navigateToClassroom(
-                                            campusEntry.campus,
-                                            programEntry.program,
-                                            classroomEntry.classroom,
-                                          )
-                                        }
-                                        className={cn(
-                                          'flex w-full items-center justify-between rounded-md px-3 py-1.5 text-xs transition-colors',
-                                          isActive
-                                            ? 'bg-primary/10 font-medium text-primary'
-                                            : 'text-muted-foreground hover:bg-muted hover:text-foreground',
-                                        )}>
-                                        <span>{classroomEntry.classroom}</span>
-                                        <span className="text-[10px] opacity-60">
-                                          {classroomEntry.studentCount}
-                                        </span>
-                                      </button>
-                                    );
-                                  })}
-                                </div>
-                              </Collapsible.Content>
-                            </Collapsible.Root>
-                          );
-                        })}
-                      </div>
-                    </Collapsible.Content>
-                  </Collapsible.Root>
-                );
-              })}
-            </div>
+        <div className="mt-6">
+          <div className="flex items-center gap-2 px-3 py-1">
+            <Users className="h-4 w-4 text-muted-foreground" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Campuses
+            </span>
           </div>
-        )}
+          <div className="mt-1 space-y-0.5">
+            {CAMPUS_STRUCTURE.map(({ campus, label, programs }) => {
+              const isCampusOpen = openCampuses.has(campus);
+
+              return (
+                <Collapsible.Root
+                  key={campus}
+                  open={isCampusOpen}
+                  onOpenChange={() => toggleCampus(campus)}>
+                  <Collapsible.Trigger className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+                    <ChevronRight
+                      className={cn(
+                        'h-3 w-3 flex-shrink-0 transition-transform',
+                        isCampusOpen && 'rotate-90',
+                      )}
+                    />
+                    {label}
+                  </Collapsible.Trigger>
+
+                  <Collapsible.Content>
+                    <div className="pl-4 pt-0.5 space-y-0.5">
+                      {programs.map(({ program, label: programLabel }) => {
+                        const programKey = `${campus}:${program}`;
+                        const isProgramOpen = openPrograms.has(programKey);
+                        const classrooms = getClassrooms(campus, program);
+                        const studentCount = getProgramStudentCount(campus, program);
+
+                        if (classrooms.length === 0) {
+                          const isActive =
+                            activeCampus === campus && activeProgram === program;
+                          return (
+                            <button
+                              key={program}
+                              onClick={() => {
+                                const params = new URLSearchParams();
+                                params.set('campus', campus);
+                                params.set('program', program);
+                                router.push(`/admin/students?${params.toString()}`);
+                              }}
+                              className={cn(
+                                'flex w-full items-center justify-between rounded-md px-3 py-1.5 text-xs font-medium transition-colors',
+                                isActive
+                                  ? 'bg-primary/10 text-primary'
+                                  : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                              )}>
+                              <span>{programLabel}</span>
+                            </button>
+                          );
+                        }
+
+                        return (
+                          <Collapsible.Root
+                            key={programKey}
+                            open={isProgramOpen}
+                            onOpenChange={() => toggleProgram(programKey)}>
+                            <Collapsible.Trigger className="flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+                              <ChevronRight
+                                className={cn(
+                                  'h-3 w-3 flex-shrink-0 transition-transform',
+                                  isProgramOpen && 'rotate-90',
+                                )}
+                              />
+                              <span className="flex-1 text-left">{programLabel}</span>
+                              {studentCount > 0 && (
+                                <span className="text-[10px] opacity-60">{studentCount}</span>
+                              )}
+                            </Collapsible.Trigger>
+
+                            <Collapsible.Content>
+                              <div className="pl-4 pt-0.5 space-y-0.5">
+                                {classrooms.map((classroomEntry) => {
+                                  const isActive =
+                                    activeCampus === campus &&
+                                    activeProgram === program &&
+                                    activeClassroom === classroomEntry.classroom;
+
+                                  return (
+                                    <button
+                                      key={classroomEntry.classroom}
+                                      onClick={() =>
+                                        navigateToClassroom(
+                                          campus,
+                                          program,
+                                          classroomEntry.classroom,
+                                        )
+                                      }
+                                      className={cn(
+                                        'flex w-full items-center justify-between rounded-md px-3 py-1.5 text-xs transition-colors',
+                                        isActive
+                                          ? 'bg-primary/10 font-medium text-primary'
+                                          : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                                      )}>
+                                      <span>{classroomEntry.classroom}</span>
+                                      <span className="text-[10px] opacity-60">
+                                        {classroomEntry.studentCount}
+                                      </span>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </Collapsible.Content>
+                          </Collapsible.Root>
+                        );
+                      })}
+                    </div>
+                  </Collapsible.Content>
+                </Collapsible.Root>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </aside>
   );
