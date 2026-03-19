@@ -15,7 +15,7 @@ export function SectionHeading({ eyebrow, title, description, centered = false }
           {eyebrow}
         </p>
       )}
-      <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">{title}</h2>
+      <h2 className="text-balance text-3xl font-bold tracking-tight text-foreground md:text-4xl">{title}</h2>
       {description && <p className="mt-3 text-lg text-muted-foreground">{description}</p>}
     </div>
   );

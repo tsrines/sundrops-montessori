@@ -63,19 +63,26 @@ export function TourRequestForm({ defaultCampus }: TourRequestFormProps) {
       <div className="grid gap-6 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="name">Full Name</Label>
-          <Input id="name" placeholder="Your full name" {...register('name')} />
+          <Input id="name" placeholder="Your full name" autoComplete="name" {...register('name')} />
           {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="you@example.com" {...register('email')} />
+          <Input
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            autoComplete="email"
+            spellCheck={false}
+            {...register('email')}
+          />
           {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
         </div>
 
         <div className="space-y-2">
           <Label htmlFor="phone">Phone</Label>
-          <Input id="phone" type="tel" placeholder="(843) 555-1234" {...register('phone')} />
+          <Input id="phone" type="tel" placeholder="(843) 555-1234" autoComplete="tel" {...register('phone')} />
           {errors.phone && <p className="text-sm text-destructive">{errors.phone.message}</p>}
         </div>
 

@@ -80,6 +80,7 @@ export function EnrollmentInquiryForm({ programName, availableCampuses }: Enroll
           <Input
             id="enroll-parentName"
             placeholder="Your full name"
+            autoComplete="name"
             {...register('parentName')}
             className={cn(
               'border-primary-foreground/20 bg-white/10 text-primary-foreground placeholder:text-primary-foreground/50',
@@ -96,6 +97,8 @@ export function EnrollmentInquiryForm({ programName, availableCampuses }: Enroll
             id="enroll-email"
             type="email"
             placeholder="you@example.com"
+            autoComplete="email"
+            spellCheck={false}
             {...register('email')}
             className={cn(
               'border-primary-foreground/20 bg-white/10 text-primary-foreground placeholder:text-primary-foreground/50',
@@ -115,6 +118,7 @@ export function EnrollmentInquiryForm({ programName, availableCampuses }: Enroll
             id="enroll-phone"
             type="tel"
             placeholder="(843) 555-0123"
+            autoComplete="tel"
             {...register('phone')}
             className={cn(
               'border-primary-foreground/20 bg-white/10 text-primary-foreground placeholder:text-primary-foreground/50',

@@ -220,6 +220,7 @@ export function ApplicationForm() {
             <Input
               id="app-p1FirstName"
               placeholder="First name"
+              autoComplete="given-name"
               {...register('parent1FirstName')}
               className={cn(errors.parent1FirstName && 'border-destructive')}
             />
@@ -232,6 +233,7 @@ export function ApplicationForm() {
             <Input
               id="app-p1LastName"
               placeholder="Last name"
+              autoComplete="family-name"
               {...register('parent1LastName')}
               className={cn(errors.parent1LastName && 'border-destructive')}
             />
@@ -247,6 +249,7 @@ export function ApplicationForm() {
               id="app-p1Phone"
               type="tel"
               placeholder="(843) 555-0123"
+              autoComplete="tel"
               {...register('parent1Phone')}
               className={cn(errors.parent1Phone && 'border-destructive')}
             />
@@ -339,6 +342,8 @@ export function ApplicationForm() {
               id="app-email1"
               type="email"
               placeholder="parent@example.com"
+              autoComplete="email"
+              spellCheck={false}
               {...register('email1')}
               className={cn(errors.email1 && 'border-destructive')}
             />

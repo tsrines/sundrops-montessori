@@ -96,6 +96,7 @@ export function InfoRequestForm({ defaultCampus }: InfoRequestFormProps) {
           <Input
             id="info-firstName"
             placeholder="Jane"
+            autoComplete="given-name"
             {...register('firstName')}
             className={cn(errors.firstName && 'border-destructive')}
           />
@@ -108,6 +109,7 @@ export function InfoRequestForm({ defaultCampus }: InfoRequestFormProps) {
           <Input
             id="info-lastName"
             placeholder="Smith"
+            autoComplete="family-name"
             {...register('lastName')}
             className={cn(errors.lastName && 'border-destructive')}
           />
@@ -125,6 +127,8 @@ export function InfoRequestForm({ defaultCampus }: InfoRequestFormProps) {
             id="info-email"
             type="email"
             placeholder="jane@example.com"
+            autoComplete="email"
+            spellCheck={false}
             {...register('email')}
             className={cn(errors.email && 'border-destructive')}
           />
@@ -138,6 +142,7 @@ export function InfoRequestForm({ defaultCampus }: InfoRequestFormProps) {
             id="info-phone"
             type="tel"
             placeholder="(843) 555-0123"
+            autoComplete="tel"
             {...register('phone')}
             className={cn(errors.phone && 'border-destructive')}
           />

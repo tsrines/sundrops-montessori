@@ -83,6 +83,7 @@ export function ContactForm({ defaultCampus }: ContactFormProps) {
           <Input
             id="firstName"
             placeholder="Jane"
+            autoComplete="given-name"
             {...register('firstName')}
             className={cn(errors.firstName && 'border-destructive')}
           />
@@ -95,6 +96,7 @@ export function ContactForm({ defaultCampus }: ContactFormProps) {
           <Input
             id="lastName"
             placeholder="Smith"
+            autoComplete="family-name"
             {...register('lastName')}
             className={cn(errors.lastName && 'border-destructive')}
           />
@@ -112,6 +114,8 @@ export function ContactForm({ defaultCampus }: ContactFormProps) {
             id="email"
             type="email"
             placeholder="jane@example.com"
+            autoComplete="email"
+            spellCheck={false}
             {...register('email')}
             className={cn(errors.email && 'border-destructive')}
           />
@@ -125,6 +129,7 @@ export function ContactForm({ defaultCampus }: ContactFormProps) {
             id="phone"
             type="tel"
             placeholder="(843) 555-0123"
+            autoComplete="tel"
             {...register('phone')}
             className={cn(errors.phone && 'border-destructive')}
           />
