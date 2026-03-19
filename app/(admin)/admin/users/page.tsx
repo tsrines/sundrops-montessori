@@ -123,6 +123,7 @@ export default function UsersPage() {
       .listUsers({ query: { limit: 100 } })
       .then((res) => {
         if (res.data) setUsers(res.data.users as unknown as User[]);
+        else setError(res.error?.message ?? 'Failed to load users');
       })
       .catch(() => setError('Failed to load users'))
       .finally(() => setLoading(false));
@@ -262,6 +263,13 @@ export default function UsersPage() {
                 )}
               </tr>
             ))}
+            {users.length === 0 && !error && (
+              <tr>
+                <td colSpan={isSuperAdmin ? 6 : 5} className="px-4 py-8 text-center text-sm text-muted-foreground">
+                  No users found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

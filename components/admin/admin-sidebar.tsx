@@ -38,6 +38,7 @@ const TOP_LINKS = [
   { href: '/admin/incidents', label: 'Incidents', icon: AlertTriangle },
   { href: '/admin/announcements', label: 'Announcements', icon: Megaphone },
   { href: '/admin/users', label: 'Users', icon: UserCog, allowedRoles: [ROLES.SUPERADMIN, ROLES.ADMIN] },
+  { href: '/admin/staff', label: 'Staff', icon: Users, allowedRoles: [ROLES.SUPERADMIN] },
   { href: '/admin/classrooms', label: 'Classrooms', icon: LayoutGrid },
 ];
 

@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -40,8 +40,10 @@ interface Child {
   campusSlug: string;
 }
 
-export default function NewIncidentPage() {
+function NewIncidentForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const preselectedChildId = searchParams.get('childId') ?? '';
   const { isTeacher } = useRole();
   const [children, setChildren] = useState<Child[]>([]);
   const [error, setError] = useState('');
@@ -56,6 +58,7 @@ export default function NewIncidentPage() {
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
+      childId: preselectedChildId,
       severity: 'minor',
       parentNotified: false,
       followUpRequired: false,
@@ -259,5 +262,13 @@ export default function NewIncidentPage() {
         </Button>
       </form>
     </div>
+  );
+}
+
+export default function NewIncidentPage() {
+  return (
+    <Suspense>
+      <NewIncidentForm />
+    </Suspense>
   );
 }

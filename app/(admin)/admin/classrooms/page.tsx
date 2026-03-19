@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Plus, Pencil, Trash2, Download } from 'lucide-react';
+import Link from 'next/link';
+import { Plus, Pencil, Trash2, Download, Users } from 'lucide-react';
 import { api } from '@/lib/api-client';
 import { useRole } from '@/hooks/use-role';
 import { Button } from '@/components/ui/button';
@@ -161,6 +162,12 @@ export default function ClassroomsPage() {
                                 <StatusBadge status={classroom.isActive ? 'active' : 'inactive'} />
                               </div>
                               <div className="flex gap-1">
+                                <Link
+                                  href={`/admin/students?campus=${classroom.campusSlug}&program=${classroom.programSlug}&classroom=${encodeURIComponent(classroom.name)}`}>
+                                  <Button variant="ghost" size="sm" title="View students">
+                                    <Users className="h-4 w-4" />
+                                  </Button>
+                                </Link>
                                 <Button
                                   variant="ghost"
                                   size="sm"

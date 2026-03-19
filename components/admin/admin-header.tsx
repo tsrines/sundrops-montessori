@@ -27,6 +27,7 @@ const MOBILE_LINKS = [
   { href: '/admin/students', label: 'Students', icon: Users },
   { href: '/admin/announcements', label: 'Announcements', icon: Megaphone },
   { href: '/admin/users', label: 'Users', icon: UserCog },
+  { href: '/admin/staff', label: 'Staff', icon: Users },
 ] as const;
 
 export function AdminHeader() {

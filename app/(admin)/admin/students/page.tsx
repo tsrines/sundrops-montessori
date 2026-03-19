@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useMemo, Suspense } from 'react';
+import Link from 'next/link';
 import { Search } from 'lucide-react';
 import { api } from '@/lib/api-client';
 import { StatusBadge } from '@/components/ui/status-badge';
@@ -129,7 +130,9 @@ function StudentsContent() {
                         {roomStudents.map((student) => (
                           <tr key={student.id} className="border-b last:border-0 hover:bg-muted/30">
                             <td className="px-4 py-2 font-medium">
-                              {student.firstName} {student.lastName}
+                              <Link href={`/admin/students/${student.id}`} className="hover:underline">
+                                {student.firstName} {student.lastName}
+                              </Link>
                             </td>
                             <td className="px-4 py-2 capitalize text-muted-foreground">
                               {student.sessionType.replace(/-/g, ' ')}
