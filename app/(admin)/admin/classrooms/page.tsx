@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Plus, Pencil, Trash2, Download } from 'lucide-react';
 import { api } from '@/lib/api-client';
+import { useRole } from '@/hooks/use-role';
 import { Button } from '@/components/ui/button';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { ClassroomForm } from '@/components/admin/classroom-form';
@@ -22,6 +23,7 @@ interface Classroom {
 }
 
 export default function ClassroomsPage() {
+  const { isAdminOrAbove } = useRole();
   const [classrooms, setClassrooms] = useState<Classroom[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -104,15 +106,17 @@ export default function ClassroomsPage() {
           <h1 className="font-serif text-2xl font-semibold">Classrooms</h1>
           <p className="mt-1 text-muted-foreground">Manage classrooms across all campuses.</p>
         </div>
-        <Button
-          onClick={() => {
-            setEditTarget(null);
-            setShowForm(true);
-          }}
-          className="gap-2">
-          <Plus className="h-4 w-4" />
-          Add Classroom
-        </Button>
+        {isAdminOrAbove && (
+          <Button
+            onClick={() => {
+              setEditTarget(null);
+              setShowForm(true);
+            }}
+            className="gap-2">
+            <Plus className="h-4 w-4" />
+            Add Classroom
+          </Button>
+        )}
       </div>
 
       {error && <p className="text-sm text-destructive">{error}</p>}
@@ -164,16 +168,20 @@ export default function ClassroomsPage() {
                                   onClick={() => handleDownloadEmailList(classroom)}>
                                   <Download className="h-4 w-4" />
                                 </Button>
-                                <Button variant="ghost" size="sm" onClick={() => handleEdit(classroom)}>
-                                  <Pencil className="h-4 w-4" />
-                                </Button>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="text-destructive hover:text-destructive"
-                                  onClick={() => handleDelete(classroom)}>
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
+                                {isAdminOrAbove && (
+                                  <>
+                                    <Button variant="ghost" size="sm" onClick={() => handleEdit(classroom)}>
+                                      <Pencil className="h-4 w-4" />
+                                    </Button>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      className="text-destructive hover:text-destructive"
+                                      onClick={() => handleDelete(classroom)}>
+                                      <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                  </>
+                                )}
                               </div>
                             </div>
                           ))}

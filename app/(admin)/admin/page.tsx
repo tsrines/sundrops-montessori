@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { FileText, AlertTriangle, RefreshCw, Users } from 'lucide-react';
 import { api } from '@/lib/api-client';
+import { useRole } from '@/hooks/use-role';
 import { DashboardCard } from '@/components/portal/dashboard-card';
 
 interface DashboardStats {
@@ -13,6 +14,7 @@ interface DashboardStats {
 }
 
 export default function AdminDashboard() {
+  const { isSuperAdmin, isTeacher } = useRole();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +39,9 @@ export default function AdminDashboard() {
   return (
     <div className="mx-auto max-w-5xl space-y-8">
       <div>
-        <h1 className="font-serif text-2xl font-semibold">Admin Dashboard</h1>
+        <h1 className="font-serif text-2xl font-semibold">
+          {isTeacher ? 'My Classroom Dashboard' : 'Admin Dashboard'}
+        </h1>
         <p className="mt-1 text-muted-foreground">Overview of school operations.</p>
       </div>
 
@@ -45,17 +49,19 @@ export default function AdminDashboard() {
         <DashboardCard
           title="Enrolled Students"
           value={totalEnrolled}
-          description="Across all campuses"
+          description={isSuperAdmin ? 'Across all campuses' : 'At your campus'}
           icon={Users}
           href="/admin/students"
         />
-        <DashboardCard
-          title="Pending Applications"
-          value={stats?.pendingApplications ?? 0}
-          description="Awaiting review"
-          icon={FileText}
-          href="/admin/applications"
-        />
+        {!isTeacher && (
+          <DashboardCard
+            title="Pending Applications"
+            value={stats?.pendingApplications ?? 0}
+            description="Awaiting review"
+            icon={FileText}
+            href="/admin/applications"
+          />
+        )}
         <DashboardCard
           title="Open Incidents"
           value={stats?.openIncidents ?? 0}
@@ -63,16 +69,18 @@ export default function AdminDashboard() {
           icon={AlertTriangle}
           href="/admin/incidents"
         />
-        <DashboardCard
-          title="Pending Re-enrollment"
-          value={stats?.pendingReenrollments ?? 0}
-          description="Awaiting response"
-          icon={RefreshCw}
-          href="/admin/reenrollments"
-        />
+        {!isTeacher && (
+          <DashboardCard
+            title="Pending Re-enrollment"
+            value={stats?.pendingReenrollments ?? 0}
+            description="Awaiting response"
+            icon={RefreshCw}
+            href="/admin/reenrollments"
+          />
+        )}
       </div>
 
-      {stats && (
+      {isSuperAdmin && stats && (
         <section className="space-y-4">
           <h2 className="font-serif text-xl font-semibold">Enrollment by Campus</h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

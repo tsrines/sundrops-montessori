@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
 import { api } from '@/lib/api-client';
+import { useRole } from '@/hooks/use-role';
 import { DataTable } from '@/components/ui/data-table';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
@@ -29,6 +30,7 @@ const SEVERITY_OPTIONS = ['', 'minor', 'moderate', 'serious'];
 const STATUS_OPTIONS = ['', 'draft', 'submitted', 'parent_notified', 'acknowledged', 'closed'];
 
 function IncidentsContent() {
+  const { isSuperAdmin } = useRole();
   const { campus: contextCampus } = useAdminContext();
   const [incidents, setIncidents] = useState<Incident[]>([]);
   const [loading, setLoading] = useState(true);
@@ -113,16 +115,18 @@ function IncidentsContent() {
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <select
-          value={campusFilter}
-          onChange={(e) => setCampusFilter(e.target.value)}
-          className="rounded-md border bg-background px-3 py-1.5 text-sm">
-          {CAMPUS_OPTIONS.map((c) => (
-            <option key={c} value={c}>
-              {c ? c.replace(/-/g, ' ') : 'All campuses'}
-            </option>
-          ))}
-        </select>
+        {isSuperAdmin && (
+          <select
+            value={campusFilter}
+            onChange={(e) => setCampusFilter(e.target.value)}
+            className="rounded-md border bg-background px-3 py-1.5 text-sm">
+            {CAMPUS_OPTIONS.map((c) => (
+              <option key={c} value={c}>
+                {c ? c.replace(/-/g, ' ') : 'All campuses'}
+              </option>
+            ))}
+          </select>
+        )}
         <select
           value={severityFilter}
           onChange={(e) => setSeverityFilter(e.target.value)}

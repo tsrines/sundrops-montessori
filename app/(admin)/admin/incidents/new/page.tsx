@@ -8,6 +8,7 @@ import { z } from 'zod';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { api } from '@/lib/api-client';
+import { useRole } from '@/hooks/use-role';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -38,6 +39,7 @@ interface Child {
 
 export default function NewIncidentPage() {
   const router = useRouter();
+  const { isTeacher } = useRole();
   const [children, setChildren] = useState<Child[]>([]);
   const [error, setError] = useState('');
 
@@ -70,6 +72,12 @@ export default function NewIncidentPage() {
     const child = children.find((c) => c.id === selectedChildId);
     if (child) setValue('campusSlug', child.campusSlug);
   }, [selectedChildId, children, setValue]);
+
+  useEffect(() => {
+    if (isTeacher && children.length > 0) {
+      setValue('campusSlug', children[0].campusSlug);
+    }
+  }, [isTeacher, children, setValue]);
 
   const onSubmit = async (data: FormValues) => {
     try {
@@ -124,9 +132,11 @@ export default function NewIncidentPage() {
             <select
               id="campusSlug"
               {...register('campusSlug')}
+              disabled={isTeacher}
               className={cn(
                 'w-full rounded-md border bg-background px-3 py-2 text-sm',
-                errors.campusSlug && 'border-destructive'
+                errors.campusSlug && 'border-destructive',
+                isTeacher && 'cursor-not-allowed opacity-60'
               )}>
               <option value="">Select campus...</option>
               <option value="bridge">Bridge</option>

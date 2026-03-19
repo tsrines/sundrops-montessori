@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useRole } from '@/hooks/use-role';
+import { ROLES } from '@/lib/roles';
 import * as Collapsible from '@radix-ui/react-collapsible';
 import {
   LayoutDashboard,
@@ -21,13 +23,13 @@ import { APPLICATION_CAMPUSES, APPLICATION_PROGRAMS } from '@/lib/data/applicati
 
 const TOP_LINKS = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/applications', label: 'Applications', icon: FileText },
-  { href: '/admin/reenrollments', label: 'Re-enrollment', icon: RefreshCw },
+  { href: '/admin/applications', label: 'Applications', icon: FileText, allowedRoles: [ROLES.SUPERADMIN, ROLES.ADMIN, ROLES.STAFF] },
+  { href: '/admin/reenrollments', label: 'Re-enrollment', icon: RefreshCw, allowedRoles: [ROLES.SUPERADMIN, ROLES.ADMIN, ROLES.STAFF] },
   { href: '/admin/incidents', label: 'Incidents', icon: AlertTriangle },
   { href: '/admin/announcements', label: 'Announcements', icon: Megaphone },
-  { href: '/admin/users', label: 'Users', icon: UserCog },
+  { href: '/admin/users', label: 'Users', icon: UserCog, allowedRoles: [ROLES.SUPERADMIN, ROLES.ADMIN] },
   { href: '/admin/classrooms', label: 'Classrooms', icon: LayoutGrid },
-] as const;
+];
 
 interface ClassroomEntry {
   classroom: string;
@@ -59,6 +61,7 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { role, isSuperAdmin } = useRole();
   const [classroomData, setClassroomData] = useState<CampusEntry[]>([]);
   const [openCampuses, setOpenCampuses] = useState<Set<string>>(new Set());
   const [openPrograms, setOpenPrograms] = useState<Set<string>>(new Set());
@@ -126,11 +129,14 @@ export function AdminSidebar() {
     });
   };
 
+  const visibleLinks = TOP_LINKS.filter((l) => !l.allowedRoles || l.allowedRoles.includes(role));
+  const visibleCampuses = CAMPUS_STRUCTURE.filter((c) => classroomData.some((d) => d.campus === c.campus));
+
   return (
     <aside className="hidden w-64 flex-shrink-0 border-r bg-muted/30 lg:block">
       <div className="flex h-full flex-col px-3 py-6">
         <nav className="space-y-1">
-          {TOP_LINKS.map((link) => {
+          {visibleLinks.map((link) => {
             const isActive = link.href === '/admin' ? pathname === '/admin' : pathname.startsWith(link.href);
 
             return (
@@ -151,10 +157,12 @@ export function AdminSidebar() {
         <div className="mt-6">
           <div className="flex items-center gap-2 px-3 py-1">
             <Users className="h-4 w-4 text-muted-foreground" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Campuses</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              {isSuperAdmin ? 'All Campuses' : `Your Campus${visibleCampuses[0] ? ` — ${visibleCampuses[0].label}` : ''}`}
+            </span>
           </div>
           <div className="mt-1 space-y-0.5">
-            {CAMPUS_STRUCTURE.map(({ campus, label, programs }) => {
+            {visibleCampuses.map(({ campus, label, programs }) => {
               const isCampusOpen = openCampuses.has(campus);
 
               return (

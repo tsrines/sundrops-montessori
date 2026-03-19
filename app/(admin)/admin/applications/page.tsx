@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { api } from '@/lib/api-client';
+import { useRole } from '@/hooks/use-role';
 import { DataTable } from '@/components/ui/data-table';
 import { StatusBadge } from '@/components/ui/status-badge';
 
@@ -21,6 +22,7 @@ const STATUS_OPTIONS = ['', 'pending', 'under_review', 'accepted', 'waitlisted',
 const CAMPUS_OPTIONS = ['', 'bridge', 'daniel-island', 'palmetto', 'farm'];
 
 export default function ApplicationsPage() {
+  const { isSuperAdmin } = useRole();
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('');
@@ -101,16 +103,18 @@ export default function ApplicationsPage() {
             </option>
           ))}
         </select>
-        <select
-          value={campusFilter}
-          onChange={(e) => setCampusFilter(e.target.value)}
-          className="rounded-md border bg-background px-3 py-1.5 text-sm capitalize">
-          {CAMPUS_OPTIONS.map((c) => (
-            <option key={c} value={c}>
-              {c ? c.replace(/-/g, ' ') : 'All campuses'}
-            </option>
-          ))}
-        </select>
+        {isSuperAdmin && (
+          <select
+            value={campusFilter}
+            onChange={(e) => setCampusFilter(e.target.value)}
+            className="rounded-md border bg-background px-3 py-1.5 text-sm capitalize">
+            {CAMPUS_OPTIONS.map((c) => (
+              <option key={c} value={c}>
+                {c ? c.replace(/-/g, ' ') : 'All campuses'}
+              </option>
+            ))}
+          </select>
+        )}
       </div>
 
       <DataTable columns={columns} data={applications} isLoading={loading} emptyMessage="No applications found." />

@@ -38,13 +38,10 @@ export default function ReenrollmentDetailPage() {
 
   useEffect(() => {
     api
-      .get<{ reenrollments: Reenrollment[] }>(`/api/admin/reenrollments?`)
+      .get<{ reenrollment: Reenrollment }>(`/api/admin/reenrollments/${id}`)
       .then((res) => {
-        const found = res.reenrollments.find((r) => r.id === id);
-        if (found) {
-          setReenrollment(found);
-          setAdminNotes(found.adminNotes ?? '');
-        }
+        setReenrollment(res.reenrollment);
+        setAdminNotes(res.reenrollment.adminNotes ?? '');
       })
       .catch(() => setError('Failed to load re-enrollment'))
       .finally(() => setLoading(false));

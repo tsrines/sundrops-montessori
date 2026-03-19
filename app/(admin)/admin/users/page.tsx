@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSession } from '@/lib/auth-client';
 import { admin } from '@/lib/auth-client';
+import { ROLE_OPTIONS, CAMPUS_SCOPED_ROLES, type CampusScopedRole, isCampusScopedRole } from '@/lib/roles';
 import { api } from '@/lib/api-client';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
@@ -21,15 +22,7 @@ interface StaffProfilePayload {
   classroom: string | null;
 }
 
-const ROLE_OPTIONS = ['user', 'staff', 'teacher', 'admin', 'superadmin'] as const;
 const CAMPUS_OPTIONS = ['bridge', 'daniel-island', 'palmetto', 'farm'] as const;
-const CAMPUS_SCOPED_ROLES = ['admin', 'staff', 'teacher'] as const;
-
-type CampusScopedRole = (typeof CAMPUS_SCOPED_ROLES)[number];
-
-function isCampusScopedRole(role: string): role is CampusScopedRole {
-  return (CAMPUS_SCOPED_ROLES as readonly string[]).includes(role);
-}
 
 interface RoleAssignmentModalProps {
   userId: string;

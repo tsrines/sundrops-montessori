@@ -3,6 +3,7 @@
 import { useEffect, useState, Suspense } from 'react';
 import Link from 'next/link';
 import { api } from '@/lib/api-client';
+import { useRole } from '@/hooks/use-role';
 import { useAdminContext } from '@/hooks/use-admin-context';
 import { DataTable } from '@/components/ui/data-table';
 import { StatusBadge } from '@/components/ui/status-badge';
@@ -26,6 +27,7 @@ const STATUS_OPTIONS = ['', 'pending', 'confirmed', 'declined'];
 const CAMPUS_OPTIONS = ['', 'bridge', 'daniel-island', 'palmetto', 'farm'];
 
 function ReenrollmentsContent() {
+  const { isSuperAdmin, isAdminOrAbove } = useRole();
   const { campus: contextCampus } = useAdminContext();
   const [reenrollments, setReenrollments] = useState<Reenrollment[]>([]);
   const [loading, setLoading] = useState(true);
@@ -111,22 +113,24 @@ function ReenrollmentsContent() {
       </div>
 
       {/* Open Re-enrollment */}
-      <div className="flex flex-wrap items-end gap-3 rounded-lg border bg-muted/30 p-4">
-        <div className="space-y-1">
-          <label className="text-xs font-medium text-muted-foreground">School Year</label>
-          <input
-            type="text"
-            value={openYear}
-            onChange={(e) => setOpenYear(e.target.value)}
-            placeholder="2026-2027"
-            className="rounded-md border bg-background px-3 py-1.5 text-sm w-32"
-          />
+      {isAdminOrAbove && (
+        <div className="flex flex-wrap items-end gap-3 rounded-lg border bg-muted/30 p-4">
+          <div className="space-y-1">
+            <label className="text-xs font-medium text-muted-foreground">School Year</label>
+            <input
+              type="text"
+              value={openYear}
+              onChange={(e) => setOpenYear(e.target.value)}
+              placeholder="2026-2027"
+              className="rounded-md border bg-background px-3 py-1.5 text-sm w-32"
+            />
+          </div>
+          <Button onClick={handleOpenReenrollment} disabled={opening} size="sm">
+            {opening ? 'Opening...' : 'Open Re-enrollment'}
+          </Button>
+          {openMessage && <p className="text-sm text-muted-foreground">{openMessage}</p>}
         </div>
-        <Button onClick={handleOpenReenrollment} disabled={opening} size="sm">
-          {opening ? 'Opening...' : 'Open Re-enrollment'}
-        </Button>
-        {openMessage && <p className="text-sm text-muted-foreground">{openMessage}</p>}
-      </div>
+      )}
 
       <div className="flex flex-wrap gap-3">
         <input
@@ -146,16 +150,18 @@ function ReenrollmentsContent() {
             </option>
           ))}
         </select>
-        <select
-          value={campusFilter}
-          onChange={(e) => setCampusFilter(e.target.value)}
-          className="rounded-md border bg-background px-3 py-1.5 text-sm">
-          {CAMPUS_OPTIONS.map((c) => (
-            <option key={c} value={c}>
-              {c ? c.replace(/-/g, ' ') : 'All campuses'}
-            </option>
-          ))}
-        </select>
+        {isSuperAdmin && (
+          <select
+            value={campusFilter}
+            onChange={(e) => setCampusFilter(e.target.value)}
+            className="rounded-md border bg-background px-3 py-1.5 text-sm">
+            {CAMPUS_OPTIONS.map((c) => (
+              <option key={c} value={c}>
+                {c ? c.replace(/-/g, ' ') : 'All campuses'}
+              </option>
+            ))}
+          </select>
+        )}
       </div>
 
       <DataTable

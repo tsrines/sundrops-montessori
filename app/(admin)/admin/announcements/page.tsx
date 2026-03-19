@@ -47,7 +47,7 @@ export default function AnnouncementsPage() {
   const fetchAnnouncements = () => {
     setLoading(true);
     api
-      .get<{ announcements: Announcement[] }>('/api/portal/announcements')
+      .get<{ announcements: Announcement[] }>('/api/admin/announcements')
       .then((res) => setAnnouncements(res.announcements))
       .catch(() => {})
       .finally(() => setLoading(false));

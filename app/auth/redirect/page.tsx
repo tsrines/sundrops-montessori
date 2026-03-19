@@ -3,8 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from '@/lib/auth-client';
-
-const STAFF_ROLES = ['superadmin', 'admin', 'staff', 'teacher'];
+import { STAFF_ROLES } from '@/lib/roles';
 
 export default function AuthRedirect() {
   const { data: session, isPending } = useSession();

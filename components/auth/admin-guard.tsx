@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSession } from '@/lib/auth-client';
+import { STAFF_ROLES } from '@/lib/roles';
 import { LoginForm } from '@/components/auth/login-form';
 
 interface AdminGuardProps {
@@ -43,7 +44,6 @@ export function AdminGuard({ children }: AdminGuardProps) {
     );
   }
 
-  const STAFF_ROLES = ['superadmin', 'admin', 'staff', 'teacher'];
   if (!STAFF_ROLES.includes(session.user.role ?? '')) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center px-4">
