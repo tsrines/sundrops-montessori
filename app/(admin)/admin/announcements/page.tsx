@@ -7,6 +7,8 @@ import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface Announcement {
   id: string;
@@ -143,41 +145,44 @@ export default function AnnouncementsPage() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="body">Body</Label>
-            <textarea
+            <Textarea
               id="body"
               value={form.body}
               onChange={(e) => setForm({ ...form, body: e.target.value })}
               rows={4}
               required
-              className="w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="space-y-2">
               <Label htmlFor="campus">Campus (leave blank for all)</Label>
-              <select
-                id="campus"
-                value={form.campusSlug}
-                onChange={(e) => setForm({ ...form, campusSlug: e.target.value })}
-                className="w-full rounded-md border bg-background px-3 py-2 text-sm">
-                <option value="">All campuses</option>
-                <option value="bridge">Bridge</option>
-                <option value="daniel-island">Daniel Island</option>
-                <option value="palmetto">Palmetto</option>
-                <option value="farm">Farm</option>
-              </select>
+              <Select
+                value={form.campusSlug || 'all'}
+                onValueChange={(v) => setForm({ ...form, campusSlug: v === 'all' ? '' : v })}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="All campuses" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All campuses</SelectItem>
+                  <SelectItem value="bridge">Bridge</SelectItem>
+                  <SelectItem value="daniel-island">Daniel Island</SelectItem>
+                  <SelectItem value="palmetto">Palmetto</SelectItem>
+                  <SelectItem value="farm">Farm</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="priority">Priority</Label>
-              <select
-                id="priority"
-                value={form.priority}
-                onChange={(e) => setForm({ ...form, priority: e.target.value })}
-                className="w-full rounded-md border bg-background px-3 py-2 text-sm">
-                <option value="normal">Normal</option>
-                <option value="high">High</option>
-                <option value="urgent">Urgent</option>
-              </select>
+              <Select value={form.priority} onValueChange={(v) => setForm({ ...form, priority: v })}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Priority" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="normal">Normal</SelectItem>
+                  <SelectItem value="high">High</SelectItem>
+                  <SelectItem value="urgent">Urgent</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="expiresAt">Expires (optional)</Label>

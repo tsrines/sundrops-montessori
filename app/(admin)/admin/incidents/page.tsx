@@ -8,6 +8,7 @@ import { useRole } from '@/hooks/use-role';
 import { DataTable } from '@/components/ui/data-table';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAdminContext } from '@/hooks/use-admin-context';
 
 interface Incident {
@@ -24,10 +25,6 @@ interface Incident {
     lastName: string;
   };
 }
-
-const CAMPUS_OPTIONS = ['', 'bridge', 'daniel-island', 'palmetto', 'farm'];
-const SEVERITY_OPTIONS = ['', 'minor', 'moderate', 'serious'];
-const STATUS_OPTIONS = ['', 'draft', 'submitted', 'parent_notified', 'acknowledged', 'closed'];
 
 function IncidentsContent() {
   const { isSuperAdmin } = useRole();
@@ -116,37 +113,43 @@ function IncidentsContent() {
 
       <div className="flex flex-wrap gap-3">
         {isSuperAdmin && (
-          <select
-            value={campusFilter}
-            onChange={(e) => setCampusFilter(e.target.value)}
-            className="rounded-md border bg-background px-3 py-1.5 text-sm">
-            {CAMPUS_OPTIONS.map((c) => (
-              <option key={c} value={c}>
-                {c ? c.replace(/-/g, ' ') : 'All campuses'}
-              </option>
-            ))}
-          </select>
+          <Select value={campusFilter || 'all'} onValueChange={(v) => setCampusFilter(v === 'all' ? '' : v)}>
+            <SelectTrigger className="w-40">
+              <SelectValue placeholder="All campuses" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All campuses</SelectItem>
+              <SelectItem value="bridge">Bridge</SelectItem>
+              <SelectItem value="daniel-island">Daniel Island</SelectItem>
+              <SelectItem value="palmetto">Palmetto</SelectItem>
+              <SelectItem value="farm">Farm</SelectItem>
+            </SelectContent>
+          </Select>
         )}
-        <select
-          value={severityFilter}
-          onChange={(e) => setSeverityFilter(e.target.value)}
-          className="rounded-md border bg-background px-3 py-1.5 text-sm">
-          {SEVERITY_OPTIONS.map((s) => (
-            <option key={s} value={s}>
-              {s || 'All severities'}
-            </option>
-          ))}
-        </select>
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="rounded-md border bg-background px-3 py-1.5 text-sm">
-          {STATUS_OPTIONS.map((s) => (
-            <option key={s} value={s}>
-              {s ? s.replace(/_/g, ' ') : 'All statuses'}
-            </option>
-          ))}
-        </select>
+        <Select value={severityFilter || 'all'} onValueChange={(v) => setSeverityFilter(v === 'all' ? '' : v)}>
+          <SelectTrigger className="w-36">
+            <SelectValue placeholder="All severities" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All severities</SelectItem>
+            <SelectItem value="minor">Minor</SelectItem>
+            <SelectItem value="moderate">Moderate</SelectItem>
+            <SelectItem value="serious">Serious</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select value={statusFilter || 'all'} onValueChange={(v) => setStatusFilter(v === 'all' ? '' : v)}>
+          <SelectTrigger className="w-40">
+            <SelectValue placeholder="All statuses" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All statuses</SelectItem>
+            <SelectItem value="draft">Draft</SelectItem>
+            <SelectItem value="submitted">Submitted</SelectItem>
+            <SelectItem value="parent_notified">Parent notified</SelectItem>
+            <SelectItem value="acknowledged">Acknowledged</SelectItem>
+            <SelectItem value="closed">Closed</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
       <DataTable columns={columns} data={incidents} isLoading={loading} emptyMessage="No incident reports found." />

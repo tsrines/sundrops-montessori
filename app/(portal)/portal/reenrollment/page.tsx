@@ -5,6 +5,7 @@ import { CheckCircle } from 'lucide-react';
 import { api } from '@/lib/api-client';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 
 interface Reenrollment {
   id: string;
@@ -123,12 +124,11 @@ export default function ReenrollmentPage() {
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Notes (optional)</label>
-              <textarea
+              <Textarea
                 value={notes[r.id] ?? ''}
                 onChange={(e) => setNotes((prev) => ({ ...prev, [r.id]: e.target.value }))}
                 rows={2}
                 disabled={r.status === 'confirmed'}
-                className="w-full rounded-md border bg-background px-3 py-2 text-sm disabled:opacity-60 focus:outline-none focus:ring-2 focus:ring-primary"
                 placeholder="Any questions or notes for the school..."
               />
             </div>

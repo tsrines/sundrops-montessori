@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
@@ -12,6 +12,9 @@ import { useRole } from '@/hooks/use-role';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 
 const schema = z.object({
@@ -45,6 +48,7 @@ export default function NewIncidentPage() {
 
   const {
     register,
+    control,
     handleSubmit,
     watch,
     setValue,
@@ -108,20 +112,24 @@ export default function NewIncidentPage() {
             <Label htmlFor="childId">
               Child <span className="text-destructive">*</span>
             </Label>
-            <select
-              id="childId"
-              {...register('childId')}
-              className={cn(
-                'w-full rounded-md border bg-background px-3 py-2 text-sm',
-                errors.childId && 'border-destructive'
-              )}>
-              <option value="">Select a child...</option>
-              {children.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.firstName} {c.lastName}
-                </option>
-              ))}
-            </select>
+            <Controller
+              name="childId"
+              control={control}
+              render={({ field }) => (
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <SelectTrigger className={cn('w-full', errors.childId && 'border-destructive')}>
+                    <SelectValue placeholder="Select a child..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {children.map((c) => (
+                      <SelectItem key={c.id} value={c.id}>
+                        {c.firstName} {c.lastName}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
             {errors.childId && <p className="text-xs text-destructive">{errors.childId.message}</p>}
           </div>
 
@@ -129,21 +137,23 @@ export default function NewIncidentPage() {
             <Label htmlFor="campusSlug">
               Campus <span className="text-destructive">*</span>
             </Label>
-            <select
-              id="campusSlug"
-              {...register('campusSlug')}
-              disabled={isTeacher}
-              className={cn(
-                'w-full rounded-md border bg-background px-3 py-2 text-sm',
-                errors.campusSlug && 'border-destructive',
-                isTeacher && 'cursor-not-allowed opacity-60'
-              )}>
-              <option value="">Select campus...</option>
-              <option value="bridge">Bridge</option>
-              <option value="daniel-island">Daniel Island</option>
-              <option value="palmetto">Palmetto</option>
-              <option value="farm">Farm</option>
-            </select>
+            <Controller
+              name="campusSlug"
+              control={control}
+              render={({ field }) => (
+                <Select value={field.value} onValueChange={field.onChange} disabled={isTeacher}>
+                  <SelectTrigger className={cn('w-full', errors.campusSlug && 'border-destructive')}>
+                    <SelectValue placeholder="Select campus..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="bridge">Bridge</SelectItem>
+                    <SelectItem value="daniel-island">Daniel Island</SelectItem>
+                    <SelectItem value="palmetto">Palmetto</SelectItem>
+                    <SelectItem value="farm">Farm</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+            />
             {errors.campusSlug && <p className="text-xs text-destructive">{errors.campusSlug.message}</p>}
           </div>
         </div>
@@ -169,14 +179,22 @@ export default function NewIncidentPage() {
             <Label htmlFor="severity">
               Severity <span className="text-destructive">*</span>
             </Label>
-            <select
-              id="severity"
-              {...register('severity')}
-              className="w-full rounded-md border bg-background px-3 py-2 text-sm">
-              <option value="minor">Minor</option>
-              <option value="moderate">Moderate</option>
-              <option value="serious">Serious</option>
-            </select>
+            <Controller
+              name="severity"
+              control={control}
+              render={({ field }) => (
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Severity" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="minor">Minor</SelectItem>
+                    <SelectItem value="moderate">Moderate</SelectItem>
+                    <SelectItem value="serious">Serious</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+            />
           </div>
         </div>
 
@@ -189,14 +207,11 @@ export default function NewIncidentPage() {
           <Label htmlFor="description">
             Description <span className="text-destructive">*</span>
           </Label>
-          <textarea
+          <Textarea
             id="description"
             {...register('description')}
             rows={4}
-            className={cn(
-              'w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary',
-              errors.description && 'border-destructive'
-            )}
+            className={cn(errors.description && 'border-destructive')}
             placeholder="Describe what happened..."
           />
           {errors.description && <p className="text-xs text-destructive">{errors.description.message}</p>}
@@ -204,13 +219,7 @@ export default function NewIncidentPage() {
 
         <div className="space-y-2">
           <Label htmlFor="actionTaken">Action Taken</Label>
-          <textarea
-            id="actionTaken"
-            {...register('actionTaken')}
-            rows={3}
-            className="w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-            placeholder="What was done in response?"
-          />
+          <Textarea id="actionTaken" {...register('actionTaken')} rows={3} placeholder="What was done in response?" />
         </div>
 
         <div className="space-y-2">
@@ -219,14 +228,30 @@ export default function NewIncidentPage() {
         </div>
 
         <div className="flex gap-6">
-          <label className="flex items-center gap-2 text-sm">
-            <input type="checkbox" {...register('parentNotified')} className="h-4 w-4" />
-            Parent has been notified
-          </label>
-          <label className="flex items-center gap-2 text-sm">
-            <input type="checkbox" {...register('followUpRequired')} className="h-4 w-4" />
-            Follow-up required
-          </label>
+          <div className="flex items-center gap-2">
+            <Controller
+              name="parentNotified"
+              control={control}
+              render={({ field }) => (
+                <Checkbox id="parentNotified" checked={field.value} onCheckedChange={field.onChange} />
+              )}
+            />
+            <Label htmlFor="parentNotified" className="text-sm font-normal">
+              Parent has been notified
+            </Label>
+          </div>
+          <div className="flex items-center gap-2">
+            <Controller
+              name="followUpRequired"
+              control={control}
+              render={({ field }) => (
+                <Checkbox id="followUpRequired" checked={field.value} onCheckedChange={field.onChange} />
+              )}
+            />
+            <Label htmlFor="followUpRequired" className="text-sm font-normal">
+              Follow-up required
+            </Label>
+          </div>
         </div>
 
         <Button type="submit" disabled={isSubmitting}>

@@ -8,6 +8,7 @@ import { useAdminContext } from '@/hooks/use-admin-context';
 import { DataTable } from '@/components/ui/data-table';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface Reenrollment {
   id: string;
@@ -22,9 +23,6 @@ interface Reenrollment {
     lastName: string;
   };
 }
-
-const STATUS_OPTIONS = ['', 'pending', 'confirmed', 'declined'];
-const CAMPUS_OPTIONS = ['', 'bridge', 'daniel-island', 'palmetto', 'farm'];
 
 function ReenrollmentsContent() {
   const { isSuperAdmin, isAdminOrAbove } = useRole();
@@ -140,27 +138,30 @@ function ReenrollmentsContent() {
           placeholder="Filter by year (e.g. 2026-2027)"
           className="rounded-md border bg-background px-3 py-1.5 text-sm w-52"
         />
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="rounded-md border bg-background px-3 py-1.5 text-sm">
-          {STATUS_OPTIONS.map((s) => (
-            <option key={s} value={s}>
-              {s || 'All statuses'}
-            </option>
-          ))}
-        </select>
+        <Select value={statusFilter || 'all'} onValueChange={(v) => setStatusFilter(v === 'all' ? '' : v)}>
+          <SelectTrigger className="w-36">
+            <SelectValue placeholder="All statuses" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All statuses</SelectItem>
+            <SelectItem value="pending">Pending</SelectItem>
+            <SelectItem value="confirmed">Confirmed</SelectItem>
+            <SelectItem value="declined">Declined</SelectItem>
+          </SelectContent>
+        </Select>
         {isSuperAdmin && (
-          <select
-            value={campusFilter}
-            onChange={(e) => setCampusFilter(e.target.value)}
-            className="rounded-md border bg-background px-3 py-1.5 text-sm">
-            {CAMPUS_OPTIONS.map((c) => (
-              <option key={c} value={c}>
-                {c ? c.replace(/-/g, ' ') : 'All campuses'}
-              </option>
-            ))}
-          </select>
+          <Select value={campusFilter || 'all'} onValueChange={(v) => setCampusFilter(v === 'all' ? '' : v)}>
+            <SelectTrigger className="w-40">
+              <SelectValue placeholder="All campuses" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All campuses</SelectItem>
+              <SelectItem value="bridge">Bridge</SelectItem>
+              <SelectItem value="daniel-island">Daniel Island</SelectItem>
+              <SelectItem value="palmetto">Palmetto</SelectItem>
+              <SelectItem value="farm">Farm</SelectItem>
+            </SelectContent>
+          </Select>
         )}
       </div>
 

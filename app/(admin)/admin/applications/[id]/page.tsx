@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { api } from '@/lib/api-client';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 
 interface Application {
   id: string;
@@ -268,11 +269,10 @@ export default function ApplicationDetailPage() {
       {/* Admin Notes */}
       <section className="space-y-3 rounded-lg border bg-card p-5">
         <h2 className="font-semibold">Internal Notes</h2>
-        <textarea
+        <Textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           rows={4}
-          className="w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="Add internal notes visible only to staff..."
         />
         <Button onClick={handleSaveNotes} disabled={saving} size="sm">

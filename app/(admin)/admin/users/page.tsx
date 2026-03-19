@@ -3,10 +3,14 @@
 import { useEffect, useState } from 'react';
 import { useSession } from '@/lib/auth-client';
 import { admin } from '@/lib/auth-client';
-import { ROLE_OPTIONS, CAMPUS_SCOPED_ROLES, type CampusScopedRole, isCampusScopedRole } from '@/lib/roles';
+import { ROLE_OPTIONS, type CampusScopedRole, isCampusScopedRole } from '@/lib/roles';
 import { api } from '@/lib/api-client';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 interface User {
   id: string;
@@ -47,9 +51,11 @@ function RoleAssignmentModal({ role, onConfirm, onCancel }: RoleAssignmentModalP
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="w-full max-w-sm space-y-4 rounded-lg border bg-background p-6 shadow-lg">
-        <h2 className="font-serif text-lg font-semibold">Assign Campus</h2>
+    <Dialog open onOpenChange={(open) => !open && onCancel()}>
+      <DialogContent className="max-w-sm">
+        <DialogHeader>
+          <DialogTitle className="font-serif">Assign Campus</DialogTitle>
+        </DialogHeader>
         <p className="text-sm text-muted-foreground">
           Select a campus for this <span className="font-medium capitalize">{role}</span>.
           {role === 'teacher' && ' Teachers also need a classroom.'}
@@ -57,44 +63,45 @@ function RoleAssignmentModal({ role, onConfirm, onCancel }: RoleAssignmentModalP
 
         <div className="space-y-3">
           <div className="space-y-1">
-            <label className="text-xs font-medium text-muted-foreground">Campus *</label>
-            <select
-              value={campus}
-              onChange={(e) => setCampus(e.target.value)}
-              className="w-full rounded-md border bg-background px-3 py-2 text-sm">
-              <option value="">Select campus...</option>
-              {CAMPUS_OPTIONS.map((c) => (
-                <option key={c} value={c}>
-                  {c.replace(/-/g, ' ')}
-                </option>
-              ))}
-            </select>
+            <Label className="text-xs font-medium text-muted-foreground">Campus *</Label>
+            <Select value={campus || 'none'} onValueChange={(v) => setCampus(v === 'none' ? '' : v)}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select campus..." />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">Select campus...</SelectItem>
+                {CAMPUS_OPTIONS.map((c) => (
+                  <SelectItem key={c} value={c}>
+                    {c.replace(/-/g, ' ')}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           {role === 'teacher' && (
             <div className="space-y-1">
-              <label className="text-xs font-medium text-muted-foreground">Classroom</label>
-              <input
+              <Label className="text-xs font-medium text-muted-foreground">Classroom</Label>
+              <Input
                 type="text"
                 value={classroom}
                 onChange={(e) => setClassroom(e.target.value)}
                 placeholder="e.g. Room A"
-                className="w-full rounded-md border bg-background px-3 py-2 text-sm"
               />
             </div>
           )}
         </div>
 
-        <div className="flex gap-2 justify-end">
+        <DialogFooter>
           <Button variant="outline" size="sm" onClick={onCancel} disabled={saving}>
             Cancel
           </Button>
           <Button size="sm" onClick={handleSave} disabled={saving || !campus}>
             {saving ? 'Saving...' : 'Confirm'}
           </Button>
-        </div>
-      </div>
-    </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 
@@ -221,17 +228,18 @@ export default function UsersPage() {
                 <td className="px-4 py-3 text-muted-foreground">{u.email}</td>
                 <td className="px-4 py-3">
                   {isSuperAdmin ? (
-                    <select
-                      value={u.role}
-                      onChange={(e) => handleSetRole(u.id, e.target.value)}
-                      disabled={saving === u.id}
-                      className="rounded-md border bg-background px-2 py-1 text-xs">
-                      {ROLE_OPTIONS.map((r) => (
-                        <option key={r} value={r}>
-                          {r}
-                        </option>
-                      ))}
-                    </select>
+                    <Select value={u.role} onValueChange={(v) => handleSetRole(u.id, v)} disabled={saving === u.id}>
+                      <SelectTrigger className="h-7 w-28 px-2 text-xs">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {ROLE_OPTIONS.map((r) => (
+                          <SelectItem key={r} value={r} className="text-xs">
+                            {r}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   ) : (
                     <span className="text-xs capitalize">{u.role}</span>
                   )}

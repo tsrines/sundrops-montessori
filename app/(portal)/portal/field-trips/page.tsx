@@ -5,7 +5,7 @@ import { useSession } from '@/lib/auth-client';
 import { api } from '@/lib/api-client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FieldTripPortalForm } from '@/components/portal/field-trip-portal-form';
-import { cn } from '@/lib/utils';
+import { StatusBadge } from '@/components/ui/status-badge';
 
 interface Child {
   id: string;
@@ -92,13 +92,7 @@ export default function FieldTripsPage() {
                       {perm.schoolYear} school year - Signed by {perm.guardianName}
                     </p>
                   </div>
-                  <span
-                    className={cn(
-                      'rounded-full px-2 py-0.5 text-xs font-medium',
-                      perm.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                    )}>
-                    {perm.status}
-                  </span>
+                  <StatusBadge status={perm.status} />
                 </div>
               ))}
             </div>

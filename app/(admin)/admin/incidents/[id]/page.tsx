@@ -7,6 +7,9 @@ import { ArrowLeft } from 'lucide-react';
 import { api } from '@/lib/api-client';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 
 interface Incident {
   id: string;
@@ -196,21 +199,21 @@ export default function IncidentDetailPage() {
       <section className="space-y-3 rounded-lg border bg-card p-5">
         <div className="flex items-center justify-between">
           <h2 className="font-semibold">Follow-up Notes</h2>
-          <label className="flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="followUpRequired"
               checked={incident.followUpRequired}
-              onChange={(e) => handleUpdate({ followUpRequired: e.target.checked })}
-              className="h-4 w-4"
+              onCheckedChange={(checked) => handleUpdate({ followUpRequired: checked })}
             />
-            Follow-up required
-          </label>
+            <Label htmlFor="followUpRequired" className="text-sm font-normal">
+              Follow-up required
+            </Label>
+          </div>
         </div>
-        <textarea
+        <Textarea
           value={followUpNotes}
           onChange={(e) => setFollowUpNotes(e.target.value)}
           rows={3}
-          className="w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="Follow-up notes..."
         />
         <Button size="sm" onClick={() => handleUpdate({ followUpNotes })} disabled={saving}>

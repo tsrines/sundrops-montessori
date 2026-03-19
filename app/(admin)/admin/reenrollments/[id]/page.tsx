@@ -7,6 +7,7 @@ import { ArrowLeft } from 'lucide-react';
 import { api } from '@/lib/api-client';
 import { StatusBadge } from '@/components/ui/status-badge';
 import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 
 interface Reenrollment {
   id: string;
@@ -142,11 +143,10 @@ export default function ReenrollmentDetailPage() {
 
       <section className="space-y-3 rounded-lg border bg-card p-5">
         <h2 className="font-semibold">Admin Notes</h2>
-        <textarea
+        <Textarea
           value={adminNotes}
           onChange={(e) => setAdminNotes(e.target.value)}
           rows={3}
-          className="w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="Internal notes..."
         />
       </section>

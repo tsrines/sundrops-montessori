@@ -6,7 +6,7 @@ import { api } from '@/lib/api-client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PizzaOrderPortalForm } from '@/components/portal/pizza-order-portal-form';
-import { cn } from '@/lib/utils';
+import { StatusBadge } from '@/components/ui/status-badge';
 
 interface Child {
   id: string;
@@ -110,13 +110,7 @@ export default function PizzaOrdersPage() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span
-                      className={cn(
-                        'rounded-full px-2 py-0.5 text-xs font-medium',
-                        order.status === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                      )}>
-                      {order.status}
-                    </span>
+                    <StatusBadge status={order.status} />
                     {order.status === 'pending' && (
                       <Button
                         variant="ghost"

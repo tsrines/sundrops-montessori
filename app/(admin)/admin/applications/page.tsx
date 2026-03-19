@@ -6,6 +6,7 @@ import { api } from '@/lib/api-client';
 import { useRole } from '@/hooks/use-role';
 import { DataTable } from '@/components/ui/data-table';
 import { StatusBadge } from '@/components/ui/status-badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface Application {
   id: string;
@@ -17,9 +18,6 @@ interface Application {
   email1: string;
   createdAt: string;
 }
-
-const STATUS_OPTIONS = ['', 'pending', 'under_review', 'accepted', 'waitlisted', 'declined', 'withdrawn'];
-const CAMPUS_OPTIONS = ['', 'bridge', 'daniel-island', 'palmetto', 'farm'];
 
 export default function ApplicationsPage() {
   const { isSuperAdmin } = useRole();
@@ -93,27 +91,33 @@ export default function ApplicationsPage() {
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="rounded-md border bg-background px-3 py-1.5 text-sm">
-          {STATUS_OPTIONS.map((s) => (
-            <option key={s} value={s}>
-              {s ? s.replace(/_/g, ' ') : 'All statuses'}
-            </option>
-          ))}
-        </select>
+        <Select value={statusFilter || 'all'} onValueChange={(v) => setStatusFilter(v === 'all' ? '' : v)}>
+          <SelectTrigger className="w-40">
+            <SelectValue placeholder="All statuses" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All statuses</SelectItem>
+            <SelectItem value="pending">Pending</SelectItem>
+            <SelectItem value="under_review">Under review</SelectItem>
+            <SelectItem value="accepted">Accepted</SelectItem>
+            <SelectItem value="waitlisted">Waitlisted</SelectItem>
+            <SelectItem value="declined">Declined</SelectItem>
+            <SelectItem value="withdrawn">Withdrawn</SelectItem>
+          </SelectContent>
+        </Select>
         {isSuperAdmin && (
-          <select
-            value={campusFilter}
-            onChange={(e) => setCampusFilter(e.target.value)}
-            className="rounded-md border bg-background px-3 py-1.5 text-sm capitalize">
-            {CAMPUS_OPTIONS.map((c) => (
-              <option key={c} value={c}>
-                {c ? c.replace(/-/g, ' ') : 'All campuses'}
-              </option>
-            ))}
-          </select>
+          <Select value={campusFilter || 'all'} onValueChange={(v) => setCampusFilter(v === 'all' ? '' : v)}>
+            <SelectTrigger className="w-40">
+              <SelectValue placeholder="All campuses" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All campuses</SelectItem>
+              <SelectItem value="bridge">Bridge</SelectItem>
+              <SelectItem value="daniel-island">Daniel Island</SelectItem>
+              <SelectItem value="palmetto">Palmetto</SelectItem>
+              <SelectItem value="farm">Farm</SelectItem>
+            </SelectContent>
+          </Select>
         )}
       </div>
 

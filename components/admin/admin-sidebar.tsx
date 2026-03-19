@@ -23,8 +23,18 @@ import { APPLICATION_CAMPUSES, APPLICATION_PROGRAMS } from '@/lib/data/applicati
 
 const TOP_LINKS = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/applications', label: 'Applications', icon: FileText, allowedRoles: [ROLES.SUPERADMIN, ROLES.ADMIN, ROLES.STAFF] },
-  { href: '/admin/reenrollments', label: 'Re-enrollment', icon: RefreshCw, allowedRoles: [ROLES.SUPERADMIN, ROLES.ADMIN, ROLES.STAFF] },
+  {
+    href: '/admin/applications',
+    label: 'Applications',
+    icon: FileText,
+    allowedRoles: [ROLES.SUPERADMIN, ROLES.ADMIN, ROLES.STAFF],
+  },
+  {
+    href: '/admin/reenrollments',
+    label: 'Re-enrollment',
+    icon: RefreshCw,
+    allowedRoles: [ROLES.SUPERADMIN, ROLES.ADMIN, ROLES.STAFF],
+  },
   { href: '/admin/incidents', label: 'Incidents', icon: AlertTriangle },
   { href: '/admin/announcements', label: 'Announcements', icon: Megaphone },
   { href: '/admin/users', label: 'Users', icon: UserCog, allowedRoles: [ROLES.SUPERADMIN, ROLES.ADMIN] },
@@ -129,7 +139,7 @@ export function AdminSidebar() {
     });
   };
 
-  const visibleLinks = TOP_LINKS.filter((l) => !l.allowedRoles || l.allowedRoles.includes(role));
+  const visibleLinks = TOP_LINKS.filter((l) => !l.allowedRoles || l.allowedRoles.some((r) => r === role));
   const visibleCampuses = CAMPUS_STRUCTURE.filter((c) => classroomData.some((d) => d.campus === c.campus));
 
   return (
@@ -158,7 +168,9 @@ export function AdminSidebar() {
           <div className="flex items-center gap-2 px-3 py-1">
             <Users className="h-4 w-4 text-muted-foreground" />
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              {isSuperAdmin ? 'All Campuses' : `Your Campus${visibleCampuses[0] ? ` — ${visibleCampuses[0].label}` : ''}`}
+              {isSuperAdmin
+                ? 'All Campuses'
+                : `Your Campus${visibleCampuses[0] ? ` — ${visibleCampuses[0].label}` : ''}`}
             </span>
           </div>
           <div className="mt-1 space-y-0.5">

@@ -8,21 +8,10 @@ export const ROLES = {
 
 export type UserRole = (typeof ROLES)[keyof typeof ROLES];
 
-export const ROLE_OPTIONS = [
-  ROLES.USER,
-  ROLES.STAFF,
-  ROLES.TEACHER,
-  ROLES.ADMIN,
-  ROLES.SUPERADMIN,
-] as const;
+export const ROLE_OPTIONS = [ROLES.USER, ROLES.STAFF, ROLES.TEACHER, ROLES.ADMIN, ROLES.SUPERADMIN] as const;
 
 // Used for runtime inclusion checks — typed as readonly string[] so .includes(string) compiles
-export const STAFF_ROLES: readonly string[] = [
-  ROLES.SUPERADMIN,
-  ROLES.ADMIN,
-  ROLES.STAFF,
-  ROLES.TEACHER,
-];
+export const STAFF_ROLES: readonly string[] = [ROLES.SUPERADMIN, ROLES.ADMIN, ROLES.STAFF, ROLES.TEACHER];
 
 export const CAMPUS_SCOPED_ROLES = [ROLES.ADMIN, ROLES.STAFF, ROLES.TEACHER] as const;
 
