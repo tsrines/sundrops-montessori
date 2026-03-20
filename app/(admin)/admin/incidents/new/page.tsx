@@ -15,7 +15,15 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxItem, ComboboxList, ComboboxTrigger } from '@/components/ui/combobox';
 import { cn } from '@/lib/utils';
+
+const CAMPUS_LABELS: Record<string, string> = {
+  bridge: 'Bridge',
+  'daniel-island': 'Daniel Island',
+  palmetto: 'Palmetto',
+  farm: 'Farm',
+};
 
 const schema = z.object({
   childId: z.string().min(1, 'Please select a child'),
@@ -44,7 +52,7 @@ function NewIncidentForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const preselectedChildId = searchParams.get('childId') ?? '';
-  const { isTeacher } = useRole();
+  const { isSuperAdmin } = useRole();
   const [children, setChildren] = useState<Child[]>([]);
   const [error, setError] = useState('');
 
@@ -81,10 +89,10 @@ function NewIncidentForm() {
   }, [selectedChildId, children, setValue]);
 
   useEffect(() => {
-    if (isTeacher && children.length > 0) {
+    if (!isSuperAdmin && children.length > 0) {
       setValue('campusSlug', children[0].campusSlug);
     }
-  }, [isTeacher, children, setValue]);
+  }, [isSuperAdmin, children, setValue]);
 
   const onSubmit = async (data: FormValues) => {
     try {
@@ -118,20 +126,39 @@ function NewIncidentForm() {
             <Controller
               name="childId"
               control={control}
-              render={({ field }) => (
-                <Select value={field.value} onValueChange={field.onChange}>
-                  <SelectTrigger className={cn('w-full', errors.childId && 'border-destructive')}>
-                    <SelectValue placeholder="Select a child..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {children.map((c) => (
-                      <SelectItem key={c.id} value={c.id}>
-                        {c.firstName} {c.lastName}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              )}
+              render={({ field }) => {
+                const selectedChild = children.find((c) => c.id === field.value) ?? null;
+                return (
+                  <Combobox
+                    items={children}
+                    value={selectedChild}
+                    onValueChange={(child) => field.onChange(child?.id ?? '')}
+                    itemToStringValue={(child) => `${child.firstName} ${child.lastName}`}
+                  >
+                    <ComboboxTrigger
+                      className={cn(
+                        !selectedChild && 'text-muted-foreground',
+                        errors.childId && 'border-destructive'
+                      )}
+                    >
+                      <span className="truncate">
+                        {selectedChild ? `${selectedChild.firstName} ${selectedChild.lastName}` : 'Select a child...'}
+                      </span>
+                    </ComboboxTrigger>
+                    <ComboboxContent>
+                      <ComboboxInput placeholder="Search children..." />
+                      <ComboboxEmpty>No children found.</ComboboxEmpty>
+                      <ComboboxList>
+                        {(child) => (
+                          <ComboboxItem key={child.id} value={child}>
+                            {child.firstName} {child.lastName}
+                          </ComboboxItem>
+                        )}
+                      </ComboboxList>
+                    </ComboboxContent>
+                  </Combobox>
+                );
+              }}
             />
             {errors.childId && <p className="text-xs text-destructive">{errors.childId.message}</p>}
           </div>
@@ -140,23 +167,36 @@ function NewIncidentForm() {
             <Label htmlFor="campusSlug">
               Campus <span className="text-destructive">*</span>
             </Label>
-            <Controller
-              name="campusSlug"
-              control={control}
-              render={({ field }) => (
-                <Select value={field.value} onValueChange={field.onChange} disabled={isTeacher}>
-                  <SelectTrigger className={cn('w-full', errors.campusSlug && 'border-destructive')}>
-                    <SelectValue placeholder="Select campus..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="bridge">Bridge</SelectItem>
-                    <SelectItem value="daniel-island">Daniel Island</SelectItem>
-                    <SelectItem value="palmetto">Palmetto</SelectItem>
-                    <SelectItem value="farm">Farm</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
+            {isSuperAdmin ? (
+              <Controller
+                name="campusSlug"
+                control={control}
+                render={({ field }) => (
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger className={cn('w-full', errors.campusSlug && 'border-destructive')}>
+                      <SelectValue placeholder="Select campus..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="bridge">Bridge</SelectItem>
+                      <SelectItem value="daniel-island">Daniel Island</SelectItem>
+                      <SelectItem value="palmetto">Palmetto</SelectItem>
+                      <SelectItem value="farm">Farm</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+            ) : (
+              <>
+                <Controller
+                  name="campusSlug"
+                  control={control}
+                  render={({ field }) => <input type="hidden" {...field} />}
+                />
+                <div className="flex h-9 items-center rounded-md border border-input bg-muted px-3 text-sm text-muted-foreground">
+                  {CAMPUS_LABELS[watch('campusSlug')] ?? 'Auto-set from child selection'}
+                </div>
+              </>
+            )}
             {errors.campusSlug && <p className="text-xs text-destructive">{errors.campusSlug.message}</p>}
           </div>
         </div>
