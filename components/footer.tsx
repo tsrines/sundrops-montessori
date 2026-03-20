@@ -129,7 +129,9 @@ export function Footer() {
           <span>
             &copy; {currentYear} {siteConfig.name}. All rights reserved.
           </span>
-          <span>Website by Tim Rines</span>
+          <Link href="/staff/login" className="transition-opacity hover:opacity-100">
+            Staff
+          </Link>
         </div>
       </div>
     </footer>

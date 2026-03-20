@@ -20,7 +20,7 @@ const loginSchema = z.object({
 
 type LoginValues = z.infer<typeof loginSchema>;
 
-export function LoginForm() {
+export function LoginForm({ showRegisterLink = true }: { showRegisterLink?: boolean }) {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
@@ -95,12 +95,14 @@ export function LoginForm() {
         </Button>
       </form>
 
-      <p className="text-center text-sm text-muted-foreground">
-        Don&apos;t have an account?{' '}
-        <Link href="/register" className="font-medium text-primary hover:underline">
-          Create one
-        </Link>
-      </p>
+      {showRegisterLink && (
+        <p className="text-center text-sm text-muted-foreground">
+          Don&apos;t have an account?{' '}
+          <Link href="/register" className="font-medium text-primary hover:underline">
+            Create one
+          </Link>
+        </p>
+      )}
     </div>
   );
 }
