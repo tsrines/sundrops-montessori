@@ -63,6 +63,7 @@ export const footerNavigation = {
   ],
   resources: [
     { label: 'Parent Portal', href: '/portal' },
+    { label: 'Staff Portal', href: '/staff/login' },
     { label: 'FAQs', href: '/faqs/' },
     { label: 'Calendar', href: '/calendar-embed' },
     { label: 'Careers', href: '/careers/' },
